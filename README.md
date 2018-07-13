@@ -90,7 +90,7 @@ console.log(n.getLeft().getValue()); // 20
 
 **.traverseInOrder(cb)** 
 ```js
-// in-order traverse
+// in-order traverse (left-parent-right)
 bst.traverseInOrder(node => console.log(node.getValue()));
 
 // 20
@@ -105,7 +105,7 @@ bst.traverseInOrder(node => console.log(node.getValue()));
 **.traversePreOrder(cb)** 
 
 ```js
-// pre-order traverse
+// pre-order traverse (parent-left-right)
 bst.traversePreOrder(node => console.log(node.getValue()));
 
 // 50
@@ -120,7 +120,7 @@ bst.traversePreOrder(node => console.log(node.getValue()));
 **.traversePostOrder(cb)** 
 
 ```js
-// post-order traverse
+// post-order traverse (left-right-parent)
 bst.traverse(node => console.log(node.getValue()));
 
 // 20
