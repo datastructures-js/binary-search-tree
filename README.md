@@ -136,7 +136,7 @@ bst.traverse(node => console.log(node.getValue()));
 
 traverse the tree in the defined order and apply a callback on each node.
 
-order values: `inOrder`, `preOrder` OR 'postOrder'. default is `inOrder`
+order values: `inOrder`, `preOrder` OR `postOrder`. default is `inOrder`
 
 ```js
 bst.traverse(node => console.log(node.getValue())); // in-order
