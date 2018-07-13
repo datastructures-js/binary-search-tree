@@ -26,7 +26,7 @@ creates a bst node.
 * **.getParent(parent)** gets the parent node.
 * **.setLeft(left)** sets the node's left child.
 * **.getLeft()** gets the node's left child.
-* **.setRight(left)** sets the node's right child.
+* **.setRight(right)** sets the node's right child.
 * **.getRight()** gets the node's right child.
 
 ```js
