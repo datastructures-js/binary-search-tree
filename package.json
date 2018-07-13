@@ -1,0 +1,39 @@
+{
+  "name": "@datastructures-js/binary-search-tree",
+  "version": "1.0.0",
+  "description": "binary search tree implementation in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datastructures-js/binary-search-tree.git"
+  },
+  "keywords": [
+    "binary search tree",
+    "bst js",
+    "bst es6",
+    "binary search tree es6",
+    "binary search tree js"
+  ],
+  "author": "Eyas Ranjous <eyas.ranjous@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/datastructures-js/binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/datastructures-js/binary-search-tree#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "grunt-eslint": "^20.2.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-mocha-istanbul": "^5.0.2",
+    "grunt-mocha-test": "^0.13.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.0.0"
+  }
+}
