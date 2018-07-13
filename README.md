@@ -186,4 +186,4 @@ grunt build
 ```
 
 ## License
-The MIT License. Full License is [here](https://github.com/datastructures-js/trie/blob/master/LICENSE)
+The MIT License. Full License is [here](https://github.com/datastructures-js/binary-search-tree/blob/master/LICENSE)
