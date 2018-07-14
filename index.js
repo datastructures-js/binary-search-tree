@@ -161,7 +161,7 @@ const binarySearchTree = () => {
         }
       }
     };
-    return insertFn(rootNode);
+    insertFn(rootNode);
   };
 
   /**
@@ -220,7 +220,7 @@ const binarySearchTree = () => {
         }
       }
     };
-    return removeFn(value, rootNode);
+    removeFn(value, rootNode);
   };
 
   /**
@@ -235,7 +235,7 @@ const binarySearchTree = () => {
         traverseInOrderFn(currentNode.getRight());
       }
     };
-    return traverseInOrderFn(rootNode);
+    traverseInOrderFn(rootNode);
   };
 
   /**
@@ -250,7 +250,7 @@ const binarySearchTree = () => {
         traversePreOrderFn(currentNode.getRight());
       }
     };
-    return traversePreOrderFn(rootNode);
+    traversePreOrderFn(rootNode);
   };
 
   /**
@@ -265,7 +265,7 @@ const binarySearchTree = () => {
         cb(currentNode);
       }
     };
-    return traversePostOrderFn(rootNode);
+    traversePostOrderFn(rootNode);
   };
 
   /**
