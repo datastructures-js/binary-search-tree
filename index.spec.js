@@ -29,7 +29,7 @@ describe('binarySearchTree tests', () => {
       expect(bst.max().getValue(90))));
 
   describe('.root()', () =>
-    it('should get the node with min value', () =>
+    it('should get the root node', () =>
       expect(bst.root().getValue(50))));
 
   describe('.find(value)', () =>
@@ -79,7 +79,6 @@ describe('binarySearchTree tests', () => {
       expect(bst.count()).to.equal(5);
     });
 
-
     it('should remove a node with a left child only', () => {
       bst.insert(30);
       bst.remove(40);
@@ -95,6 +94,30 @@ describe('binarySearchTree tests', () => {
       expect(bst.find(90).getRight()).to.equal(null);
       expect(bst.find(90).getLeft().getValue()).to.equal(60);
       expect(bst.count()).to.equal(4);
+    });
+
+    it('should remove root node with right child', () => {
+      bst.insert(100);
+      bst.remove(60);
+      bst.remove(90);
+      bst.remove(30);
+      bst.remove(50);
+      expect(bst.root().getValue()).to.equal(100);
+    });
+
+    it('should remove root node with left child', () => {
+      bst.insert(20);
+      bst.insert(30);
+      bst.insert(25);
+      bst.remove(30);
+      bst.remove(25);
+      bst.remove(100);
+      expect(bst.root().getValue()).to.equal(20);
+    });
+
+    it('should remove root node', () => {
+      bst.remove(20);
+      expect(bst.root()).to.equal(null);
     });
   });
 
