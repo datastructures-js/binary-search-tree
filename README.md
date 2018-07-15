@@ -30,7 +30,7 @@ creates a bst node.
 * **.getRight()** gets the node's right child.
 
 ```js
-const n = bst.node('test', null,);
+const n = bst.node('test');
 console.log(n.getValue()); // test
 console.log(n.getParent()); // null
 console.log(n.getLeft()); // null
