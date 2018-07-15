@@ -1,6 +1,6 @@
 {
   "name": "@datastructures-js/binary-search-tree",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "binary search tree implementation in javascript",
   "main": "index.js",
   "scripts": {
