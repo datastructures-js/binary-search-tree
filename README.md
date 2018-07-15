@@ -54,7 +54,7 @@ bst.insert(20);
 
 gets the root node
 ```javascript
-console.log(bst.root().getValue()); // 90
+console.log(bst.root().getValue()); // 50
 ```
 
 **.min()** 
