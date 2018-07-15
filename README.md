@@ -166,10 +166,7 @@ bst.traverse(node => console.log(node.getValue()), 'preOrder');
 removes a value's node (if exists) from the tree.
 ```javascript
 bst.remove(30);
-let n50 = bst.find(50);
-let n40 = bst.find(40);
-console.log(n50.getLeft().getValue()); // 40
-console.log(n40.getLeft().getValue()); // 20
+console.log(bst.find(30)); // null
 ```
 
 **.clear()** 
