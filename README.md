@@ -26,25 +26,16 @@ const bst = binarySearchTree();
 ### .node(key, value, parent, left, right)
 creates a bst node with the following api.
 
-**.setKey(key)**
-
-**.getKey()**
-
-**.setValue(value)**
-
-**.getValue()**
-
-**.setParent(node)**
-
-**.getParent()**
-
-**.setLeft(node)**
-
-**.getLeft()**
-
-**.setRight(node)**
-
-**.getRight()**
+* .setKey(key)
+* .getKey()
+* .setValue(value)
+* .getValue()
+* .setParent(node)
+* .getParent()
+* .setLeft(node)
+* .getLeft()
+* .setRight(node)
+* .getRight()
 
 ```js
 const n = bst.node(1, 'test');
