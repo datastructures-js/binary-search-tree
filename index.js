@@ -8,11 +8,24 @@
  * binary tree node
  * @function
  */
-const node = (v, p, l, r) => {
+const node = (k, v, p, l, r) => {
+  let key = k;
   let value = v;
   let parent = p || null;
   let left = l || null;
   let right = r || null;
+
+  /**
+   * @returns {string|number}
+   */
+  const getKey = () => key;
+
+  /**
+   * @param {string|number}
+   */
+  const setKey = (ky) => {
+    key = ky;
+  };
 
   /**
    * @param {object} value
@@ -22,7 +35,7 @@ const node = (v, p, l, r) => {
   };
 
   /**
-   * @returns {string|number}
+   * @returns {object}
    */
   const getValue = () => value;
 
@@ -64,6 +77,8 @@ const node = (v, p, l, r) => {
 
   // binary tree node api
   return {
+    setKey,
+    getKey,
     setValue,
     getValue,
     setParent,
@@ -122,12 +137,12 @@ const binarySearchTree = () => {
    * @param {(string|number)} value
    * @returns {object} node
    */
-  const find = (value) => {
+  const search = (key) => {
     let currentNode = rootNode;
     while (currentNode !== null) {
-      if (value > currentNode.getValue()) {
+      if (key > currentNode.getKey()) {
         currentNode = currentNode.getRight();
-      } else if (value < currentNode.getValue()) {
+      } else if (key < currentNode.getKey()) {
         currentNode = currentNode.getLeft();
       } else {
         return currentNode;
@@ -137,24 +152,25 @@ const binarySearchTree = () => {
   };
 
   /**
-   * inserts a node by a given value into the tree
-   * @param {(string|number)} value
+   * inserts a node by a given (key, value) into the tree
+   * @param {(string|number)} key
+   * @param {object} value
    */
-  const insert = (value) => {
+  const insert = (key, value) => {
     const insertFn = (currentNode) => {
       if (currentNode === null) {
-        rootNode = node(value);
+        rootNode = node(key, value);
         nodesCount += 1;
-      } else if (value < currentNode.getValue()) {
+      } else if (key < currentNode.getKey()) {
         if (currentNode.getLeft() === null) {
-          currentNode.setLeft(node(value, currentNode));
+          currentNode.setLeft(node(key, value, currentNode));
           nodesCount += 1;
         } else {
           insertFn(currentNode.getLeft());
         }
-      } else if (value > currentNode.getValue()) {
+      } else if (key > currentNode.getKey()) {
         if (currentNode.getRight() === null) {
-          currentNode.setRight(node(value, currentNode));
+          currentNode.setRight(node(key, value, currentNode));
           nodesCount += 1;
         } else {
           insertFn(currentNode.getRight());
@@ -166,24 +182,24 @@ const binarySearchTree = () => {
 
   /**
    * removes a node by a given value from the tree
-   * @param {(string|number)} value
+   * @param {(string|number)} key
    */
-  const remove = (value) => {
-    const removeFn = (val, currentNode) => {
+  const remove = (key) => {
+    const removeFn = (k, currentNode) => {
       if (currentNode !== null) {
         const left = currentNode.getLeft();
         const right = currentNode.getRight();
-        if (val > currentNode.getValue()) {
-          removeFn(val, right);
-        } else if (val < currentNode.getValue()) {
-          removeFn(val, left);
+        if (k > currentNode.getKey()) {
+          removeFn(k, right);
+        } else if (k < currentNode.getKey()) {
+          removeFn(k, left);
         } else {
           const parent = currentNode.getParent();
           if (right === null && left === null) {
             // remove a node with no children
             if (parent === null) {
               rootNode = null;
-            } else if (currentNode.getValue() >= parent.getValue()) {
+            } else if (currentNode.getKey() >= parent.getKey()) {
               parent.setRight(null);
             } else {
               parent.setLeft(null);
@@ -193,7 +209,7 @@ const binarySearchTree = () => {
             // remove a node with a left child
             if (parent === null) {
               rootNode = left;
-            } else if (currentNode.getValue() > parent.getValue()) {
+            } else if (currentNode.getKey() > parent.getKey()) {
               parent.setRight(left);
             } else {
               parent.setLeft(left);
@@ -204,7 +220,7 @@ const binarySearchTree = () => {
             // remove a node with a right child
             if (parent === null) {
               rootNode = right;
-            } else if (currentNode.getValue() > parent.getValue()) {
+            } else if (currentNode.getKey() > parent.getKey()) {
               parent.setRight(right);
             } else {
               parent.setLeft(right);
@@ -214,13 +230,13 @@ const binarySearchTree = () => {
           } else {
             // remove a node with two children
             const minRight = min(right);
-            currentNode.setValue(minRight.getValue());
-            removeFn(minRight.getValue(), minRight);
+            currentNode.setKey(minRight.getKey());
+            removeFn(minRight.getKey(), minRight);
           }
         }
       }
     };
-    removeFn(value, rootNode);
+    removeFn(key, rootNode);
   };
 
   /**
@@ -305,7 +321,7 @@ const binarySearchTree = () => {
     clear,
     max,
     min,
-    find,
+    search,
     insert,
     remove,
     traverseInOrder,

@@ -16,82 +16,84 @@ const bst = binarySearchTree();
 
 ## API
 
-**.node(value, parent, left, right)**
+### .node(key, value, parent, left, right)
+creates a bst node with the following api.
 
-creates a bst node.
-
-* **.setValue(value)** sets the node's value.
-* **.getValue()** gets the node's value.
-* **.setParent(parent)** sets the parent node.
-* **.getParent()** gets the parent node.
-* **.setLeft(left)** sets the node's left child.
-* **.getLeft()** gets the node's left child.
-* **.setRight(right)** sets the node's right child.
-* **.getRight()** gets the node's right child.
+#### .setKey(key)
+#### .getKey()
+#### .setValue(value)
+#### .getValue()
+#### .setParent(node)
+#### .getParent()
+#### .setLeft(node)
+#### .getLeft()
+#### .setRight(node)
+#### .getRight()
 
 ```js
-const n = bst.node('test');
+const n = bst.node(1, 'test');
+console.log(n.getValue()); // test
 console.log(n.getValue()); // test
 console.log(n.getParent()); // null
 console.log(n.getLeft()); // null
 console.log(n.getRight()); // null
 ```
 
-**.insert(value)** 
+### .insert(key, value)
 
 inserts a value into the tree.
 ```javascript
-bst.insert(50);
-bst.insert(80);
-bst.insert(30);
-bst.insert(90);
-bst.insert(60);
-bst.insert(40);
-bst.insert(20);
+bst.insert(50, 'v1');
+bst.insert(80, 'v2');
+bst.insert(30, 'v3');
+bst.insert(90, 'v4');
+bst.insert(60, 'v5');
+bst.insert(40, 'v6');
+bst.insert(20, 'v7');
 ```
 
-**.root()** 
+### .root()
 
 gets the root node
 ```javascript
-console.log(bst.root().getValue()); // 50
+console.log(bst.root().getKey()); // 50
 ```
 
-**.min()** 
+### .min()
 
-finds the min value node (most left).
+finds the min key node (most left).
 ```javascript
-console.log(bst.min().getValue()); // 20
+console.log(bst.min().getKey()); // 20
 ```
 
-**.max()** 
+### .max() 
 
-finds the min value node (most right).
+finds the max key node (most right).
 ```javascript
-console.log(bst.max().getValue()); // 90
+console.log(bst.max().getKey()); // 90
 ```
 
-**.count()** 
+### .count()
 
 gets nodes count.
 ```javascript
 console.log(bst.count()); // 7
 ```
 
-**.find(value)** 
+### .search(key)
 
-finds the value's node or returns null if not found.
+finds a node by key or returns null if not found.
 ```javascript
-let n = bst.find(30);
-console.log(n.getValue()); // 30
-console.log(n.getRight().getValue()); // 40
-console.log(n.getLeft().getValue()); // 20
+const n = bst.search(30);
+console.log(n.getKey()); // 30
+console.log(n.getRight().getKey()); // 40
+console.log(n.getLeft().getKey()); // 20
 ```
 
 **.traverseInOrder(cb)** 
 ```js
 // in-order traverse (left-parent-right)
-bst.traverseInOrder(node => console.log(node.getValue()));
+bst.traverseInOrder(node => console.log(node.getKey()));
 
 // 20
 // 30
@@ -106,7 +108,7 @@ bst.traverseInOrder(node => console.log(node.getValue()));
 
 ```js
 // pre-order traverse (parent-left-right)
-bst.traversePreOrder(node => console.log(node.getValue()));
+bst.traversePreOrder(node => console.log(node.getKey()));
 
 // 50
 // 30
@@ -121,7 +123,7 @@ bst.traversePreOrder(node => console.log(node.getValue()));
 
 ```js
 // post-order traverse (left-right-parent)
-bst.traverse(node => console.log(node.getValue()));
+bst.traverse(node => console.log(node.getKey()));
 
 // 20
 // 40
@@ -139,7 +141,7 @@ traverse the tree in the defined order and apply a callback on each node.
 order values: `inOrder`, `preOrder` OR `postOrder`. default is `inOrder`
 
 ```js
-bst.traverse(node => console.log(node.getValue())); // in-order
+bst.traverse(node => console.log(node.getKey())); // in-order
 
 // 20
 // 30
@@ -149,7 +151,7 @@ bst.traverse(node => console.log(node.getValue())); // in-order
 // 80
 // 90
 
-bst.traverse(node => console.log(node.getValue()), 'preOrder');
+bst.traverse(node => console.log(node.getKey()), 'preOrder');
 
 // 50
 // 30
@@ -165,9 +167,9 @@ bst.traverse(node => console.log(node.getValue()), 'preOrder');
 
 removes a value's node (if exists) from the tree.
 ```javascript
-console.log(bst.find(30).getValue()); // 30
+console.log(bst.search(30).getKey()); // 30
 bst.remove(30);
-console.log(bst.find(30)); // null
+console.log(bst.search(30)); // null
 ```
 
 **.clear()** 
