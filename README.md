@@ -47,7 +47,7 @@ console.log(n.getRight()); // null
 
 ### .insert(key, value)
 
-inserts a value into the tree.
+inserts a node with key/value into the tree.
 ```javascript
 bst.insert(50, 'v1');
 bst.insert(80, 'v2');
