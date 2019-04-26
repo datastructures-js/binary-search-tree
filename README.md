@@ -170,9 +170,9 @@ bst.traverse(node => console.log(node.getKey()), 'preOrder');
 ```
 
 
-### .remove(value)
+### .remove(key)
 
-removes a value's node (if exists) from the tree.
+removes a node by its key (if exists) from the tree.
 ```javascript
 console.log(bst.search(30).getKey()); // 30
 bst.remove(30);
