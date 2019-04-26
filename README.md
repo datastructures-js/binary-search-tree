@@ -4,7 +4,8 @@
 [![npm](https://img.shields.io/npm/v/@datastructures-js/binary-search-tree.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree)
 [![npm](https://img.shields.io/npm/dm/@datastructures-js/binary-search-tree.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree) [![npm](https://img.shields.io/badge/node-%3E=%206.0-blue.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree)
 
-node's data type: **string**, **number**.
+node's **key** data type: **string**, **number**.
+node's **value** data type: any.
 
 <img width="413" alt="Binary Search Tree" src="https://user-images.githubusercontent.com/6517308/35762621-74a72626-085f-11e8-8934-ef6facdd6e10.png">
 
@@ -96,7 +97,7 @@ console.log(n.getRight().getKey()); // 40
 console.log(n.getLeft().getKey()); // 20
 ```
 
-**.traverseInOrder(cb)** 
+### .traverseInOrder(cb)
 ```js
 // in-order traverse (left-parent-right)
 bst.traverseInOrder(node => console.log(node.getKey()));
@@ -110,7 +111,7 @@ bst.traverseInOrder(node => console.log(node.getKey()));
 // 90
 ```
 
-**.traversePreOrder(cb)** 
+### .traversePreOrder(cb)
 
 ```js
 // pre-order traverse (parent-left-right)
@@ -125,7 +126,7 @@ bst.traversePreOrder(node => console.log(node.getKey()));
 // 90
 ```
 
-**.traversePostOrder(cb)** 
+### .traversePostOrder(cb)
 
 ```js
 // post-order traverse (left-right-parent)
@@ -140,7 +141,7 @@ bst.traverse(node => console.log(node.getKey()));
 // 50
 ```
 
-**.traverse(cb, order)** 
+### .traverse(cb, order)
 
 traverse the tree in the defined order and apply a callback on each node.
 
@@ -169,7 +170,7 @@ bst.traverse(node => console.log(node.getKey()), 'preOrder');
 ```
 
 
-**.remove(value)** 
+### .remove(value)
 
 removes a value's node (if exists) from the tree.
 ```javascript
@@ -178,7 +179,7 @@ bst.remove(30);
 console.log(bst.search(30)); // null
 ```
 
-**.clear()** 
+### .clear()
 
 clears the tree.
 ```javascript
