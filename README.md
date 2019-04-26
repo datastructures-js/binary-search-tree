@@ -32,7 +32,7 @@ creates a bst node with the following api.
 
 ```js
 const n = bst.node(1, 'test');
-console.log(n.getValue()); // test
+console.log(n.getKey()); // 1
 console.log(n.getValue()); // test
 console.log(n.getParent()); // null
 console.log(n.getLeft()); // null
