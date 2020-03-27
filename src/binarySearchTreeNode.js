@@ -7,7 +7,7 @@
 /**
  * @class BinarySearchTreeNode
  */
- class BinarySearchTreeNode {
+class BinarySearchTreeNode {
   constructor(key, value) {
     this.key = key;
     this.value = value;
@@ -54,7 +54,7 @@
    * @param {BinarySearchTreeNode}
    */
   setLeft(left) {
-    return this.left;
+    this.left = left;
   }
 
   /**
@@ -102,7 +102,7 @@
    * @return {number}
    */
   getLeftHeight() {
-    return this.left !== null ? this.left.getHeight() || 0;
+    return this.left !== null ? this.left.getHeight() : 0;
   }
 
   /**
@@ -110,7 +110,7 @@
    * @return {number}
    */
   getRightHeight() {
-    return this.right !== null ? this.right.getHeight() || 0;
+    return this.right !== null ? this.right.getHeight() : 0;
   }
 
   /**
