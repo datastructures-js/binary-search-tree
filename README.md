@@ -1,4 +1,4 @@
-# @datastrucures-js/binary-search-tree
+# @datastructures-js/binary-search-tree
 
 [![build:?](https://travis-ci.org/datastructures-js/binary-search-tree.svg?branch=master)](https://travis-ci.org/datastructures-js/binary-search-tree) 
 [![npm](https://img.shields.io/npm/v/@datastructures-js/binary-search-tree.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree)
