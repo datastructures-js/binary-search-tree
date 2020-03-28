@@ -29,7 +29,6 @@ javascript implementation of Binary Search Tree.
  * [Build](#build)
  * [License](#license)
 
-
 ## install
 ```sh
 npm install --save @datastructures-js/binary-search-tree
@@ -66,18 +65,18 @@ inserts a node with key/value into the tree.
  <tr>
   <td>O(log(n))</td>
   <td>
-   key: {number} or {string}
+   <b>key</b>: {number} or {string}
    <br><br>
-   value: {object}
+   <b>value</b>: {object}
   </td>
   <td>
     {BinarySearchTreeNode} the inserted node
     <br><br>
-    <b>.getKey()</b> {number|string} returns the node's key that is used to compare with other nodes.
-    <b>.setValue(value)</b> change the value that is associated with a node.
-    <b>.getValue()</b> {object} returns the value that is associated with a node.
-    <b>.getLeft()</b> {BinarySearchTreeNode} returns node's left child node.
-    <b>.getRight()</b> {BinarySearchTreeNode} returns node's right child node.
+    <b>.getKey()</b> {number|string} returns the node's key that is used to compare with other nodes.<br>
+    <b>.setValue(value)</b> change the value that is associated with a node.<br>
+    <b>.getValue()</b> {object} returns the value that is associated with a node.<br>
+    <b>.getLeft()</b> {BinarySearchTreeNode} returns node's left child node.<br>
+    <b>.getRight()</b> {BinarySearchTreeNode} returns node's right child node.<br>
     <b>.getParent()</b> {BinarySearchTreeNode} returns node's parent node.
   </td>
  </tr>
@@ -94,28 +93,249 @@ bst.insert(20, 'v7');
 ```
 
 ### .has(key)
+checks if a value exists by its key.
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>params</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(log(n))</td>
+  <td>
+   <b>key</b>: {number} or {string}
+  </td>
+  <td>
+    {boolean}
+  </td>
+ </tr>
+</table>
+
+```js
+bst.has(50); // true
+bst.has(100); // false
+```
 
 ### .find(key)
+finds a node in the tree by its key.
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>params</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(log(n))</td>
+  <td>
+   <b>key</b>: {number} or {string}
+  </td>
+  <td>
+    {BinarySearchTreeNode}
+  </td>
+ </tr>
+</table>
+
+```js
+const n50 = bst.find(60);
+console.log(n50.getValue()); // v7
+```
 
 ### .min()
+finds the node with min key in the tree.
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(log(n))</td>
+  <td>
+    {BinarySearchTreeNode}
+  </td>
+ </tr>
+</table>
+
+```js
+const min = bst.min();
+console.log(min.getValue()); // v5
+```
 
 ### .max()
+finds the node with max key in the tree.
 
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(log(n))</td>
+  <td>
+    {BinarySearchTreeNode}
+  </td>
+ </tr>
+</table>
+
+```js
+const max = bst.max();
+console.log(max.getValue()); // v4
+```
 ### .root()
+returns the root node of the tree.
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(1)</td>
+  <td>
+    {BinarySearchTreeNode}
+  </td>
+ </tr>
+</table>
+
+```js
+const root = bst.root();
+console.log(root.getValue()); // v1
+```
 
 ### .count()
+returns the count of nodes in the tree.
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(1)</td>
+  <td>
+    {number}
+  </td>
+ </tr>
+</table>
+
+```js
+console.log(bst.count()); // 7
+```
 
 ### .traverseInOrder(cb)
+traverses the tree in order (left-node-right).
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>param</th>
+ </tr>
+ <tr>
+  <td>O(n)</td>
+  <td>
+   <b>cb</b>: {function}
+  </td>
+ </tr>
+</table>
+
+```js
+bst.traverseInOrder((node) => console.log(node.getKey()));
+
+/*
+
+*/
+```
 
 ### .traversePreOrder(cb)
+traverses the tree pre order (node-left-right).
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>param</th>
+ </tr>
+ <tr>
+  <td>O(n)</td>
+  <td>
+   <b>cb</b>: {function}
+  </td>
+ </tr>
+</table>
+
+```js
+bst.traversePreOrder((node) => console.log(node.getKey()));
+
+/*
+
+*/
+```
 
 ### .traversePostOrder(cb)
+traverses the tree post order (left-right-node).
+
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>param</th>
+ </tr>
+ <tr>
+  <td>O(n)</td>
+  <td>
+   <b>cb</b>: {function}
+  </td>
+ </tr>
+</table>
+
+```js
+bst.traversePostOrder((node) => console.log(node.getKey()));
+
+/*
+
+*/
+```
 
 ### .remove(key)
+removes a node from the tree by its key.
 
-###.clear()
+<table>
+ <tr>
+  <th>runtime</th>
+  <th>params</th>
+  <th>return</th>
+ </tr>
+ <tr>
+  <td>O(log(n))</td>
+  <td>
+   <b>key</b>: {number} or {string}
+  </td>
+  <td>
+    {boolean}
+  </td>
+ </tr>
+</table>
 
-### .root()
+```js
+bst.remove(20); // true
+bst.remove(100); // false 
+```
+
+### .clear()
+clears the tree.
+
+<table>
+ <tr>
+  <th>runtime</th>
+ </tr>
+ <tr>
+  <td>O(1)</td>
+ </tr>
+</table>
+
+```js
+bst.clear();
+```
 
 ## Build
 ```
