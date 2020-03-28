@@ -54,7 +54,7 @@ const bst = new BinarySearchTree();
 
 ### .insert(key, value)
 
-inserts a node with key/value into the tree.
+inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new inserted one.
 
 <table>
  <tr>
@@ -93,7 +93,7 @@ bst.insert(20, 'v7');
 ```
 
 ### .has(key)
-checks if a value exists by its key.
+checks if a node exists by its key.
 
 <table>
  <tr>
@@ -138,8 +138,11 @@ finds a node in the tree by its key.
 </table>
 
 ```js
-const n50 = bst.find(60);
-console.log(n50.getValue()); // v7
+const n60 = bst.find(60);
+console.log(n60.getKey()); // 60
+console.log(n60.getValue()); // v5
+
+console.log(bst.find(100)); // null
 ```
 
 ### .min()
@@ -160,7 +163,8 @@ finds the node with min key in the tree.
 
 ```js
 const min = bst.min();
-console.log(min.getValue()); // v5
+console.log(min.getKey()); // 20
+console.log(min.getValue()); // v7
 ```
 
 ### .max()
@@ -181,6 +185,7 @@ finds the node with max key in the tree.
 
 ```js
 const max = bst.max();
+console.log(max.getKey()); // 90
 console.log(max.getValue()); // v4
 ```
 ### .root()
@@ -201,6 +206,7 @@ returns the root node of the tree.
 
 ```js
 const root = bst.root();
+console.log(root.getKey()); // 50
 console.log(root.getValue()); // v1
 ```
 
@@ -244,7 +250,13 @@ traverses the tree in order (left-node-right).
 bst.traverseInOrder((node) => console.log(node.getKey()));
 
 /*
-
+20
+30
+40
+50
+60
+80
+90
 */
 ```
 
@@ -268,7 +280,13 @@ traverses the tree pre order (node-left-right).
 bst.traversePreOrder((node) => console.log(node.getKey()));
 
 /*
-
+50
+30
+20
+40
+80
+60
+90
 */
 ```
 
@@ -292,7 +310,13 @@ traverses the tree post order (left-right-node).
 bst.traversePostOrder((node) => console.log(node.getKey()));
 
 /*
-
+20
+40
+30
+60
+90
+80
+50
 */
 ```
 
@@ -318,7 +342,8 @@ removes a node from the tree by its key.
 
 ```js
 bst.remove(20); // true
-bst.remove(100); // false 
+bst.remove(100); // false
+console.log(bst.count()); // 6
 ```
 
 ### .clear()
@@ -335,6 +360,8 @@ clears the tree.
 
 ```js
 bst.clear();
+console.log(bst.count()); // 0
+console.log(bst.root()); // null
 ```
 
 ## Build
