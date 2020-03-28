@@ -20,7 +20,7 @@ class BinarySearchTree {
    * inserts a node with a key/value into the tree
    * @param {number|string} key
    * @param {object} vaue
-   * @return {BinartSearchTreeNode}
+   * @return {BinarySearchTreeNode}
    */
   insert(key, value, node = this.rootNode) {
     const newNode = new BinarySearchTreeNode(key, value);
