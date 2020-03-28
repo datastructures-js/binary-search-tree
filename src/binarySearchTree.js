@@ -92,7 +92,6 @@ class BinarySearchTree {
   /**
    * @public
    * finds the node with max key (most right) in the tree
-   * @param {number|string} key
    * @return {BinarySearchTreeNode}
    */
   max(node = this.rootNode) {
@@ -106,7 +105,6 @@ class BinarySearchTree {
   /**
    * @public
    * finds the node with min key (most left) in the tree
-   * @param {number|string} key
    * @return {BinarySearchTreeNode}
    */
   min(node = this.rootNode) {
