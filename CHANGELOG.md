@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2020-03-29
+### Fixed
+- return the updated node in `.insert` 
+
 ## [3.0.0] - 2020-03-28
 ### Changed
 - New release
