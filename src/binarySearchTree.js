@@ -23,15 +23,14 @@ class BinarySearchTree {
    * @return {BinarySearchTreeNode}
    */
   insert(key, value, node = this.rootNode) {
-    const newNode = new BinarySearchTreeNode(key, value);
-
     if (node === null) {
-      this.rootNode = newNode;
+      this.rootNode = new BinarySearchTreeNode(key, value);
       this.nodesCount += 1;
-      return newNode;
+      return this.rootNode;
     }
 
     if (key < node.getKey() && node.getLeft() === null) {
+      const newNode = new BinarySearchTreeNode(key, value);
       node.setLeft(newNode);
       newNode.setParent(node);
       this.nodesCount += 1;
@@ -39,6 +38,7 @@ class BinarySearchTree {
     }
 
     if (key > node.getKey() && node.getRight() === null) {
+      const newNode = new BinarySearchTreeNode(key, value);
       node.setRight(newNode);
       newNode.setParent(node);
       this.nodesCount += 1;
@@ -47,7 +47,7 @@ class BinarySearchTree {
 
     if (key === node.getKey()) {
       node.setValue(value);
-      return newNode;
+      return node;
     }
 
     if (key < node.getKey()) {

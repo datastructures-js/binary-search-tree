@@ -7,14 +7,18 @@ describe('binarySearchTree tests', () => {
 
   describe('.insert(key, value)', () => {
     it('should insert nodes to the tree', () => {
-      bst.insert(50, 'n1');
-      bst.insert(80, 'n2');
-      bst.insert(30, 'n3');
-      bst.insert(90, 'n4');
-      bst.insert(60, 'n5');
-      bst.insert(40, 'n6');
-      bst.insert(20, 'n20');
-      bst.insert(20, 'n7'); // updates value of existing node
+      expect(bst.insert(50, 'n1')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(80, 'n2')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(30, 'n3')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(90, 'n4')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(60, 'n5')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(40, 'n6')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(20, 'n20')).to.be.instanceof(BinarySearchTreeNode);
+
+      // updates value of existing node
+      const updated = bst.insert(20, 'n7');
+      expect(updated).to.be.instanceof(BinarySearchTreeNode);
+      expect(updated.getParent().getKey()).to.equal(30);
     });
   });
 
