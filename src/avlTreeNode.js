@@ -19,76 +19,78 @@ class AvlTreeNode extends BinarySearchTreeNode {
 
   /**
    * @public
-   * rotates left (counter-clockwise) & updates parent and children positions
+   * rotates left (counter-clockwise) and updates parent and children
    */
   rotateLeft() {
+    const right = this.getRight(); // this.right will be re-assigned
+
     // set the node as a left child of its right child
-    if (this.right !== null) {
-      if (this.right.getLeft() !== null) {
-        this.right.getLeft().setParent(this);
+    if (right !== null) {
+      if (right.getLeft() !== null) {
+        right.getLeft().setParent(this);
       }
-      this.right.setLeft(this);
-      this.right.setParent(this.parent);
+
+      // rebase right child to node's right left child.
+      this.right = right.getLeft();
+
+      right.setLeft(this);
+      right.setParent(this.parent);
     }
 
     // rebase parent's child to node's right child
-    if (this.parent !== null && this.right !== null) {
-      if (this.parent.getKey() < this.right.getKey()) {
-        this.parent.setRight(this.right);
+    if (this.parent !== null && right !== null) {
+      if (this.parent.getKey() < right.getKey()) {
+        this.parent.setRight(right);
       } else {
-        this.parent.setLeft(this.right);
+        this.parent.setLeft(right);
       }
     }
 
     // rebase parent to node's right child
-    this.parent = this.right;
+    this.parent = right;
 
-    // rebase right child to node's right left child.
-    if (this.right !== null) {
-      this.right = this.right.getLeft();
-    }
-
+    this.updateHeight();
     if (this.parent !== null) {
       this.parent.updateHeight();
     }
-    this.updateHeight();
   }
 
   /**
    * @public
-   * rotates right (clockwise) & updates parent and children positions
+   * rotates right (clockwise) and updates parent and children
    */
   rotateRight() {
+    const left = this.getLeft(); // this.left will be re-assigned
+
     // set the node as a right child of its left child
-    if (this.left !== null) {
-      if (this.left.getRight() !== null) {
-        this.left.getRight().setParent(this);
+    if (left !== null) {
+      if (left.getRight() !== null) {
+        left.getRight().setParent(this);
       }
-      this.left.setRight(this);
-      this.left.setParent(this.parent);
+
+      // rebase right child to node's right left child.
+      this.left = left.getRight();
+
+      left.setRight(this);
+      left.setParent(this.parent);
     }
 
     // rebase parent to node's left child
-    if (this.parent !== null && this.left !== null) {
-      if (this.parent.getKey() > this.left.getKey()) {
-        this.parent.setLeft(this.left);
+    if (this.parent !== null && left !== null) {
+      if (this.parent.getKey() > left.getKey()) {
+        this.parent.setLeft(left);
       } else {
-        this.parent.setRight(this.left);
+        this.parent.setRight(left);
       }
     }
 
     // rebase parent to node's right child
-    this.parent = this.left;
+    this.parent = left;
 
-    // rebase right child to node's right left child.
-    if (this.left !== null) {
-      this.left = this.left.getRight();
-    }
-
+    this.updateHeight();
     if (this.parent !== null) {
       this.parent.updateHeight();
     }
-    this.updateHeight();
   }
 
   /**
