@@ -104,12 +104,12 @@ inserts a node with key/value into the tree. Inserting an node with existing key
     <b>.getLeft()</b> {BinarySearchTreeNode} returns node's left child node.<br>
     <b>.getRight()</b> {BinarySearchTreeNode} returns node's right child node.<br>
     <b>.getParent()</b> {BinarySearchTreeNode} returns node's parent node.
-    <br><br>
+    <br><br><br>
     {AvlTreeNode} for AvlTree. It extends the BinarySearchTreeNode and adds the following methods:
-    <br>
-    <b>.getHeight()</b> {number} the height of the node in the tree. root is 1.
-    <b>.getLeftHeight()</b> {number} the height of the left child. 0 if no left child.
-    <b>.getRightHeight()</b> {number} the height of the right child. 0 if no right child.
+    <br><br>
+    <b>.getHeight()</b> {number} the height of the node in the tree. root is 1.<br>
+    <b>.getLeftHeight()</b> {number} the height of the left child. 0 if no left child.<br>
+    <b>.getRightHeight()</b> {number} the height of the right child. 0 if no right child.<br>
   </td>
  </tr>
 </table>
