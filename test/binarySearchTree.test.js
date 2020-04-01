@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const BinarySearchTreeNode = require('../src/binarySearchTreeNode');
 const BinarySearchTree = require('../src/binarySearchTree');
 
-describe('binarySearchTree tests', () => {
+describe('BinarySearchTree tests', () => {
   const bst = new BinarySearchTree();
 
   describe('.insert(key, value)', () => {
@@ -66,7 +66,7 @@ describe('binarySearchTree tests', () => {
   });
 
   describe('.max()', () => {
-    it('should get the node with max value', () => {
+    it('get the node with max key', () => {
       const max = bst.max();
       expect(max.getKey()).to.equal(90);
       expect(max.getValue()).to.equal('n4');
@@ -74,7 +74,7 @@ describe('binarySearchTree tests', () => {
   });
 
   describe('.min()', () => {
-    it('should get the node with min value', () => {
+    it('get the node with min key', () => {
       const min = bst.min();
       expect(min.getKey()).to.equal(20);
       expect(min.getValue()).to.equal('n7');

@@ -1,7 +1,7 @@
 {
   "name": "@datastructures-js/binary-search-tree",
-  "version": "3.0.1",
-  "description": "binary search tree implementation in javascript",
+  "version": "3.1.0",
+  "description": "binary search tree & avl tree (self balancing tree) implementation in javascript",
   "main": "index.js",
   "scripts": {
     "test": "grunt test"
@@ -15,7 +15,11 @@
     "bst js",
     "bst es6",
     "binary search tree es6",
-    "binary search tree js"
+    "binary search tree js",
+    "avl tree",
+    "avl tree es6",
+    "avl tree js",
+    "self balancing tree"
   ],
   "author": "Eyas Ranjous <eyas.ranjous@gmail.com>",
   "license": "MIT",

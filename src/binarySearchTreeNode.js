@@ -14,7 +14,6 @@ class BinarySearchTreeNode {
     this.left = null;
     this.right = null;
     this.parent = null;
-    this.height = 1;
   }
 
   /**
@@ -95,45 +94,6 @@ class BinarySearchTreeNode {
    */
   getParent() {
     return this.parent;
-  }
-
-  /**
-   * @public
-   * @return {number}
-   */
-  getLeftHeight() {
-    return this.left !== null ? this.left.getHeight() : 0;
-  }
-
-  /**
-   * @public
-   * @return {number}
-   */
-  getRightHeight() {
-    return this.right !== null ? this.right.getHeight() : 0;
-  }
-
-  /**
-   * @public
-   */
-  updateHeight() {
-    this.height = Math.max(this.getLeftHeight(), this.getRightHeight()) + 1;
-  }
-
-  /**
-   * @public
-   * @return {number}
-   */
-  getHeight() {
-    return this.height;
-  }
-
-  /**
-   * @public
-   * @return {number}
-   */
-  getBalance() {
-    return this.getLeftHeight() - this.getRightHeight();
   }
 }
 
