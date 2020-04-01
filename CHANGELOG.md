@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.1] - 2020-04-01
+### Fixed
+- use the same balancing algorithm for insert and remove.
+
 ## [3.1.0] - 2020-03-31
 ### Added
 - AvlTreeNode & AvlTree implementation.
