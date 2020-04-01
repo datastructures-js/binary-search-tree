@@ -14,38 +14,10 @@ const AvlTreeNode = require('./avlTreeNode');
 class AvlTree extends BinarySearchTree {
   /**
    * @private
-   * applies the proper rotation on nodes after inserting a node
+   * applies the proper rotation on nodes after an insert or remove
    * @param {AvlTreeNode} node
    */
-  balanceAfterInsert(key, node) {
-    if (!node) return;
-
-    node.updateHeight();
-    const balance = node.calculateBalance();
-    if (balance > 1) {
-      if (key < node.getLeft().getKey()) {
-        node.rotateRight();
-      } else {
-        node.rotateLeftRight();
-      }
-    } else if (balance < -1) {
-      if (key > node.getRight().getKey()) {
-        node.rotateLeft();
-      } else {
-        node.rotateRightLeft();
-      }
-    }
-    if (node === this.rootNode && (balance < -1 || balance > 1)) {
-      this.rootNode = node.getParent();
-    }
-  }
-
-  /**
-   * @private
-   * applies the proper rotation on nodes after removing a node
-   * @param {AvlTreeNode} node
-   */
-  balanceAfterRemove(node) {
+  balanceNode(node) {
     if (!node) return;
 
     node.updateHeight();
@@ -110,12 +82,12 @@ class AvlTree extends BinarySearchTree {
 
     if (key < node.getKey()) {
       const newNode = this.insert(key, value, node.getLeft());
-      this.balanceAfterInsert(key, node); // back-tracking
+      this.balanceNode(node); // back-tracking
       return newNode;
     }
 
     const newNode = this.insert(key, value, node.getRight());
-    this.balanceAfterInsert(key, node); // back-tracking
+    this.balanceNode(node); // back-tracking
     return newNode;
   }
 
@@ -124,13 +96,13 @@ class AvlTree extends BinarySearchTree {
 
     if (key < node.getKey()) {
       const removed = this.remove(key, node.getLeft());
-      this.balanceAfterRemove(node);
+      this.balanceNode(node);
       return removed;
     }
 
     if (key > node.getKey()) {
       const removed = this.remove(key, node.getRight());
-      this.balanceAfterRemove(node);
+      this.balanceNode(node);
       return removed;
     }
 
