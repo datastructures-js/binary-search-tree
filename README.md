@@ -96,8 +96,8 @@ inserts a node with key/value into the tree. Inserting an node with existing key
    <b>value</b>: {object}
   </td>
   <td>
-    {BinarySearchTreeNode} for BinarySearchTree
-    <br>
+    {<b>BinarySearchTreeNode</b>} for BinarySearchTree
+    <br><br>
     <b>.getKey()</b> {number|string} returns the node's key that is used to compare with other nodes.<br>
     <b>.setValue(value)</b> change the value that is associated with a node.<br>
     <b>.getValue()</b> {object} returns the value that is associated with a node.<br>
@@ -105,7 +105,7 @@ inserts a node with key/value into the tree. Inserting an node with existing key
     <b>.getRight()</b> {BinarySearchTreeNode} returns node's right child node.<br>
     <b>.getParent()</b> {BinarySearchTreeNode} returns node's parent node.
     <br><br><br>
-    {AvlTreeNode} for AvlTree. It extends the BinarySearchTreeNode and adds the following methods:
+    {<b>AvlTreeNode</b>} for AvlTree. It extends the BinarySearchTreeNode and adds the following methods:
     <br><br>
     <b>.getHeight()</b> {number} the height of the node in the tree. root is 1.<br>
     <b>.getLeftHeight()</b> {number} the height of the left child. 0 if no left child.<br>
