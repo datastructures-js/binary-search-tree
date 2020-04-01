@@ -72,11 +72,15 @@ import { BinarySearchTree } from '@datastructures-js/binary-search-tree';
 
 ```js
 const bst = new BinarySearchTree();
+
+// OR a self balancing tree
+
+const bst = new AvlTree();
 ```
 
 ### .insert(key, value)
 
-inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new inserted one.
+inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new inserted one. AVL tree will rotate nodes properly if the tree becomes unbalanced with the insertion.
 
 <table>
  <tr>
@@ -343,7 +347,7 @@ bst.traversePostOrder((node) => console.log(node.getKey()));
 ```
 
 ### .remove(key)
-removes a node from the tree by its key.
+removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced with the deletion.
 
 <table>
  <tr>
