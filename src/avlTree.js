@@ -18,6 +18,8 @@ class AvlTree extends BinarySearchTree {
    * @param {AvlTreeNode} node
    */
   balanceAfterInsert(key, node) {
+    if (!node) return;
+
     node.updateHeight();
     const balance = node.calculateBalance();
     if (balance > 1) {
@@ -30,6 +32,34 @@ class AvlTree extends BinarySearchTree {
       if (key > node.getRight().getKey()) {
         node.rotateLeft();
       } else {
+        node.rotateRightLeft();
+      }
+    }
+    if (node === this.rootNode && (balance < -1 || balance > 1)) {
+      this.rootNode = node.getParent();
+    }
+  }
+
+  /**
+   * @private
+   * applies the proper rotation on nodes after removing a node
+   * @param {AvlTreeNode} node
+   */
+  balanceAfterRemove(node) {
+    if (!node) return;
+
+    node.updateHeight();
+    const balance = node.calculateBalance();
+    if (balance > 1) {
+      if (node.getLeft().getLeft() !== null) {
+        node.rotateRight();
+      } else if (node.getLeft().getRight() !== null) {
+        node.rotateLeftRight();
+      }
+    } else if (balance < -1) {
+      if (node.getRight().getRight() !== null) {
+        node.rotateLeft();
+      } else if (node.getRight().getLeft() !== null) {
         node.rotateRightLeft();
       }
     }
@@ -87,6 +117,70 @@ class AvlTree extends BinarySearchTree {
     const newNode = this.insert(key, value, node.getRight());
     this.balanceAfterInsert(key, node); // back-tracking
     return newNode;
+  }
+
+  remove(key, node = this.rootNode) {
+    if (node === null) return false;
+
+    if (key < node.getKey()) {
+      const removed = this.remove(key, node.getLeft());
+      this.balanceAfterRemove(node);
+      return removed;
+    }
+
+    if (key > node.getKey()) {
+      const removed = this.remove(key, node.getRight());
+      this.balanceAfterRemove(node);
+      return removed;
+    }
+
+    if (node.getLeft() === null && node.getRight() === null) {
+      if (node.getParent() === null) {
+        this.rootNode = null;
+      } else if (key < node.getParent().getKey()) {
+        node.getParent().setLeft(null);
+        node.getParent().updateHeight();
+      } else {
+        node.getParent().setRight(null);
+        node.getParent().updateHeight();
+      }
+      this.nodesCount -= 1;
+      return true;
+    }
+
+    if (node.getRight() === null) {
+      if (node.getParent() === null) {
+        this.rootNode = node.getLeft();
+      } else if (key < node.getParent().getKey()) {
+        node.getParent().setLeft(node.getLeft());
+        node.getParent().updateHeight();
+      } else {
+        node.getParent().setRight(node.getLeft());
+        node.getParent().updateHeight();
+      }
+      node.getLeft().setParent(node.getParent());
+      this.nodesCount -= 1;
+      return true;
+    }
+
+    if (node.getLeft() === null) {
+      if (node.getParent() === null) {
+        this.rootNode = node.getRight();
+      } else if (key < node.getParent().getKey()) {
+        node.getParent().setLeft(node.getRight());
+        node.getParent().updateHeight();
+      } else {
+        node.getParent().setRight(node.getRight());
+        node.getParent().updateHeight();
+      }
+      node.getRight().setParent(node.getParent());
+      this.nodesCount -= 1;
+      return true;
+    }
+
+    const minRight = this.min(node.getRight());
+    node.setKey(minRight.getKey());
+    return this.remove(minRight.getKey(), minRight);
   }
 }
 
