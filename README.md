@@ -96,14 +96,20 @@ inserts a node with key/value into the tree. Inserting an node with existing key
    <b>value</b>: {object}
   </td>
   <td>
-    {BinarySearchTreeNode} the inserted node
-    <br><br>
+    {BinarySearchTreeNode} for BinarySearchTree
+    <br>
     <b>.getKey()</b> {number|string} returns the node's key that is used to compare with other nodes.<br>
     <b>.setValue(value)</b> change the value that is associated with a node.<br>
     <b>.getValue()</b> {object} returns the value that is associated with a node.<br>
     <b>.getLeft()</b> {BinarySearchTreeNode} returns node's left child node.<br>
     <b>.getRight()</b> {BinarySearchTreeNode} returns node's right child node.<br>
     <b>.getParent()</b> {BinarySearchTreeNode} returns node's parent node.
+    <br><br>
+    {AvlTreeNode} for AvlTree. It extends the BinarySearchTreeNode and adds the following methods:
+    <br>
+    <b>.getHeight()</b> {number} the height of the node in the tree. root is 1.
+    <b>.getLeftHeight()</b> {number} the height of the left child. 0 if no left child.
+    <b>.getRightHeight()</b> {number} the height of the right child. 0 if no right child.
   </td>
  </tr>
 </table>
@@ -158,7 +164,9 @@ finds a node in the tree by its key.
    <b>key</b>: {number} or {string}
   </td>
   <td>
-    {BinarySearchTreeNode}
+    {BinarySearchTreeNode} for BinarySearchTree
+    <br><br>
+    {AvlTreeNode} for AvlTree
   </td>
  </tr>
 </table>
@@ -182,7 +190,9 @@ finds the node with min key in the tree.
  <tr>
   <td>O(log(n))</td>
   <td>
-    {BinarySearchTreeNode}
+    {BinarySearchTreeNode} for BinarySearchTree
+    <br><br>
+    {AvlTreeNode} for AvlTree
   </td>
  </tr>
 </table>
@@ -204,7 +214,9 @@ finds the node with max key in the tree.
  <tr>
   <td>O(log(n))</td>
   <td>
-    {BinarySearchTreeNode}
+    {BinarySearchTreeNode} for BinarySearchTree
+    <br><br>
+    {AvlTreeNode} for AvlTree
   </td>
  </tr>
 </table>
@@ -225,7 +237,9 @@ returns the root node of the tree.
  <tr>
   <td>O(1)</td>
   <td>
-    {BinarySearchTreeNode}
+    {BinarySearchTreeNode} for BinarySearchTree
+    <br><br>
+    {AvlTreeNode} for AvlTree
   </td>
  </tr>
 </table>
