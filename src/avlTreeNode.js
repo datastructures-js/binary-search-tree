@@ -18,7 +18,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
   }
 
   /**
-   * @public
+   * @internal
    * rotates left (counter-clockwise) and updates parent and children
    */
   rotateLeft() {
@@ -56,7 +56,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
   }
 
   /**
-   * @public
+   * @internal
    * rotates right (clockwise) and updates parent and children
    */
   rotateRight() {
@@ -94,7 +94,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
   }
 
   /**
-   * @public
+   * @internal
    * rotates left child to left then itself to right
    */
   rotateLeftRight() {
@@ -105,7 +105,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
   }
 
   /**
-   * @public
+   * @internal
    * rotates right child to right then itself to left
    */
   rotateRightLeft() {
@@ -132,7 +132,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
   }
 
   /**
-   * @public
+   * @internal
    * updates the height of a node as the max height of its children
    */
   updateHeight() {
