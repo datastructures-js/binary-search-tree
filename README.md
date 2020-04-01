@@ -19,7 +19,7 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 
 <table>
 <tr>
-<td align="center"><b>AVL Tree</b></td>
+<td align="center"><b>AVL Tree (Self Balancing Tree)</b></td>
 </tr>
 <tr>
 <td>
@@ -57,8 +57,10 @@ npm install --save @datastructures-js/binary-search-tree
 ## API
 
 ### require
+Both trees have the same interface except that AVL tree will maintain itself balance due to rotating nodes that becomes unbalanced on insertion and deletion. If your code requires a strictly balanced tree that always benefits from the **log(n)** runtime of insert & remove, you should use AVL.
+
 ```js
-const { BinarySearchTree } = require('@datastructures-js/binary-search-tree');
+const { BinarySearchTree, AvlTree } = require('@datastructures-js/binary-search-tree');
 ```
 
 ### import
