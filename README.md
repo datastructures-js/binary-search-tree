@@ -9,7 +9,7 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 <table>
   <tr>
     <td><b>Binary Search Tree</b></td>
-    <td>
+    <td align="center">
       <img width="413" alt="Binary Search Tree" src="https://user-images.githubusercontent.com/6517308/35762621-74a72626-085f-11e8-8934-ef6facdd6e10.png">
     </td>
   </tr>
