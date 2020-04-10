@@ -1,5 +1,5 @@
 /**
- * datastructures-js/binary-search-tree
+ * @datastructures-js/binary-search-tree
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
@@ -9,11 +9,11 @@
  */
 class BinarySearchTreeNode {
   constructor(key, value) {
-    this.key = key;
-    this.value = value;
-    this.left = null;
-    this.right = null;
-    this.parent = null;
+    this._key = key;
+    this._value = value;
+    this._left = null;
+    this._right = null;
+    this._parent = null;
   }
 
   /**
@@ -21,7 +21,7 @@ class BinarySearchTreeNode {
    * @param {number|string}
    */
   setKey(key) {
-    this.key = key;
+    this._key = key;
   }
 
   /**
@@ -29,7 +29,7 @@ class BinarySearchTreeNode {
    * @return {number|string}
    */
   getKey() {
-    return this.key;
+    return this._key;
   }
 
   /**
@@ -37,7 +37,7 @@ class BinarySearchTreeNode {
    * @param {object}
    */
   setValue(value) {
-    this.value = value;
+    this._value = value;
   }
 
   /**
@@ -45,7 +45,7 @@ class BinarySearchTreeNode {
    * @return {object}
    */
   getValue() {
-    return this.value;
+    return this._value;
   }
 
   /**
@@ -53,7 +53,7 @@ class BinarySearchTreeNode {
    * @param {BinarySearchTreeNode}
    */
   setLeft(left) {
-    this.left = left;
+    this._left = left;
   }
 
   /**
@@ -61,7 +61,7 @@ class BinarySearchTreeNode {
    * @return {BinarySearchTreeNode}
    */
   getLeft() {
-    return this.left;
+    return this._left;
   }
 
   /**
@@ -69,7 +69,7 @@ class BinarySearchTreeNode {
    * @param {BinarySearchTreeNode}
    */
   setRight(right) {
-    this.right = right;
+    this._right = right;
   }
 
   /**
@@ -77,7 +77,7 @@ class BinarySearchTreeNode {
    * @return {BinarySearchTreeNode}
    */
   getRight() {
-    return this.right;
+    return this._right;
   }
 
   /**
@@ -85,7 +85,7 @@ class BinarySearchTreeNode {
    * @param {BinarySearchTreeNode}
    */
   setParent(parent) {
-    this.parent = parent;
+    this._parent = parent;
   }
 
   /**
@@ -93,7 +93,7 @@ class BinarySearchTreeNode {
    * @return {BinarySearchTreeNode}
    */
   getParent() {
-    return this.parent;
+    return this._parent;
   }
 }
 

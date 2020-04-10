@@ -35,8 +35,8 @@ class AvlTree extends BinarySearchTree {
         node.rotateRightLeft();
       }
     }
-    if (node === this.rootNode && (balance < -1 || balance > 1)) {
-      this.rootNode = node.getParent();
+    if (node === this._root && (balance < -1 || balance > 1)) {
+      this._root = node.getParent();
     }
   }
 
@@ -50,11 +50,11 @@ class AvlTree extends BinarySearchTree {
    * @param {object} vaue
    * @return {AvlTreeNode} the inserted node
    */
-  insert(key, value, node = this.rootNode) {
+  insert(key, value, node = this._root) {
     if (node === null) {
-      this.rootNode = new AvlTreeNode(key, value);
-      this.nodesCount += 1;
-      return this.rootNode;
+      this._root = new AvlTreeNode(key, value);
+      this._count += 1;
+      return this._root;
     }
 
     if (key < node.getKey() && node.getLeft() === null) {
@@ -62,7 +62,7 @@ class AvlTree extends BinarySearchTree {
       node.setLeft(newNode);
       newNode.setParent(node);
       node.updateHeight();
-      this.nodesCount += 1;
+      this._count += 1;
       return newNode;
     }
 
@@ -71,7 +71,7 @@ class AvlTree extends BinarySearchTree {
       node.setRight(newNode);
       newNode.setParent(node);
       node.updateHeight();
-      this.nodesCount += 1;
+      this._count += 1;
       return newNode;
     }
 
@@ -91,7 +91,7 @@ class AvlTree extends BinarySearchTree {
     return newNode;
   }
 
-  remove(key, node = this.rootNode) {
+  remove(key, node = this._root) {
     if (node === null) return false;
 
     if (key < node.getKey()) {
@@ -108,7 +108,7 @@ class AvlTree extends BinarySearchTree {
 
     if (node.getLeft() === null && node.getRight() === null) {
       if (node.getParent() === null) {
-        this.rootNode = null;
+        this._root = null;
       } else if (key < node.getParent().getKey()) {
         node.getParent().setLeft(null);
         node.getParent().updateHeight();
@@ -116,13 +116,13 @@ class AvlTree extends BinarySearchTree {
         node.getParent().setRight(null);
         node.getParent().updateHeight();
       }
-      this.nodesCount -= 1;
+      this._count -= 1;
       return true;
     }
 
     if (node.getRight() === null) {
       if (node.getParent() === null) {
-        this.rootNode = node.getLeft();
+        this._root = node.getLeft();
       } else if (key < node.getParent().getKey()) {
         node.getParent().setLeft(node.getLeft());
         node.getParent().updateHeight();
@@ -131,13 +131,13 @@ class AvlTree extends BinarySearchTree {
         node.getParent().updateHeight();
       }
       node.getLeft().setParent(node.getParent());
-      this.nodesCount -= 1;
+      this._count -= 1;
       return true;
     }
 
     if (node.getLeft() === null) {
       if (node.getParent() === null) {
-        this.rootNode = node.getRight();
+        this._root = node.getRight();
       } else if (key < node.getParent().getKey()) {
         node.getParent().setLeft(node.getRight());
         node.getParent().updateHeight();
@@ -146,7 +146,7 @@ class AvlTree extends BinarySearchTree {
         node.getParent().updateHeight();
       }
       node.getRight().setParent(node.getParent());
-      this.nodesCount -= 1;
+      this._count -= 1;
       return true;
     }
 

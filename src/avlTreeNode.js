@@ -1,5 +1,5 @@
 /**
- * datastructures-js/binary-search-tree
+ * @datastructures-js/binary-search-tree
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
@@ -14,7 +14,7 @@ const BinarySearchTreeNode = require('./binarySearchTreeNode');
 class AvlTreeNode extends BinarySearchTreeNode {
   constructor(key, value) {
     super(key, value);
-    this.height = 1;
+    this._height = 1;
   }
 
   /**
@@ -22,7 +22,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * rotates left (counter-clockwise) and updates parent and children
    */
   rotateLeft() {
-    const right = this.getRight(); // this.right will be re-assigned
+    const right = this.getRight(); // this._right will be re-assigned
 
     // set the node as a left child of its right child
     if (right !== null) {
@@ -31,27 +31,27 @@ class AvlTreeNode extends BinarySearchTreeNode {
       }
 
       // rebase right child to node's right left child.
-      this.right = right.getLeft();
+      this._right = right.getLeft();
 
       right.setLeft(this);
-      right.setParent(this.parent);
+      right.setParent(this._parent);
     }
 
     // rebase parent's child to node's right child
-    if (this.parent !== null && right !== null) {
-      if (this.parent.getKey() < right.getKey()) {
-        this.parent.setRight(right);
+    if (this._parent !== null && right !== null) {
+      if (this._parent.getKey() < right.getKey()) {
+        this._parent.setRight(right);
       } else {
-        this.parent.setLeft(right);
+        this._parent.setLeft(right);
       }
     }
 
     // rebase parent to node's right child
-    this.parent = right;
+    this._parent = right;
 
     this.updateHeight();
-    if (this.parent !== null) {
-      this.parent.updateHeight();
+    if (this._parent !== null) {
+      this._parent.updateHeight();
     }
   }
 
@@ -60,7 +60,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * rotates right (clockwise) and updates parent and children
    */
   rotateRight() {
-    const left = this.getLeft(); // this.left will be re-assigned
+    const left = this.getLeft(); // this._left will be re-assigned
 
     // set the node as a right child of its left child
     if (left !== null) {
@@ -69,27 +69,27 @@ class AvlTreeNode extends BinarySearchTreeNode {
       }
 
       // rebase right child to node's right left child.
-      this.left = left.getRight();
+      this._left = left.getRight();
 
       left.setRight(this);
-      left.setParent(this.parent);
+      left.setParent(this._parent);
     }
 
     // rebase parent to node's left child
-    if (this.parent !== null && left !== null) {
-      if (this.parent.getKey() > left.getKey()) {
-        this.parent.setLeft(left);
+    if (this._parent !== null && left !== null) {
+      if (this._parent.getKey() > left.getKey()) {
+        this._parent.setLeft(left);
       } else {
-        this.parent.setRight(left);
+        this._parent.setRight(left);
       }
     }
 
     // rebase parent to node's right child
-    this.parent = left;
+    this._parent = left;
 
     this.updateHeight();
-    if (this.parent !== null) {
-      this.parent.updateHeight();
+    if (this._parent !== null) {
+      this._parent.updateHeight();
     }
   }
 
@@ -98,8 +98,8 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * rotates left child to left then itself to right
    */
   rotateLeftRight() {
-    if (this.left !== null) {
-      this.left.rotateLeft();
+    if (this._left !== null) {
+      this._left.rotateLeft();
     }
     this.rotateRight();
   }
@@ -109,8 +109,8 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * rotates right child to right then itself to left
    */
   rotateRightLeft() {
-    if (this.right !== null) {
-      this.right.rotateRight();
+    if (this._right !== null) {
+      this._right.rotateRight();
     }
     this.rotateLeft();
   }
@@ -120,7 +120,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * @return {number}
    */
   getLeftHeight() {
-    return this.left !== null ? this.left.getHeight() : 0;
+    return this._left !== null ? this._left.getHeight() : 0;
   }
 
   /**
@@ -128,7 +128,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * @return {number}
    */
   getRightHeight() {
-    return this.right !== null ? this.right.getHeight() : 0;
+    return this._right !== null ? this._right.getHeight() : 0;
   }
 
   /**
@@ -136,7 +136,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * updates the height of a node as the max height of its children
    */
   updateHeight() {
-    this.height = Math.max(this.getLeftHeight(), this.getRightHeight()) + 1;
+    this._height = Math.max(this.getLeftHeight(), this.getRightHeight()) + 1;
   }
 
   /**
@@ -144,7 +144,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
    * @return {number}
    */
   getHeight() {
-    return this.height;
+    return this._height;
   }
 
   /**
