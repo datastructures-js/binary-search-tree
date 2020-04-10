@@ -75,7 +75,7 @@ const bst = new AvlTree();
 
 ### .insert(key, value)
 
-inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new inserted one. AVL tree will rotate nodes properly if the tree becomes unbalanced with the insertion.
+inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new one. AVL tree will rotate nodes properly if the tree becomes unbalanced during insertion.
 
 <table>
  <tr><th align="center" colspan="2">params</th></tr>
@@ -378,7 +378,7 @@ bst.traversePostOrder((node) => console.log(node.getKey()));
 ```
 
 ### .remove(key)
-removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced with the deletion.
+removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
 
 <table>
  <tr><th align="center" colspan="3">params</th></tr>
@@ -431,7 +431,7 @@ console.log(bst.root()); // null
 ### BinarySearchTreeNode
 
 #### .getKey()
-returns the node's key that is used to compare with other.
+returns the node's key that is used to compare with other nodes.
 
 <table>
  <tr><th>return</th></tr>
