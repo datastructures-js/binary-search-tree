@@ -63,7 +63,7 @@ const { BinarySearchTree, AvlTree } = require('@datastructures-js/binary-search-
 import { BinarySearchTree, AvlTree } from '@datastructures-js/binary-search-tree';
 ```
 
-### Create a Tree
+### Construction
 
 ```js
 const bst = new BinarySearchTree();
@@ -85,7 +85,7 @@ inserts a node with key/value into the tree. Inserting an node with existing key
 </table>
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th colspan="2" align="center">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -151,7 +151,7 @@ finds a node in the tree by its key.
 </table>
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -179,7 +179,7 @@ console.log(bst.find(100)); // null
 finds the node with min key in the tree.
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -205,7 +205,7 @@ console.log(min.getValue()); // v7
 finds the node with max key in the tree.
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -230,7 +230,7 @@ console.log(max.getValue()); // v4
 returns the root node of the tree.
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -460,7 +460,7 @@ returns the value that is associated with a node.
 returns node's left child node.
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -469,7 +469,7 @@ returns node's left child node.
 returns node's right child node.
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
@@ -478,7 +478,7 @@ returns node's right child node.
 returns node's parent node.
 
 <table>
- <tr><th colspan="2">return</th></tr>
+ <tr><th align="center" colspan="2">return</th></tr>
  <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
  <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
 </table>
