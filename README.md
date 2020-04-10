@@ -381,21 +381,26 @@ bst.traversePostOrder((node) => console.log(node.getKey()));
 removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced with the deletion.
 
 <table>
+ <tr><th align="center" colspan="3">params</th></tr>
+ <tr><td><b>name</b></td><td><b>type</b></td></tr>
+ <tr><td>key</td><td>number or string</td></tr>
+</table>
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+<table>
  <tr>
   <th>runtime</th>
-  <th>params</th>
-  <th>return</th>
  </tr>
  <tr>
   <td>O(log(n))</td>
-  <td>
-   <b>key</b>: {number} or {string}
-  </td>
-  <td>
-    {boolean}
-  </td>
  </tr>
 </table>
+
+#### Example
 
 ```js
 bst.remove(20); // true
@@ -415,6 +420,8 @@ clears the tree.
  </tr>
 </table>
 
+#### Example
+
 ```js
 bst.clear();
 console.log(bst.count()); // 0
@@ -422,24 +429,94 @@ console.log(bst.root()); // null
 ```
 
 ### BinarySearchTreeNode
-    {<b>BinarySearchTreeNode</b>} for BinarySearchTree
-    <br><br>
-    <b>.getKey()</b> {number|string} returns the node's key that is used to compare with other nodes.<br>
-    <b>.setValue(value)</b> change the value that is associated with a node.<br>
-    <b>.getValue()</b> {object} returns the value that is associated with a node.<br>
-    <b>.getLeft()</b> {BinarySearchTreeNode} returns node's left child node.<br>
-    <b>.getRight()</b> {BinarySearchTreeNode} returns node's right child node.<br>
-    <b>.getParent()</b> {BinarySearchTreeNode} returns node's parent node.
-    <br><br><br>
-    {<b>AvlTreeNode</b>} for AvlTree. It extends the BinarySearchTreeNode and adds the following methods:
-    <br><br>
-    <b>.getHeight()</b> {number} the height of the node in the tree. root is 1.<br>
-    <b>.getLeftHeight()</b> {number} the height of the left child. 0 if no left child.<br>
-    <b>.getRightHeight()</b> {number} the height of the right child. 0 if no right child.<br>
+
+#### .getKey()
+returns the node's key that is used to compare with other.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>number or string</td></tr>
+</table>
+
+
+#### .setValue(value)
+change the value that is associated with a node.
+
+<table>
+ <tr><th align="center" colspan="3">params</th></tr>
+ <tr><td><b>name</b></td><td><b>type</b></td></tr>
+ <tr><td>value</td><td>object</td></tr>
+</table>
+
+#### .getValue()
+returns the value that is associated with a node.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>object</td></tr>
+</table>
+
+#### .getLeft()
+returns node's left child node.
+
+<table>
+ <tr><th colspan="2">return</th></tr>
+ <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
+ <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .getRight()
+returns node's right child node.
+
+<table>
+ <tr><th colspan="2">return</th></tr>
+ <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
+ <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .getParent()
+returns node's parent node.
+
+<table>
+ <tr><th colspan="2">return</th></tr>
+ <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
+ <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
 ### AvlTreeNode
-extends BinarySearchTreeNode and add the following methods:
+extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and add the following methods:
 
 #### .getHeight()
+the height of the node in the tree. root height is 1.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>number</td></tr>
+</table>
+
+#### .getLeftHeight()
+the height of the left child. 0 if no left child.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>number</td></tr>
+</table>
+
+#### .getRightHeight()
+the height of the right child. 0 if no right child.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>number</td></tr>
+</table>
+
+#### .calculateBalance()
+returns the node's balance by subtracting right height from left height.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>number</td></tr>
+</table>
 
 ## Build
 ```
