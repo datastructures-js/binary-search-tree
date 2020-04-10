@@ -1,5 +1,5 @@
 /**
- * datastructures-js/binary-search-tree
+ * @datastructures-js/binary-search-tree
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
@@ -11,29 +11,30 @@ const BinarySearchTreeNode = require('./binarySearchTreeNode');
  */
 class BinarySearchTree {
   constructor() {
-    this.rootNode = null;
-    this.nodesCount = 0;
+    this._root = null;
+    this._count = 0;
   }
 
   /**
    * @public
    * inserts a node with a key/value into the tree
    * @param {number|string} key
-   * @param {object} vaue
+   * @param {object} value
+   * @param {BinarySearchTreeNode} node
    * @return {BinarySearchTreeNode}
    */
-  insert(key, value, node = this.rootNode) {
+  insert(key, value, node = this._root) {
     if (node === null) {
-      this.rootNode = new BinarySearchTreeNode(key, value);
-      this.nodesCount += 1;
-      return this.rootNode;
+      this._root = new BinarySearchTreeNode(key, value);
+      this._count += 1;
+      return this._root;
     }
 
     if (key < node.getKey() && node.getLeft() === null) {
       const newNode = new BinarySearchTreeNode(key, value);
       node.setLeft(newNode);
       newNode.setParent(node);
-      this.nodesCount += 1;
+      this._count += 1;
       return newNode;
     }
 
@@ -41,7 +42,7 @@ class BinarySearchTree {
       const newNode = new BinarySearchTreeNode(key, value);
       node.setRight(newNode);
       newNode.setParent(node);
-      this.nodesCount += 1;
+      this._count += 1;
       return newNode;
     }
 
@@ -61,9 +62,10 @@ class BinarySearchTree {
    * @public
    * check if a value exists in the tree by its key
    * @param {number|string} key
+   * @param {BinarySearchTreeNode} node
    * @return {boolean}
    */
-  has(key, node = this.rootNode) {
+  has(key, node = this._root) {
     if (node === null) return false;
 
     if (key === node.getKey()) return true;
@@ -77,9 +79,10 @@ class BinarySearchTree {
    * @public
    * finds the key's node in the tree
    * @param {number|string} key
+   * @param {BinarySearchTreeNode} node
    * @return {BinarySearchTreeNode}
    */
-  find(key, node = this.rootNode) {
+  find(key, node = this._root) {
     if (node === null) return null;
 
     if (key === node.getKey()) return node;
@@ -92,9 +95,10 @@ class BinarySearchTree {
   /**
    * @public
    * finds the node with max key (most right) in the tree
+   * @param {BinarySearchTreeNode} node
    * @return {BinarySearchTreeNode}
    */
-  max(node = this.rootNode) {
+  max(node = this._root) {
     if (node === null) return null;
 
     if (node.getRight() === null) return node;
@@ -105,9 +109,10 @@ class BinarySearchTree {
   /**
    * @public
    * finds the node with min key (most left) in the tree
+   * @param {BinarySearchTreeNode} node
    * @return {BinarySearchTreeNode}
    */
-  min(node = this.rootNode) {
+  min(node = this._root) {
     if (node === null) return null;
 
     if (node.getLeft() === null) return node;
@@ -117,29 +122,30 @@ class BinarySearchTree {
 
   /**
    * @public
-   * gets the tree root node
+   * returns the tree root node
    * @return {BinarySearchTreeNode}
    */
   root() {
-    return this.rootNode;
+    return this._root;
   }
 
   /**
    * @public
-   * gets nodes count in the tree
+   * returns the nodes count in the tree
    * @return {number}
    */
   count() {
-    return this.nodesCount;
+    return this._count;
   }
 
   /**
    * @public
    * remove a node by its key
    * @param {number|string} key
+   * @param {BinarySearchTreeNode} node
    * @return {boolean}
    */
-  remove(key, node = this.rootNode) {
+  remove(key, node = this._root) {
     if (node === null) return false;
 
     if (key < node.getKey()) {
@@ -152,39 +158,39 @@ class BinarySearchTree {
 
     if (node.getLeft() === null && node.getRight() === null) {
       if (node.getParent() === null) {
-        this.rootNode = null;
+        this._root = null;
       } else if (node.getKey() < node.getParent().getKey()) {
         node.getParent().setLeft(null);
       } else {
         node.getParent().setRight(null);
       }
-      this.nodesCount -= 1;
+      this._count -= 1;
       return true;
     }
 
     if (node.getRight() === null) {
       if (node.getParent() === null) {
-        this.rootNode = node.getLeft();
+        this._root = node.getLeft();
       } else if (node.getKey() < node.getParent().getKey()) {
         node.getParent().setLeft(node.getLeft());
       } else {
         node.getParent().setRight(node.getLeft());
       }
       node.getLeft().setParent(node.getParent());
-      this.nodesCount -= 1;
+      this._count -= 1;
       return true;
     }
 
     if (node.getLeft() === null) {
       if (node.getParent() === null) {
-        this.rootNode = node.getRight();
+        this._root = node.getRight();
       } else if (node.getKey() < node.getParent().getKey()) {
         node.getParent().setLeft(node.getRight());
       } else {
         node.getParent().setRight(node.getRight());
       }
       node.getRight().setParent(node.getParent());
-      this.nodesCount -= 1;
+      this._count -= 1;
       return true;
     }
 
@@ -197,8 +203,9 @@ class BinarySearchTree {
    * @public
    * traverse the tree in-order (left-node-right)
    * @param {function} cb
+   * @param {BinarySearchTreeNode} node
    */
-  traverseInOrder(cb, node = this.rootNode) {
+  traverseInOrder(cb, node = this._root) {
     if (typeof cb !== 'function') {
       throw new Error('.traverseInOrder(cb) expects a callback');
     }
@@ -214,8 +221,9 @@ class BinarySearchTree {
    * @public
    * traverse the tree pre-order (node-left-right)
    * @param {function} cb
+   * @param {BinarySearchTreeNode} node
    */
-  traversePreOrder(cb, node = this.rootNode) {
+  traversePreOrder(cb, node = this._root) {
     if (typeof cb !== 'function') {
       throw new Error('.traversePreOrder(cb) expects a callback');
     }
@@ -231,8 +239,9 @@ class BinarySearchTree {
    * @public
    * traverse the tree post-order (left-right-node)
    * @param {function} cb
+   * @param {BinarySearchTreeNode} node
    */
-  traversePostOrder(cb, node = this.rootNode) {
+  traversePostOrder(cb, node = this._root) {
     if (typeof cb !== 'function') {
       throw new Error('.traversePostOrder(cb) expects a callback');
     }
@@ -249,8 +258,8 @@ class BinarySearchTree {
    * clears the tree
    */
   clear() {
-    this.rootNode = null;
-    this.nodesCount = 0;
+    this._root = null;
+    this._count = 0;
   }
 }
 
