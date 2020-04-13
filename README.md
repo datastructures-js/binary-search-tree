@@ -484,7 +484,7 @@ returns node's parent node.
 </table>
 
 ### AvlTreeNode
-extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and add the following methods:
+extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and adds the following methods:
 
 #### .getHeight()
 the height of the node in the tree. root height is 1.
