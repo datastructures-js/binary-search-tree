@@ -1,5 +1,5 @@
 /**
- * datastructures-js/binary-search-tree
+ * @datastructures-js/binary-search-tree
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
@@ -17,7 +17,7 @@ class AvlTree extends BinarySearchTree {
    * applies the proper rotation on nodes after an insert or remove
    * @param {AvlTreeNode} node
    */
-  balanceNode(node) {
+  _balanceNode(node) {
     if (!node) return;
 
     node.updateHeight();
@@ -42,12 +42,11 @@ class AvlTree extends BinarySearchTree {
 
   /**
    * @public
-   *
    * inserts a node with a key/value into tree
    * and maintains the tree balanced by applying the necessary rotations
-   *
    * @param {number|string} key
-   * @param {object} vaue
+   * @param {object} value
+   * @param {AvlTreeNode} node
    * @return {AvlTreeNode} the inserted node
    */
   insert(key, value, node = this._root) {
@@ -82,27 +81,35 @@ class AvlTree extends BinarySearchTree {
 
     if (key < node.getKey()) {
       const newNode = this.insert(key, value, node.getLeft());
-      this.balanceNode(node); // back-tracking
+      this._balanceNode(node); // back-tracking
       return newNode;
     }
 
     const newNode = this.insert(key, value, node.getRight());
-    this.balanceNode(node); // back-tracking
+    this._balanceNode(node); // back-tracking
     return newNode;
   }
 
+  /**
+   * @public
+   * remove a node by its key
+   * and maintains the tree balanced by applying the necessary rotations
+   * @param {number|string} key
+   * @param {BinarySearchTreeNode} node
+   * @return {boolean}
+   */
   remove(key, node = this._root) {
     if (node === null) return false;
 
     if (key < node.getKey()) {
       const removed = this.remove(key, node.getLeft());
-      this.balanceNode(node);
+      this._balanceNode(node);
       return removed;
     }
 
     if (key > node.getKey()) {
       const removed = this.remove(key, node.getRight());
-      this.balanceNode(node);
+      this._balanceNode(node);
       return removed;
     }
 
