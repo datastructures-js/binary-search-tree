@@ -50,9 +50,9 @@ npm install --save @datastructures-js/binary-search-tree
 ```
 
 ## API
+Both trees have the same interface except that AVL tree will maintain itself balanced by rotating the nodes that become unbalanced during insertion and deletion. If your code requires a strictly balanced tree that always benefits from the **log(n)** runtime of insert & remove, you should use the AVL one.
 
 ### require
-Both trees have the same interface except that AVL tree will maintain itself balanced due to rotating nodes that become unbalanced on insertion and deletion. If your code requires a strictly balanced tree that always benefits from the **log(n)** runtime of insert & remove, you should use AVL.
 
 ```js
 const { BinarySearchTree, AvlTree } = require('@datastructures-js/binary-search-tree');
