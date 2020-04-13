@@ -14,7 +14,7 @@ const AvlTreeNode = require('./avlTreeNode');
 class AvlTree extends BinarySearchTree {
   /**
    * @private
-   * applies the proper rotation on nodes after an insert or remove
+   * applies the proper rotation on a node during insert or remove
    * @param {AvlTreeNode} node
    */
   _balanceNode(node) {
@@ -81,12 +81,12 @@ class AvlTree extends BinarySearchTree {
 
     if (key < node.getKey()) {
       const newNode = this.insert(key, value, node.getLeft());
-      this._balanceNode(node); // back-tracking
+      this._balanceNode(node); // backward-tracking
       return newNode;
     }
 
     const newNode = this.insert(key, value, node.getRight());
-    this._balanceNode(node); // back-tracking
+    this._balanceNode(node); // backward-tracking
     return newNode;
   }
 
