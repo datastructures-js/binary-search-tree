@@ -95,7 +95,7 @@ class AvlTree extends BinarySearchTree {
    * remove a node by its key
    * and maintains the tree balanced by applying the necessary rotations
    * @param {number|string} key
-   * @param {BinarySearchTreeNode} node
+   * @param {AvlTreeNode} node
    * @return {boolean}
    */
   remove(key, node = this._root) {
