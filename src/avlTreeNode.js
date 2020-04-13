@@ -10,7 +10,6 @@ const BinarySearchTreeNode = require('./binarySearchTreeNode');
  * @class AvlTreeNode
  * @extends BinarySearchTreeNode
  */
-
 class AvlTreeNode extends BinarySearchTreeNode {
   constructor(key, value) {
     super(key, value);
