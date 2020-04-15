@@ -26,7 +26,7 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 * [API](#api)
   * [require](#require)
   * [import](#import)
-  * [Construction](#create-a-tree)
+  * [Construction](#construction)
   * [.insert(key, value)](#insertkey-value)
   * [.has(key)](#haskey)
   * [.find(key)](#findkey)
