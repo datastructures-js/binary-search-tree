@@ -132,6 +132,7 @@ describe('BinarySearchTree tests', () => {
       bst.remove(80);
       expect(bst.has(80)).to.equal(false);
       expect(bst.root().getRight().getKey()).to.equal(90);
+      expect(bst.root().getRight().getValue()).to.equal('n4');
       expect(bst.find(90).getRight()).to.equal(null);
       expect(bst.find(90).getLeft().getKey()).to.equal(60);
       expect(bst.count()).to.equal(4);

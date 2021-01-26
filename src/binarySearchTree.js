@@ -196,6 +196,7 @@ class BinarySearchTree {
 
     const minRight = this.min(node.getRight());
     node.setKey(minRight.getKey());
+    node.setValue(minRight.getValue());
     return this.remove(minRight.getKey(), minRight);
   }
 
