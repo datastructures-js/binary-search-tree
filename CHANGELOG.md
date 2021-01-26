@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.1.5] - 2020-04-15
+## [3.1.7] - 2021-01-26
+### Fixed
+- update the removed node value with min right one.
+
+## [3.1.6] - 2020-04-15
 ### Fixed
 - README
 
