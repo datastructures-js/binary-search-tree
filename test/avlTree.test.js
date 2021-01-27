@@ -177,7 +177,6 @@ describe('AvlTree tests', () => {
     });
   });
 
-
   describe('.min()', () => {
     it('get the node with min key', () => {
       expect(avlTree.min().getKey(15));
@@ -386,7 +385,6 @@ describe('AvlTree tests', () => {
                       \
                        85
 
-
          left-right rotation of 95 ==>
 
                   40
@@ -429,7 +427,6 @@ describe('AvlTree tests', () => {
                /  \
               15  40
       */
-
 
       expect(avlTree.root().getKey()).to.equal(20);
       expect(avlTree.root().getLeft().getKey()).to.equal(15);
