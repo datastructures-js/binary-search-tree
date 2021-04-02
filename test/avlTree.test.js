@@ -434,6 +434,7 @@ describe('AvlTree tests', () => {
 
       avlTree.remove(20);
       expect(avlTree.root().getKey()).to.equal(40);
+      expect(avlTree.root().getValue()).to.equal('n4');
       expect(avlTree.root().getLeft().getKey()).to.equal(15);
 
       avlTree.remove(40);

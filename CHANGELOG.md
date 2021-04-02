@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.8] - 2021-04-02
+### Fixed
+- update the removed node value with min right one in avl tree.
+
 ## [3.1.7] - 2021-01-26
 ### Fixed
 - update the removed node value with min right one.
