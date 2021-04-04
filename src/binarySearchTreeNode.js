@@ -1,5 +1,5 @@
 /**
- * @datastructures-js/binary-search-tree
+ * datastructures-js/binary-search-tree
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
@@ -17,7 +17,7 @@ class BinarySearchTreeNode {
   }
 
   /**
-   * @internal
+   * @public
    * @param {number|string}
    */
   setKey(key) {
@@ -34,7 +34,7 @@ class BinarySearchTreeNode {
 
   /**
    * @public
-   * @param {object}
+   * @param {any} value
    */
   setValue(value) {
     this._value = value;
@@ -42,18 +42,22 @@ class BinarySearchTreeNode {
 
   /**
    * @public
-   * @return {object}
+   * @return {any}
    */
   getValue() {
     return this._value;
   }
 
   /**
-   * @internal
-   * @param {BinarySearchTreeNode}
+   * @public
+   * @param {BinarySearchTreeNode|null} left
    */
   setLeft(left) {
-    this._left = left;
+    if (left === null || left instanceof BinarySearchTreeNode) {
+      this._left = left;
+    } else {
+      throw new Error('setLeft expects a BinarySearchTreeNode or null');
+    }
   }
 
   /**
@@ -65,11 +69,23 @@ class BinarySearchTreeNode {
   }
 
   /**
-   * @internal
-   * @param {BinarySearchTreeNode}
+   * @public
+   * @return {boolean}
+   */
+  hasLeft() {
+    return this._left instanceof BinarySearchTreeNode;
+  }
+
+  /**
+   * @public
+   * @param {BinarySearchTreeNode|null} right
    */
   setRight(right) {
-    this._right = right;
+    if (right === null || right instanceof BinarySearchTreeNode) {
+      this._right = right;
+    } else {
+      throw new Error('setRight expects a BinarySearchTreeNode or null');
+    }
   }
 
   /**
@@ -81,11 +97,23 @@ class BinarySearchTreeNode {
   }
 
   /**
-   * @internal
-   * @param {BinarySearchTreeNode}
+   * @public
+   * @return {boolean}
+   */
+  hasRight() {
+    return this._right instanceof BinarySearchTreeNode;
+  }
+
+  /**
+   * @public
+   * @param {BinarySearchTreeNode} parent
    */
   setParent(parent) {
-    this._parent = parent;
+    if (parent === null || parent instanceof BinarySearchTreeNode) {
+      this._parent = parent;
+    } else {
+      throw new Error('setParent expects a BinarySearchTreeNode or null');
+    }
   }
 
   /**
@@ -94,6 +122,14 @@ class BinarySearchTreeNode {
    */
   getParent() {
     return this._parent;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  hasParent() {
+    return this._parent instanceof BinarySearchTreeNode;
   }
 }
 
