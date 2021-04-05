@@ -19,6 +19,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
   /**
    * Rotate-self left (counter-clockwise)
    * @public
+   * @returns {AvlTreeNode}
    */
   rotateLeft() {
     const right = this._right; // this._right will be re-assigned
@@ -52,11 +53,14 @@ class AvlTreeNode extends BinarySearchTreeNode {
     if (this.hasParent()) {
       this._parent.updateHeight();
     }
+
+    return this;
   }
 
   /**
    * Rotate-self right (clockwise)
    * @public
+   * @returns {AvlTreeNode}
    */
   rotateRight() {
     const left = this._left; // this._left will be re-assigned
@@ -90,28 +94,34 @@ class AvlTreeNode extends BinarySearchTreeNode {
     if (this.hasParent()) {
       this._parent.updateHeight();
     }
+
+    return this;
   }
 
   /**
    * Rotate-self to right after rotating left child to left
    * @public
+   * @returns {AvlTreeNode}
    */
   rotateLeftRight() {
     if (this.hasLeft()) {
       this._left.rotateLeft();
     }
     this.rotateRight();
+    return this;
   }
 
   /**
    * Rotate-self to left after rotating right child to right
    * @public
+   * @returns {AvlTreeNode}
    */
   rotateRightLeft() {
     if (this.hasRight()) {
       this._right.rotateRight();
     }
     this.rotateLeft();
+    return this;
   }
 
   /**
@@ -133,9 +143,11 @@ class AvlTreeNode extends BinarySearchTreeNode {
   /**
    * Updates self height based on the max height of children
    * @public
+   * @returns {AvlTreeNode}
   */
   updateHeight() {
     this._height = Math.max(this.getLeftHeight(), this.getRightHeight()) + 1;
+    return this;
   }
 
   /**
@@ -153,6 +165,16 @@ class AvlTreeNode extends BinarySearchTreeNode {
    */
   getBalance() {
     return this.getLeftHeight() - this.getRightHeight();
+  }
+
+  /**
+   * Checks if the node is balanced
+   * @public
+   * @return {boolean}
+   */
+  isBalanced() {
+    const balance = this.getBalance();
+    return balance >= -1 && balance <= 1;
   }
 }
 

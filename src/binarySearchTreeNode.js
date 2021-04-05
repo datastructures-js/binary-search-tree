@@ -19,9 +19,11 @@ class BinarySearchTreeNode {
   /**
    * @public
    * @param {number|string}
+   * @returns {BinarySearchTreeNode}
    */
   setKey(key) {
     this._key = key;
+    return this;
   }
 
   /**
@@ -35,9 +37,11 @@ class BinarySearchTreeNode {
   /**
    * @public
    * @param {any} value
+   * @returns {BinarySearchTreeNode}
    */
   setValue(value) {
     this._value = value;
+    return this;
   }
 
   /**
@@ -51,13 +55,15 @@ class BinarySearchTreeNode {
   /**
    * @public
    * @param {BinarySearchTreeNode|null} left
+   * @returns {BinarySearchTreeNode}
    */
   setLeft(left) {
-    if (left === null || left instanceof BinarySearchTreeNode) {
-      this._left = left;
-    } else {
+    if (left && !(left instanceof BinarySearchTreeNode)) {
       throw new Error('setLeft expects a BinarySearchTreeNode or null');
     }
+
+    this._left = left;
+    return this;
   }
 
   /**
@@ -79,13 +85,15 @@ class BinarySearchTreeNode {
   /**
    * @public
    * @param {BinarySearchTreeNode|null} right
+   * @returns {BinarySearchTreeNode}
    */
   setRight(right) {
-    if (right === null || right instanceof BinarySearchTreeNode) {
-      this._right = right;
-    } else {
+    if (right && !(right instanceof BinarySearchTreeNode)) {
       throw new Error('setRight expects a BinarySearchTreeNode or null');
     }
+
+    this._right = right;
+    return this;
   }
 
   /**
@@ -107,13 +115,15 @@ class BinarySearchTreeNode {
   /**
    * @public
    * @param {BinarySearchTreeNode} parent
+   * @returns {BinarySearchTreeNode}
    */
   setParent(parent) {
-    if (parent === null || parent instanceof BinarySearchTreeNode) {
-      this._parent = parent;
-    } else {
+    if (parent && !(parent instanceof BinarySearchTreeNode)) {
       throw new Error('setParent expects a BinarySearchTreeNode or null');
     }
+
+    this._parent = parent;
+    return this;
   }
 
   /**
@@ -130,6 +140,14 @@ class BinarySearchTreeNode {
    */
   hasParent() {
     return this._parent instanceof BinarySearchTreeNode;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  isRoot() {
+    return this._parent === null;
   }
 }
 
