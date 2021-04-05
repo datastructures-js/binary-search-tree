@@ -1,5 +1,5 @@
 /**
- * @datastructures-js/binary-search-tree
+ * datastructures-js/binary-search-tree
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
@@ -16,113 +16,136 @@ class BinarySearchTree {
   }
 
   /**
+   * Inserts a node with a key/value into the tree
    * @public
-   * inserts a node with a key/value into the tree
    * @param {number|string} key
-   * @param {object} value
-   * @param {BinarySearchTreeNode} node
-   * @return {BinarySearchTreeNode}
+   * @param {any} value
+   * @return {BinarySearchTree}
    */
-  insert(key, value, node = this._root) {
-    if (node === null) {
+  insert(key, value) {
+    const insertRecursive = (current) => {
+      if (key < current.getKey()) {
+        if (current.hasLeft()) {
+          insertRecursive(current.getLeft());
+        } else {
+          const newNode = new BinarySearchTreeNode(key, value);
+          current.setLeft(newNode.setParent(current));
+          this._count += 1;
+        }
+      } else if (key > current.getKey()) {
+        if (current.hasRight()) {
+          insertRecursive(current.getRight());
+        } else {
+          const newNode = new BinarySearchTreeNode(key, value);
+          current.setRight(newNode.setParent(current));
+          this._count += 1;
+        }
+      } else {
+        current.setValue(value);
+      }
+    };
+
+    if (this._root === null) {
       this._root = new BinarySearchTreeNode(key, value);
       this._count += 1;
-      return this._root;
+    } else {
+      insertRecursive(this._root);
     }
 
-    if (key < node.getKey() && node.getLeft() === null) {
-      const newNode = new BinarySearchTreeNode(key, value);
-      node.setLeft(newNode);
-      newNode.setParent(node);
-      this._count += 1;
-      return newNode;
-    }
-
-    if (key > node.getKey() && node.getRight() === null) {
-      const newNode = new BinarySearchTreeNode(key, value);
-      node.setRight(newNode);
-      newNode.setParent(node);
-      this._count += 1;
-      return newNode;
-    }
-
-    if (key === node.getKey()) {
-      node.setValue(value);
-      return node;
-    }
-
-    if (key < node.getKey()) {
-      return this.insert(key, value, node.getLeft());
-    }
-
-    return this.insert(key, value, node.getRight());
+    return this;
   }
 
   /**
+   * Checks if a value exists in the tree by its key
    * @public
-   * check if a value exists in the tree by its key
    * @param {number|string} key
-   * @param {BinarySearchTreeNode} node
    * @return {boolean}
    */
-  has(key, node = this._root) {
-    if (node === null) return false;
+  has(key) {
+    const hasRecursive = (current) => {
+      if (current === null) {
+        return false;
+      }
 
-    if (key === node.getKey()) return true;
+      if (key === current.getKey()) {
+        return true;
+      }
 
-    if (key < node.getKey()) return this.has(key, node.getLeft());
+      if (key < current.getKey()) {
+        return hasRecursive(current.getLeft());
+      }
 
-    return this.has(key, node.getRight());
+      return hasRecursive(current.getRight());
+    };
+
+    return hasRecursive(this._root);
   }
 
   /**
+   * Finds a node by its key
    * @public
-   * finds the key's node in the tree
    * @param {number|string} key
-   * @param {BinarySearchTreeNode} node
    * @return {BinarySearchTreeNode}
    */
-  find(key, node = this._root) {
-    if (node === null) return null;
+  find(key) {
+    const findRecursive = (current) => {
+      if (current === null) {
+        return null;
+      }
 
-    if (key === node.getKey()) return node;
+      if (key === current.getKey()) {
+        return current;
+      }
 
-    if (key < node.getKey()) return this.find(key, node.getLeft());
+      if (key < current.getKey()) {
+        return findRecursive(current.getLeft());
+      }
 
-    return this.find(key, node.getRight());
+      return findRecursive(current.getRight());
+    };
+
+    return findRecursive(this._root);
   }
 
   /**
+   * Finds the node with max key (most right) in the tree
    * @public
-   * finds the node with max key (most right) in the tree
-   * @param {BinarySearchTreeNode} node
+   * @param {BinarySearchTreeNode} [current]
    * @return {BinarySearchTreeNode}
    */
-  max(node = this._root) {
-    if (node === null) return null;
+  max(current = this._root) {
+    if (current === null) {
+      return null;
+    }
 
-    if (node.getRight() === null) return node;
+    if (current.hasRight()) {
+      return this.max(current.getRight());
+    }
 
-    return this.max(node.getRight());
+    return current;
   }
 
   /**
+   * Finds the node with min key (most left) in the tree
    * @public
-   * finds the node with min key (most left) in the tree
-   * @param {BinarySearchTreeNode} node
+   * @param {BinarySearchTreeNode} [current]
    * @return {BinarySearchTreeNode}
    */
-  min(node = this._root) {
-    if (node === null) return null;
+  min(current = this._root) {
+    if (current === null) {
+      return null;
+    }
 
-    if (node.getLeft() === null) return node;
+    if (current.hasLeft()) {
+      return this.min(current.getLeft());
+    }
 
-    return this.min(node.getLeft());
+    return current;
   }
 
   /**
+   * Returns the root node
    * @public
-   * returns the tree root node
    * @return {BinarySearchTreeNode}
    */
   root() {
@@ -130,8 +153,8 @@ class BinarySearchTree {
   }
 
   /**
+   * Returns the nodes count
    * @public
-   * returns the nodes count in the tree
    * @return {number}
    */
   count() {
@@ -139,124 +162,140 @@ class BinarySearchTree {
   }
 
   /**
+   * Removes a node by its key
    * @public
-   * remove a node by its key
    * @param {number|string} key
-   * @param {BinarySearchTreeNode} node
    * @return {boolean}
    */
-  remove(key, node = this._root) {
-    if (node === null) return false;
-
-    if (key < node.getKey()) {
-      return this.remove(key, node.getLeft());
-    }
-
-    if (key > node.getKey()) {
-      return this.remove(key, node.getRight());
-    }
-
-    if (node.getLeft() === null && node.getRight() === null) {
-      if (node.getParent() === null) {
-        this._root = null;
-      } else if (node.getKey() < node.getParent().getKey()) {
-        node.getParent().setLeft(null);
-      } else {
-        node.getParent().setRight(null);
+  remove(key) {
+    const removeRecursively = (k, current) => {
+      if (current === null) {
+        return false;
       }
-      this._count -= 1;
-      return true;
-    }
 
-    if (node.getRight() === null) {
-      if (node.getParent() === null) {
-        this._root = node.getLeft();
-      } else if (node.getKey() < node.getParent().getKey()) {
-        node.getParent().setLeft(node.getLeft());
-      } else {
-        node.getParent().setRight(node.getLeft());
+      if (k < current.getKey()) {
+        return removeRecursively(k, current.getLeft());
       }
-      node.getLeft().setParent(node.getParent());
-      this._count -= 1;
-      return true;
-    }
 
-    if (node.getLeft() === null) {
-      if (node.getParent() === null) {
-        this._root = node.getRight();
-      } else if (node.getKey() < node.getParent().getKey()) {
-        node.getParent().setLeft(node.getRight());
-      } else {
-        node.getParent().setRight(node.getRight());
+      if (k > current.getKey()) {
+        return removeRecursively(k, current.getRight());
       }
-      node.getRight().setParent(node.getParent());
-      this._count -= 1;
-      return true;
-    }
 
-    const minRight = this.min(node.getRight());
-    node.setKey(minRight.getKey());
-    node.setValue(minRight.getValue());
-    return this.remove(minRight.getKey(), minRight);
+      // current node is the node to remove
+
+      // case 1: node has no children
+      if (current.isLeaf()) {
+        if (current.isRoot()) {
+          this._root = null;
+        } else if (k < current.getParent().getKey()) {
+          current.getParent().setLeft(null);
+        } else {
+          current.getParent().setRight(null);
+        }
+        this._count -= 1;
+        return true;
+      }
+
+      // case 2: node has a left child and no right child
+      if (!current.hasRight()) {
+        if (current.isRoot()) {
+          this._root = current.getLeft();
+        } else if (k < current.getParent().getKey()) {
+          current.getParent().setLeft(current.getLeft());
+        } else {
+          current.getParent().setRight(current.getLeft());
+        }
+        current.getLeft().setParent(current.getParent());
+        this._count -= 1;
+        return true;
+      }
+
+      // case 3: node has a right child and no left child
+      if (!current.hasLeft()) {
+        if (current.isRoot()) {
+          this._root = current.getRight();
+        } else if (k < current.getParent().getKey()) {
+          current.getParent().setLeft(current.getRight());
+        } else {
+          current.getParent().setRight(current.getRight());
+        }
+        current.getRight().setParent(current.getParent());
+        this._count -= 1;
+        return true;
+      }
+
+      // case 4: node has left and right children
+      const minRight = this.min(current.getRight());
+      current.setKey(minRight.getKey()).setValue(minRight.getValue());
+      return removeRecursively(minRight.getKey(), minRight);
+    };
+
+    return removeRecursively(key, this._root);
   }
 
   /**
+   * Traverses the tree in-order (left-node-right)
    * @public
-   * traverse the tree in-order (left-node-right)
    * @param {function} cb
-   * @param {BinarySearchTreeNode} node
    */
-  traverseInOrder(cb, node = this._root) {
+  traverseInOrder(cb) {
     if (typeof cb !== 'function') {
-      throw new Error('.traverseInOrder(cb) expects a callback');
+      throw new Error('.traverseInOrder expects a callback function');
     }
 
-    if (node === null) return;
+    const traverseRecursive = (current) => {
+      if (current === null) return;
+      traverseRecursive(current.getLeft());
+      cb(current);
+      traverseRecursive(current.getRight());
+    };
 
-    this.traverseInOrder(cb, node.getLeft());
-    cb(node);
-    this.traverseInOrder(cb, node.getRight());
+    traverseRecursive(this._root);
   }
 
   /**
+   * Traverses the tree pre-order (node-left-right)
    * @public
-   * traverse the tree pre-order (node-left-right)
    * @param {function} cb
-   * @param {BinarySearchTreeNode} node
    */
-  traversePreOrder(cb, node = this._root) {
+  traversePreOrder(cb) {
     if (typeof cb !== 'function') {
-      throw new Error('.traversePreOrder(cb) expects a callback');
+      throw new Error('.traversePreOrder expects a callback function');
     }
 
-    if (node === null) return;
+    const traverseRecursive = (current) => {
+      if (current === null) return;
+      cb(current);
+      traverseRecursive(current.getLeft());
+      traverseRecursive(current.getRight());
+    };
 
-    cb(node);
-    this.traversePreOrder(cb, node.getLeft());
-    this.traversePreOrder(cb, node.getRight());
+    traverseRecursive(this._root);
   }
 
   /**
+   * Traverses the tree post-order (left-right-node)
    * @public
-   * traverse the tree post-order (left-right-node)
    * @param {function} cb
-   * @param {BinarySearchTreeNode} node
    */
-  traversePostOrder(cb, node = this._root) {
+  traversePostOrder(cb) {
     if (typeof cb !== 'function') {
-      throw new Error('.traversePostOrder(cb) expects a callback');
+      throw new Error('.traversePostOrder expects a callback function');
     }
 
-    if (node === null) return;
+    const traverseRecursive = (current) => {
+      if (current === null) return;
+      traverseRecursive(current.getLeft());
+      traverseRecursive(current.getRight());
+      cb(current);
+    };
 
-    this.traversePostOrder(cb, node.getLeft());
-    this.traversePostOrder(cb, node.getRight());
-    cb(node);
+    traverseRecursive(this._root);
   }
 
   /**
+   * Clears the tree
    * @public
-   * clears the tree
    */
   clear() {
     this._root = null;

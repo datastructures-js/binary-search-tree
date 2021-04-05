@@ -50,7 +50,7 @@ class AvlTree extends BinarySearchTree {
    * @public
    * @param {number|string} key
    * @param {any} value
-   * @return {AvlTreeNode} the inserted node
+   * @return {AvlTree}
    */
   insert(key, value) {
     const insertRecursive = (current) => {
@@ -113,7 +113,10 @@ class AvlTree extends BinarySearchTree {
         return removed;
       }
 
-      if (!current.hasLeft() && !current.hasRight()) {
+      // current node is the node to remove
+
+      // case 1: node has no children
+      if (current.isLeaf()) {
         if (current.isRoot()) {
           this._root = null;
         } else if (k < current.getParent().getKey()) {
@@ -125,6 +128,7 @@ class AvlTree extends BinarySearchTree {
         return true;
       }
 
+      // case 2: node has a left child and no right child
       if (!current.hasRight()) {
         if (current.isRoot()) {
           this._root = current.getLeft();
@@ -138,6 +142,7 @@ class AvlTree extends BinarySearchTree {
         return true;
       }
 
+      // case 3: node has a right child and no left child
       if (!current.hasLeft()) {
         if (current.isRoot()) {
           this._root = current.getRight();
@@ -151,6 +156,7 @@ class AvlTree extends BinarySearchTree {
         return true;
       }
 
+      // case 4: node has left and right children
       const minRight = this.min(current.getRight());
       current.setKey(minRight.getKey()).setValue(minRight.getValue());
       return removeRecursively(minRight.getKey(), minRight);

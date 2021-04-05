@@ -26,7 +26,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
 
     // set the node as a left child of its right child
     if (right !== null) {
-      if (right.getLeft() !== null) {
+      if (right.hasLeft()) {
         right.getLeft().setParent(this);
       }
 
@@ -38,7 +38,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
     }
 
     // rebase parent's child to node's right child
-    if (this._parent !== null && right !== null) {
+    if (this.hasParent() && right !== null) {
       if (this._parent.getKey() < right.getKey()) {
         this._parent.setRight(right);
       } else {
@@ -67,19 +67,19 @@ class AvlTreeNode extends BinarySearchTreeNode {
 
     // set the node as a right child of its left child
     if (left !== null) {
-      if (left.getRight() !== null) {
+      if (left.hasRight()) {
         left.getRight().setParent(this);
       }
 
-      // rebase right child to node's right left child.
+      // rebase left child to node's left right child.
       this._left = left.getRight();
 
       left.setRight(this);
       left.setParent(this._parent);
     }
 
-    // rebase parent to node's left child
-    if (this._parent !== null && left !== null) {
+    // rebase parent's child to node's left child
+    if (this.hasParent() && left !== null) {
       if (this._parent.getKey() > left.getKey()) {
         this._parent.setLeft(left);
       } else {
@@ -87,7 +87,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
       }
     }
 
-    // rebase parent to node's right child
+    // rebase parent to node's left child
     this._parent = left;
 
     this.updateHeight();

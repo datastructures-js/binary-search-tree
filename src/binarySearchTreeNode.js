@@ -149,6 +149,14 @@ class BinarySearchTreeNode {
   isRoot() {
     return this._parent === null;
   }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  isLeaf() {
+    return !this.hasLeft() && !this.hasRight();
+  }
 }
 
 module.exports = BinarySearchTreeNode;
