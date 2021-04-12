@@ -62,7 +62,7 @@ class BinarySearchTreeNode {
       throw new Error('setLeft expects a BinarySearchTreeNode or null');
     }
 
-    this._left = left;
+    this._left = left || null;
     return this;
   }
 
@@ -92,7 +92,7 @@ class BinarySearchTreeNode {
       throw new Error('setRight expects a BinarySearchTreeNode or null');
     }
 
-    this._right = right;
+    this._right = right || null;
     return this;
   }
 
@@ -122,7 +122,7 @@ class BinarySearchTreeNode {
       throw new Error('setParent expects a BinarySearchTreeNode or null');
     }
 
-    this._parent = parent;
+    this._parent = parent || null;
     return this;
   }
 
