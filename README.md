@@ -80,7 +80,7 @@ const bst = new BinarySearchTree();
 
 ```js
 // self balancing tree
-const avl = new AvlTree();
+const bst = new AvlTree();
 ```
 
 ### .insert(key, value)
