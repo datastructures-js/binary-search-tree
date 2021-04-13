@@ -335,7 +335,7 @@ removes a node from the tree by its key. AVL tree will rotate nodes properly if 
   </tr>
   <tr>
     <td align="center">key: number | string</td>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">boolean</td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
