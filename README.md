@@ -26,7 +26,7 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 * [API](#api)
   * [require](#require)
   * [import](#import)
-  * [Construction](#construction)
+  * [new](#new)
   * [.insert(key, value)](#insertkey-value)
   * [.has(key)](#haskey)
   * [.find(key)](#findkey)
@@ -50,56 +50,59 @@ npm install --save @datastructures-js/binary-search-tree
 ```
 
 ## API
-Both trees have the same interface except that AVL tree will maintain itself balanced by rotating the nodes that become unbalanced during insertion and deletion. If your code requires a strictly balanced tree that always benefits from the **log(n)** runtime of insert & remove, you should use the AVL one.
 
 ### require
 
 ```js
-const { BinarySearchTree, AvlTree } = require('@datastructures-js/binary-search-tree');
+const {
+  BinarySearchTree,
+  BinarySearchTreeNode,
+  AvlTree,
+  AvlTreeNode
+} = require('@datastructures-js/binary-search-tree');
 ```
 
 ### import
 ```js
-import { BinarySearchTree, AvlTree } from '@datastructures-js/binary-search-tree';
+import {
+  BinarySearchTree,
+  BinarySearchTreeNode,
+  AvlTree,
+  AvlTreeNode
+} from '@datastructures-js/binary-search-tree';
 ```
 
-### Construction
+### new
 
 ```js
 const bst = new BinarySearchTree();
+```
 
-// OR a self balancing tree
-
+```js
+// self balancing tree
 const bst = new AvlTree();
 ```
 
 ### .insert(key, value)
 
-inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new one. AVL tree will rotate nodes properly if the tree becomes unbalanced during insertion.
+inserts a node with key/value into the tree and returns the inserted node. Inserting an node with existing key, will update the existing node's value with the new one.
 
 <table>
- <tr><th align="center" colspan="2">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td></tr>
- <tr><td>key</td><td>number or string</td></tr>
- <tr><td>value</td><td>object</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td>
+      key: number | string
+      <br />
+      value: any
+    </td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
-
-<table>
- <tr><th colspan="2" align="center">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
-</table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 bst.insert(50, 'v1');
@@ -115,26 +118,19 @@ bst.insert(20, 'v7');
 checks if a node exists by its key.
 
 <table>
- <tr><th align="center" colspan="2">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td></tr>
- <tr><td>key</td><td>number or string</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td>
+      key: number | string
+    </td>
+    <td align="center">boolean</td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
-
-<table>
- <tr><th>return</th></tr>
- <tr><td>boolean</td></tr>
-</table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 bst.has(50); // true
@@ -145,27 +141,19 @@ bst.has(100); // false
 finds a node in the tree by its key.
 
 <table>
- <tr><th align="center" colspan="2">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td></tr>
- <tr><td>key</td><td>number or string</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td>
+      key: number | string
+    </td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
-
-<table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
-</table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 const n60 = bst.find(60);
@@ -179,21 +167,15 @@ console.log(bst.find(100)); // null
 finds the node with min key in the tree.
 
 <table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+  <tr>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 const min = bst.min();
@@ -205,21 +187,15 @@ console.log(min.getValue()); // v7
 finds the node with max key in the tree.
 
 <table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+  <tr>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 const max = bst.max();
@@ -230,21 +206,15 @@ console.log(max.getValue()); // v4
 returns the root node of the tree.
 
 <table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+  <tr>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(1)</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(1)</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 const root = bst.root();
@@ -256,20 +226,15 @@ console.log(root.getValue()); // v1
 returns the count of nodes in the tree.
 
 <table>
- <tr><th>return</th></tr>
- <tr><td>number</td></tr>
+  <tr>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center">number</td>
+    <td align="center">O(1)</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(1)</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 console.log(bst.count()); // 7
@@ -279,33 +244,27 @@ console.log(bst.count()); // 7
 traverses the tree in order (left-node-right).
 
 <table>
- <tr><th align="center" colspan="3">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td><td><b>description</b></td></tr>
- <tr><td>cb</td><td>function</td><td>called with each node</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center">cb: function</td>
+    <td align="center">O(n)</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(n)</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 bst.traverseInOrder((node) => console.log(node.getKey()));
 
 /*
-20
-30
-40
-50
-60
-80
-90
+  20
+  30
+  40
+  50
+  60
+  80
+  90
 */
 ```
 
@@ -313,33 +272,27 @@ bst.traverseInOrder((node) => console.log(node.getKey()));
 traverses the tree pre order (node-left-right).
 
 <table>
- <tr><th align="center" colspan="3">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td><td><b>description</b></td></tr>
- <tr><td>cb</td><td>function</td><td>called with each node</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center">cb: function</td>
+    <td align="center">O(n)</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(n)</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 bst.traversePreOrder((node) => console.log(node.getKey()));
 
 /*
-50
-30
-20
-40
-80
-60
-90
+  50
+  30
+  20
+  40
+  80
+  60
+  90
 */
 ```
 
@@ -347,33 +300,27 @@ bst.traversePreOrder((node) => console.log(node.getKey()));
 traverses the tree post order (left-right-node).
 
 <table>
- <tr><th align="center" colspan="3">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td><td><b>description</b></td></tr>
- <tr><td>cb</td><td>function</td><td>called with each node</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center">cb: function</td>
+    <td align="center">O(n)</td>
+  </tr>
 </table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(n)</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 bst.traversePostOrder((node) => console.log(node.getKey()));
 
 /*
-20
-40
-30
-60
-90
-80
-50
+  20
+  40
+  30
+  60
+  90
+  80
+  50
 */
 ```
 
@@ -381,26 +328,17 @@ bst.traversePostOrder((node) => console.log(node.getKey()));
 removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
 
 <table>
- <tr><th align="center" colspan="3">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td></tr>
- <tr><td>key</td><td>number or string</td></tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td align="center">key: number | string</td>
+    <td align="center">boolean</td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
-
-<table>
- <tr><th>return</th></tr>
- <tr><td>boolean</td></tr>
-</table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
-</table>
-
-#### Example
 
 ```js
 bst.remove(20); // true
@@ -420,8 +358,6 @@ clears the tree.
  </tr>
 </table>
 
-#### Example
-
 ```js
 bst.clear();
 console.log(bst.count()); // 0
@@ -431,63 +367,140 @@ console.log(bst.root()); // null
 ### BinarySearchTreeNode
 
 #### .getKey()
-returns the node's key that is used to compare with other nodes.
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>number or string</td></tr>
+ <tr><td>number | string</td></tr>
 </table>
 
-
 #### .setValue(value)
-change the value that is associated with a node.
 
 <table>
- <tr><th align="center" colspan="3">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td></tr>
- <tr><td>value</td><td>object</td></tr>
+ <tr><th>params</th></tr>
+ <tr><td>value: any</td></tr>
 </table>
 
 #### .getValue()
-returns the value that is associated with a node.
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>object</td></tr>
+ <tr><td>any</td></tr>
+</table>
+
+#### .setLeft(left)
+
+<table>
+ <tr><th>params</th></tr>
+ <tr><td>left: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .getLeft()
-returns node's left child node.
 
 <table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+</table>
+
+#### .hasLeft()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .setRight(right)
+
+<table>
+ <tr><th>params</th></tr>
+ <tr><td>right: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .getRight()
-returns node's right child node.
 
 <table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+</table>
+
+#### .hasRight()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .setParent(parent)
+
+<table>
+ <tr><th>params</th></tr>
+ <tr><td>parent: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .getParent()
-returns node's parent node.
 
 <table>
- <tr><th align="center" colspan="2">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+</table>
+
+#### .hasParent()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .isLeaf()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .isRoot()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
 </table>
 
 ### AvlTreeNode
 extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and adds the following methods:
 
+#### .rotateLeft()
+Rotates self left (counter-clockwise).
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .rotateRight()
+Rotates self right (clockwise).
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .rotateLeftRight()
+Rotates left child to left then self to right.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .rotateRightLeft()
+Rotates right child to right then self to left.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
 #### .getHeight()
-the height of the node in the tree. root height is 1.
+Gets the height of the node in the tree. root height is 1.
 
 <table>
  <tr><th>return</th></tr>
@@ -495,7 +508,7 @@ the height of the node in the tree. root height is 1.
 </table>
 
 #### .getLeftHeight()
-the height of the left child. 0 if no left child.
+Gets the height of left child. 0 if no left child.
 
 <table>
  <tr><th>return</th></tr>
@@ -503,19 +516,27 @@ the height of the left child. 0 if no left child.
 </table>
 
 #### .getRightHeight()
-the height of the right child. 0 if no right child.
+Gets the height of right child. 0 if no right child.
 
 <table>
  <tr><th>return</th></tr>
  <tr><td>number</td></tr>
 </table>
 
-#### .calculateBalance()
-returns the node's balance by subtracting right height from left height.
+#### .getBalance()
+returns the node's balance as the diff between left and right heights.
 
 <table>
  <tr><th>return</th></tr>
  <tr><td>number</td></tr>
+</table>
+
+#### .isBalanced()
+checks if the node is balanced. (height diff is not more/less than 1/-1)
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
 </table>
 
 ## Build

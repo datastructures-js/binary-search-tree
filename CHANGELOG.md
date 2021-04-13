@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2021-04-14
+### Changed
+- return inserted node from `insert`.
+- BinarySearchTreeNode & AvlTreeNode methods.
+
+### Fixed
+- README
+- jsdoc
+
 ## [3.1.8] - 2021-04-02
 ### Fixed
 - update the removed node value with min right one in avl tree.

@@ -16,9 +16,8 @@ describe('BinarySearchTree tests', () => {
       expect(bst.insert(20, 'n20')).to.be.instanceof(BinarySearchTreeNode);
 
       // updates value of existing node
-      const updated = bst.insert(20, 'n7');
-      expect(updated).to.be.instanceof(BinarySearchTreeNode);
-      expect(updated.getParent().getKey()).to.equal(30);
+      expect(bst.insert(20, 'n7')).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.find(20).getValue()).to.equal('n7');
     });
   });
 
