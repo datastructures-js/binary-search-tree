@@ -484,7 +484,7 @@ Rotates self right (clockwise).
 </table>
 
 #### .rotateLeftRight()
-Rotates self left then right.
+Rotates left child to left then self to right.
 
 <table>
  <tr><th>return</th></tr>
@@ -492,7 +492,7 @@ Rotates self left then right.
 </table>
 
 #### .rotateRightLeft()
-Rotates self right then left.
+Rotates right child to right then self to left.
 
 <table>
  <tr><th>return</th></tr>
