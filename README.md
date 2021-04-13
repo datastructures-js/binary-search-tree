@@ -26,7 +26,7 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 * [API](#api)
   * [require](#require)
   * [import](#import)
-  * [Construction](#construction)
+  * [new](#new)
   * [.insert(key, value)](#insertkey-value)
   * [.has(key)](#haskey)
   * [.find(key)](#findkey)
@@ -50,53 +50,58 @@ npm install --save @datastructures-js/binary-search-tree
 ```
 
 ## API
-Both trees have the same interface except that AVL tree will maintain itself balanced by rotating the nodes that become unbalanced during insertion and deletion. If your code requires a strictly balanced tree that always benefits from the **log(n)** runtime of insert & remove, you should use the AVL one.
 
 ### require
 
 ```js
-const { BinarySearchTree, AvlTree } = require('@datastructures-js/binary-search-tree');
+const {
+  BinarySearchTree,
+  BinarySearchTreeNode,
+  AvlTree,
+  AvlTreeNode
+} = require('@datastructures-js/binary-search-tree');
 ```
 
 ### import
 ```js
-import { BinarySearchTree, AvlTree } from '@datastructures-js/binary-search-tree';
+import {
+  BinarySearchTree,
+  BinarySearchTreeNode,
+  AvlTree,
+  AvlTreeNode
+} from '@datastructures-js/binary-search-tree';
 ```
 
-### Construction
+### new
 
 ```js
 const bst = new BinarySearchTree();
+```
 
-// OR a self balancing tree
-
-const bst = new AvlTree();
+```js
+// self balancing tree
+const avl = new AvlTree();
 ```
 
 ### .insert(key, value)
 
-inserts a node with key/value into the tree. Inserting an node with existing key, would update the existing node's value with the new one. AVL tree will rotate nodes properly if the tree becomes unbalanced during insertion.
+inserts a node with key/value into the tree and returns the inserted node. Inserting an node with existing key, will update the existing node's value with the new one.
 
 <table>
- <tr><th align="center" colspan="2">params</th></tr>
- <tr><td><b>name</b></td><td><b>type</b></td></tr>
- <tr><td>key</td><td>number or string</td></tr>
- <tr><td>value</td><td>object</td></tr>
-</table>
-
-<table>
- <tr><th colspan="2" align="center">return</th></tr>
- <tr><td>BinarySearchTree</td><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a></td></tr>
- <tr><td>AvlTree</td><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
-</table>
-
-<table>
- <tr>
-  <th>runtime</th>
- </tr>
- <tr>
-  <td>O(log(n))</td>
- </tr>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td>
+      key: number | string
+      <br />
+      value: any
+    </td>
+    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center">O(log(n))</td>
+  </tr>
 </table>
 
 #### Example
