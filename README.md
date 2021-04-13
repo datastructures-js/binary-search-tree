@@ -450,10 +450,25 @@ console.log(bst.root()); // null
  <tr><td>boolean</td></tr>
 </table>
 
+#### .isLeaf()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .isRoot()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
 ### AvlTreeNode
+extends BinarySearchTreeNode and adds the following methods:
 
 #### .getHeight()
-the height of the node in the tree. root height is 1.
+Gets the height of the node in the tree. root height is 1.
 
 <table>
  <tr><th>return</th></tr>
@@ -461,7 +476,7 @@ the height of the node in the tree. root height is 1.
 </table>
 
 #### .getLeftHeight()
-the height of the left child. 0 if no left child.
+Gets the height of left child. 0 if no left child.
 
 <table>
  <tr><th>return</th></tr>
@@ -469,19 +484,27 @@ the height of the left child. 0 if no left child.
 </table>
 
 #### .getRightHeight()
-the height of the right child. 0 if no right child.
+Gets the height of right child. 0 if no right child.
 
 <table>
  <tr><th>return</th></tr>
  <tr><td>number</td></tr>
 </table>
 
-#### .calculateBalance()
-returns the node's balance by subtracting right height from left height.
+#### .getBalance()
+returns the node's balance as the diff between left and right heights.
 
 <table>
  <tr><th>return</th></tr>
  <tr><td>number</td></tr>
+</table>
+
+#### .isBalanced()
+checks if the node is balanced. (height diff is not more/less than 1/-1)
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
 </table>
 
 ## Build
