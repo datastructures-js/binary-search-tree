@@ -387,29 +387,70 @@ console.log(bst.root()); // null
  <tr><td>any</td></tr>
 </table>
 
+#### .setLeft(left)
+
+<table>
+ <tr><th>params</th></tr>
+ <tr><td>left: BinarySearchTreeNode | null</td></tr>
+</table>
+
 #### .getLeft()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>BinarySearchTreeNode | AvlTreeNode | null</td></tr>
+ <tr><td>BinarySearchTreeNode | null</td></tr>
+</table>
+
+#### .hasLeft()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .setRight(right)
+
+<table>
+ <tr><th>params</th></tr>
+ <tr><td>right: BinarySearchTreeNode | null</td></tr>
 </table>
 
 #### .getRight()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>BinarySearchTreeNode | AvlTreeNode | null</td></tr>
+ <tr><td>BinarySearchTreeNode | null</td></tr>
+</table>
+
+#### .hasRight()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
+</table>
+
+#### .setParent(parent)
+
+<table>
+ <tr><th>params</th></tr>
+ <tr><td>parent: BinarySearchTreeNode | null</td></tr>
 </table>
 
 #### .getParent()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>BinarySearchTreeNode | AvlTreeNode | null</td></tr>
+ <tr><td>BinarySearchTreeNode | null</td></tr>
+</table>
+
+#### .hasParent()
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td>boolean</td></tr>
 </table>
 
 ### AvlTreeNode
-extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and adds the following methods:
 
 #### .getHeight()
 the height of the node in the tree. root height is 1.
