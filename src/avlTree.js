@@ -53,13 +53,14 @@ class AvlTree extends BinarySearchTree {
    * @return {AvlTree}
    */
   insert(key, value) {
+    const newNode = new AvlTreeNode(key, value);
     const insertRecursive = (current) => {
       if (key < current.getKey()) {
         if (current.hasLeft()) {
           insertRecursive(current.getLeft());
           this._balanceNode(current); // backward-tracking
         } else {
-          const newNode = new AvlTreeNode(key, value).setParent(current);
+          newNode.setParent(current);
           current.setLeft(newNode).updateHeight();
           this._count += 1;
         }
@@ -68,7 +69,7 @@ class AvlTree extends BinarySearchTree {
           insertRecursive(current.getRight());
           this._balanceNode(current); // backward-tracking
         } else {
-          const newNode = new AvlTreeNode(key, value).setParent(current);
+          newNode.setParent(current);
           current.setRight(newNode).updateHeight();
           this._count += 1;
         }
@@ -78,13 +79,13 @@ class AvlTree extends BinarySearchTree {
     };
 
     if (this._root === null) {
-      this._root = new AvlTreeNode(key, value);
+      this._root = newNode;
       this._count += 1;
     } else {
       insertRecursive(this._root);
     }
 
-    return this;
+    return newNode;
   }
 
   /**

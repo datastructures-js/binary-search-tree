@@ -23,12 +23,12 @@ class BinarySearchTree {
    * @return {BinarySearchTree}
    */
   insert(key, value) {
+    const newNode = new BinarySearchTreeNode(key, value);
     const insertRecursive = (current) => {
       if (key < current.getKey()) {
         if (current.hasLeft()) {
           insertRecursive(current.getLeft());
         } else {
-          const newNode = new BinarySearchTreeNode(key, value);
           current.setLeft(newNode.setParent(current));
           this._count += 1;
         }
@@ -36,7 +36,6 @@ class BinarySearchTree {
         if (current.hasRight()) {
           insertRecursive(current.getRight());
         } else {
-          const newNode = new BinarySearchTreeNode(key, value);
           current.setRight(newNode.setParent(current));
           this._count += 1;
         }
@@ -46,13 +45,13 @@ class BinarySearchTree {
     };
 
     if (this._root === null) {
-      this._root = new BinarySearchTreeNode(key, value);
+      this._root = newNode;
       this._count += 1;
     } else {
       insertRecursive(this._root);
     }
 
-    return this;
+    return newNode;
   }
 
   /**
