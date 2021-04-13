@@ -99,7 +99,7 @@ inserts a node with key/value into the tree and returns the inserted node. Inser
       <br />
       value: any
     </td>
-    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -150,7 +150,7 @@ finds a node in the tree by its key.
     <td>
       key: number | string
     </td>
-    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -172,7 +172,7 @@ finds the node with min key in the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -192,7 +192,7 @@ finds the node with max key in the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -211,7 +211,7 @@ returns the root node of the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
     <td align="center">O(1)</td>
   </tr>
 </table>
@@ -335,7 +335,7 @@ removes a node from the tree by its key. AVL tree will rotate nodes properly if 
   </tr>
   <tr>
     <td align="center">key: number | string</td>
-    <td align="center">BinarySearchTreeNode | AvlTreeNode</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -391,14 +391,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>left: BinarySearchTreeNode | null</td></tr>
+ <tr><td>left: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .getLeft()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>BinarySearchTreeNode | null</td></tr>
+ <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .hasLeft()
@@ -412,14 +412,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>right: BinarySearchTreeNode | null</td></tr>
+ <tr><td>right: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .getRight()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>BinarySearchTreeNode | null</td></tr>
+ <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .hasRight()
@@ -433,14 +433,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>parent: BinarySearchTreeNode | null</td></tr>
+ <tr><td>parent: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .getParent()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>BinarySearchTreeNode | null</td></tr>
+ <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
 </table>
 
 #### .hasParent()
@@ -465,7 +465,39 @@ console.log(bst.root()); // null
 </table>
 
 ### AvlTreeNode
-extends BinarySearchTreeNode and adds the following methods:
+extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and adds the following methods:
+
+#### .rotateLeft()
+Rotates self left (counter-clockwise).
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .rotateRight()
+Rotates self right (clockwise).
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .rotateLeftRight()
+Rotates self left then right.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
+
+#### .rotateRightLeft()
+Rotates self right then left.
+
+<table>
+ <tr><th>return</th></tr>
+ <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+</table>
 
 #### .getHeight()
 Gets the height of the node in the tree. root height is 1.
