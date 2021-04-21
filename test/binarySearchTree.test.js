@@ -80,6 +80,26 @@ describe('BinarySearchTree tests', () => {
     });
   });
 
+  describe('.lowerBound(k)', () => {
+    it('gets the node with biggest key less or equal k', () => {
+      expect(bst.lowerBound(60).getKey()).to.equal(50);
+    });
+
+    it('returns null when k is less than all tree keys', () => {
+      expect(bst.lowerBound(10)).to.equal(null);
+    });
+  });
+
+  describe('.upperBound(k)', () => {
+    it('gets the node with smallest key bigger than k', () => {
+      expect(bst.upperBound(75).getKey()).to.equal(80);
+    });
+
+    it('returns null when k is bigger than all tree keys', () => {
+      expect(bst.upperBound(110)).to.equal(null);
+    });
+  });
+
   describe('.traverseInOrder(cb)', () => {
     it('traverse the tree in-order', () => {
       const keys = [];

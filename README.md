@@ -32,6 +32,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [.find(key)](#findkey)
   * [.min()](#min)
   * [.max()](#max)
+  * [.lowerBound(k)](#lowerboundk)
+  * [.upperBound(k)](#upperboundk)
   * [.root()](#root)
   * [.count()](#count)
   * [.traverseInOrder(cb)](#traverseinordercb)
@@ -202,6 +204,49 @@ const max = bst.max();
 console.log(max.getKey()); // 90
 console.log(max.getValue()); // v4
 ```
+
+### .lowerBound(k)
+finds the node with the biggest key less or equal a given value k.
+
+<table>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td>k: number | string</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(log(n))</td>
+  </tr>
+</table>
+
+```js
+console.log(bst.lowerBound(60).getKey()); // 50
+console.log(bst.lowerBound(10)); // null
+```
+
+### .upperBound(k)
+finds the node with the smallest key bigger than a given value k.
+
+<table>
+  <tr>
+    <th align="center">params</th>
+    <th align="center">return</th>
+    <th align="center">runtime</th>
+  </tr>
+  <tr>
+    <td>k: number | string</td>
+    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center">O(log(n))</td>
+  </tr>
+</table>
+
+```js
+console.log(bst.upperBound(75).getKey()); // 80
+console.log(bst.upperBound(110)); // null
+```
+
 ### .root()
 returns the root node of the tree.
 

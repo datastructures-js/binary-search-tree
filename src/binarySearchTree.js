@@ -143,6 +143,54 @@ class BinarySearchTree {
   }
 
   /**
+   * Returns the node with the biggest key less or equal to k
+   * @public
+   * @param {number|string} k
+   * @return {BinarySearchTreeNode|null}
+   */
+  lowerBound(k, current = this._root) {
+    if (current === null) {
+      return null;
+    }
+
+    if (current.getKey() === k) {
+      return current;
+    }
+
+    if (current.getKey() > k) {
+      return this.lowerBound(k, current.getLeft());
+    }
+
+    if (current.hasRight() && current.getRight().getKey() <= k) {
+      return this.lowerBound(k, current.getRight());
+    }
+
+    return current;
+  }
+
+  /**
+   * Returns the node with the smallest key bigger than k
+   * @public
+   * @param {number|string} k
+   * @return {BinarySearchTreeNode|null}
+   */
+  upperBound(k, current = this._root) {
+    if (current === null) {
+      return null;
+    }
+
+    if (current.getKey() <= k) {
+      return this.upperBound(k, current.getRight());
+    }
+
+    if (current.hasLeft() && current.getLeft().getKey() > k) {
+      return this.upperBound(k, current.getLeft());
+    }
+
+    return current;
+  }
+
+  /**
    * Returns the root node
    * @public
    * @return {BinarySearchTreeNode}
