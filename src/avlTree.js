@@ -167,4 +167,4 @@ class AvlTree extends BinarySearchTree {
   }
 }
 
-module.exports = AvlTree;
+exports.AvlTree = AvlTree;
