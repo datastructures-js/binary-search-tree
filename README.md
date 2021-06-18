@@ -90,10 +90,12 @@ const bst = new AvlTree();
 
 ##### TS
 ```js
-const bst = new BinarySearchTree<string>();
+// BinarySearchTree<T extends number | string, U = undefined>
+const bst = new BinarySearchTree<number, string>();
 ```
 
 ```js
+// AvlTree<T extends number | string, U = undefined>
 const bst = new AvlTree<number, { id: string, count: number }>();
 ```
 
