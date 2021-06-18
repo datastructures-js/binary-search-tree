@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const BinarySearchTree = require('./binarySearchTree');
+const { BinarySearchTree } = require('./binarySearchTree');
 const { AvlTreeNode } = require('./avlTreeNode');
 
 /**
