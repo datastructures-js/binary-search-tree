@@ -6,6 +6,8 @@
 
 Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript.
 
+<img src="https://user-images.githubusercontent.com/6517308/121813242-859a9700-cc6b-11eb-99c0-49e5bb63005b.jpg">
+
 <table>
   <tr>
     <td width="200"><b>Binary Search Tree</b></td>
@@ -21,12 +23,12 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   </tr>
 </table>
 
-# Table of Contents
+# Contents
 * [Install](#install)
+* [require](#require)
+* [import](#import)
 * [API](#api)
-  * [require](#require)
-  * [import](#import)
-  * [new](#new)
+  * [constructor](#constructor)
   * [.insert(key, value)](#insertkey-value)
   * [.has(key)](#haskey)
   * [.find(key)](#findkey)
@@ -51,8 +53,6 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 npm install --save @datastructures-js/binary-search-tree
 ```
 
-## API
-
 ### require
 
 ```js
@@ -74,8 +74,11 @@ import {
 } from '@datastructures-js/binary-search-tree';
 ```
 
-### new
+## API
 
+### constructor
+
+##### JS
 ```js
 const bst = new BinarySearchTree();
 ```
@@ -83,6 +86,15 @@ const bst = new BinarySearchTree();
 ```js
 // self balancing tree
 const bst = new AvlTree();
+```
+
+##### TS
+```js
+const bst = new BinarySearchTree<string>();
+```
+
+```js
+const bst = new AvlTree<number, { id: string, count: number }>();
 ```
 
 ### .insert(key, value)
@@ -101,7 +113,7 @@ inserts a node with key/value into the tree and returns the inserted node. Inser
       <br />
       value: any
     </td>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -152,7 +164,7 @@ finds a node in the tree by its key.
     <td>
       key: number | string
     </td>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -174,7 +186,7 @@ finds the node with min key in the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -194,7 +206,7 @@ finds the node with max key in the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -216,7 +228,7 @@ finds the node with the biggest key less or equal a given value k.
   </tr>
   <tr>
     <td>k: number | string</td>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -237,7 +249,7 @@ finds the node with the smallest key bigger than a given value k.
   </tr>
   <tr>
     <td>k: number | string</td>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -256,7 +268,7 @@ returns the root node of the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center"><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | <a href="#avltreenode">AvlTreeNode</a></td>
+    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(1)</td>
   </tr>
 </table>
@@ -294,7 +306,7 @@ traverses the tree in order (left-node-right).
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">cb: function</td>
+    <td align="center">cb: (node: BinarySearchTreeNode&lt;T, U&gt; | AvlTreeNode&lt;T, U&gt;) => void</td>
     <td align="center">O(n)</td>
   </tr>
 </table>
@@ -322,7 +334,7 @@ traverses the tree pre order (node-left-right).
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">cb: function</td>
+    <td align="center">cb: (node: BinarySearchTreeNode&lt;T, U&gt; | AvlTreeNode&lt;T, U&gt;) => void</td>
     <td align="center">O(n)</td>
   </tr>
 </table>
@@ -350,7 +362,7 @@ traverses the tree post order (left-right-node).
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">cb: function</td>
+    <td align="center">cb: (node: BinarySearchTreeNode&lt;T, U&gt; | AvlTreeNode&lt;T, U&gt;) => void</td>
     <td align="center">O(n)</td>
   </tr>
 </table>
@@ -379,7 +391,7 @@ removes a node from the tree by its key. AVL tree will rotate nodes properly if 
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">key: number | string</td>
+    <td align="center">key: T</td>
     <td align="center">boolean</td>
     <td align="center">O(log(n))</td>
   </tr>
