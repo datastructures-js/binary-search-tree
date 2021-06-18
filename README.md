@@ -113,7 +113,7 @@ inserts a node with key/value into the tree and returns the inserted node. Inser
     <td>
       key: T (number | string)
       <br />
-      value?: U
+      value: U
     </td>
     <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
@@ -436,7 +436,7 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>value?: U</td></tr>
+ <tr><td>value: U</td></tr>
 </table>
 
 #### .getValue()
