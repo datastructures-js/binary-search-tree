@@ -5,7 +5,7 @@
  */
 
 const BinarySearchTree = require('./binarySearchTree');
-const AvlTreeNode = require('./avlTreeNode');
+const { AvlTreeNode } = require('./avlTreeNode');
 
 /**
  * @class AvlTree

@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const BinarySearchTreeNode = require('../src/binarySearchTreeNode');
+const { BinarySearchTreeNode } = require('../src/binarySearchTreeNode');
 const BinarySearchTree = require('../src/binarySearchTree');
 
 describe('BinarySearchTree tests', () => {
