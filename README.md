@@ -97,7 +97,7 @@ const bst = new BinarySearchTree<string>();
 const bst = new AvlTree<number, { id: string, count: number }>();
 ```
 
-### .insert(key, value)
+### .insert(key[, value])
 
 inserts a node with key/value into the tree and returns the inserted node. Inserting an node with existing key, will update the existing node's value with the new one.
 
@@ -109,9 +109,9 @@ inserts a node with key/value into the tree and returns the inserted node. Inser
   </tr>
   <tr>
     <td>
-      key: number | string
+      key: T (number | string)
       <br />
-      value: any
+      value?: U
     </td>
     <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
@@ -139,7 +139,7 @@ checks if a node exists by its key.
   </tr>
   <tr>
     <td>
-      key: number | string
+      key: T (number | string)
     </td>
     <td align="center">boolean</td>
     <td align="center">O(log(n))</td>
@@ -162,7 +162,7 @@ finds a node in the tree by its key.
   </tr>
   <tr>
     <td>
-      key: number | string
+      key: T (number | string)
     </td>
     <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
@@ -227,7 +227,7 @@ finds the node with the biggest key less or equal a given value k.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td>k: number | string</td>
+    <td>k: T (number | string)</td>
     <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
@@ -248,7 +248,7 @@ finds the node with the smallest key bigger than a given value k.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td>k: number | string</td>
+    <td>k: T (number | string)</td>
     <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
@@ -421,27 +421,27 @@ console.log(bst.count()); // 0
 console.log(bst.root()); // null
 ```
 
-### BinarySearchTreeNode
+### BinarySearchTreeNode&lt;T, U&gt;
 
 #### .getKey()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>number | string</td></tr>
+ <tr><td>T (number | string)</td></tr>
 </table>
 
 #### .setValue(value)
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>value: any</td></tr>
+ <tr><td>value?: U</td></tr>
 </table>
 
 #### .getValue()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td>any</td></tr>
+ <tr><td>U</td></tr>
 </table>
 
 #### .setLeft(left)
@@ -521,7 +521,7 @@ console.log(bst.root()); // null
  <tr><td>boolean</td></tr>
 </table>
 
-### AvlTreeNode
+### AvlTreeNode&lt;T, U&gt;
 extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and adds the following methods:
 
 #### .rotateLeft()
