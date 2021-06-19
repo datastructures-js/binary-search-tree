@@ -115,7 +115,7 @@ inserts a node with key/value into the tree and returns the inserted node. Inser
       <br />
       value: U
     </td>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -166,7 +166,7 @@ finds a node in the tree by its key.
     <td>
       key: T (number | string)
     </td>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -188,7 +188,7 @@ finds the node with min key in the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -208,7 +208,7 @@ finds the node with max key in the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -230,7 +230,7 @@ finds the node with the biggest key less or equal a given value k.
   </tr>
   <tr>
     <td>k: T (number | string)</td>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -251,7 +251,7 @@ finds the node with the smallest key bigger than a given value k.
   </tr>
   <tr>
     <td>k: T (number | string)</td>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
@@ -270,7 +270,7 @@ returns the root node of the tree.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center"><a href="#binarysearchtreenodetu">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
+    <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodetu">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(1)</td>
   </tr>
 </table>
