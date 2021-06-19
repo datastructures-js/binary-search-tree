@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-const BinarySearchTree = require('./binarySearchTree');
-const AvlTreeNode = require('./avlTreeNode');
+const { BinarySearchTree } = require('./binarySearchTree');
+const { AvlTreeNode } = require('./avlTreeNode');
 
 /**
  * @class AvlTree
@@ -167,4 +167,4 @@ class AvlTree extends BinarySearchTree {
   }
 }
 
-module.exports = AvlTree;
+exports.AvlTree = AvlTree;

@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-const BinarySearchTreeNode = require('./binarySearchTreeNode');
+const { BinarySearchTreeNode } = require('./binarySearchTreeNode');
 
 /**
  * @class BinarySearchTree
@@ -350,4 +350,4 @@ class BinarySearchTree {
   }
 }
 
-module.exports = BinarySearchTree;
+exports.BinarySearchTree = BinarySearchTree;

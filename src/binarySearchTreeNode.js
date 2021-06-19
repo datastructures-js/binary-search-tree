@@ -159,4 +159,4 @@ class BinarySearchTreeNode {
   }
 }
 
-module.exports = BinarySearchTreeNode;
+exports.BinarySearchTreeNode = BinarySearchTreeNode;

@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const AvlTree = require('../src/avlTree');
+const { AvlTree } = require('../src/avlTree');
 
 describe('AvlTree tests', () => {
   const avlTree = new AvlTree();
