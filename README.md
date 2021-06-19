@@ -450,14 +450,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>left: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
+ <tr><td>left: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .getLeft()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
+ <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .hasLeft()
@@ -471,14 +471,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>right: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
+ <tr><td>right: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .getRight()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
+ <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .hasRight()
@@ -492,14 +492,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>parent: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
+ <tr><td>parent: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .getParent()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
+ <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .hasParent()
