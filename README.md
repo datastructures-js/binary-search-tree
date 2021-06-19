@@ -450,14 +450,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>left: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+ <tr><td>left: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
 </table>
 
 #### .getLeft()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+ <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
 </table>
 
 #### .hasLeft()
@@ -471,14 +471,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>right: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+ <tr><td>right: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
 </table>
 
 #### .getRight()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+ <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
 </table>
 
 #### .hasRight()
@@ -492,14 +492,14 @@ console.log(bst.root()); // null
 
 <table>
  <tr><th>params</th></tr>
- <tr><td>parent: <a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+ <tr><td>parent: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
 </table>
 
 #### .getParent()
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#binarysearchtreenode">BinarySearchTreeNode</a> | null</td></tr>
+ <tr><td><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | null</td></tr>
 </table>
 
 #### .hasParent()
@@ -524,14 +524,14 @@ console.log(bst.root()); // null
 </table>
 
 ### AvlTreeNode&lt;T, U&gt;
-extends <a href="#binarysearchtreenode">BinarySearchTreeNode</a> and adds the following methods:
+extends <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> and adds the following methods:
 
 #### .rotateLeft()
 Rotates self left (counter-clockwise).
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><td><a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .rotateRight()
@@ -539,7 +539,7 @@ Rotates self right (clockwise).
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><td><a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .rotateLeftRight()
@@ -547,7 +547,7 @@ Rotates left child to left then self to right.
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><td><a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .rotateRightLeft()
@@ -555,7 +555,7 @@ Rotates right child to right then self to left.
 
 <table>
  <tr><th>return</th></tr>
- <tr><td><a href="#avltreenode">AvlTreeNode</a></td></tr>
+ <tr><td><a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td></tr>
 </table>
 
 #### .getHeight()
