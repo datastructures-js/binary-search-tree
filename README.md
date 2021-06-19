@@ -308,7 +308,7 @@ traverses the tree in order (left-node-right).
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">cb: (node: BinarySearchTreeNode&lt;T, U&gt; | AvlTreeNode&lt;T, U&gt;) => void</td>
+    <td align="center">cb: (node: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a>) => void</td>
     <td align="center">O(n)</td>
   </tr>
 </table>
@@ -336,7 +336,7 @@ traverses the tree pre order (node-left-right).
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">cb: (node: BinarySearchTreeNode&lt;T, U&gt; | AvlTreeNode&lt;T, U&gt;) => void</td>
+    <td align="center">cb: (node: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a>) => void</td>
     <td align="center">O(n)</td>
   </tr>
 </table>
@@ -364,7 +364,7 @@ traverses the tree post order (left-right-node).
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td align="center">cb: (node: BinarySearchTreeNode&lt;T, U&gt; | AvlTreeNode&lt;T, U&gt;) => void</td>
+    <td align="center">cb: (node: <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a>) => void</td>
     <td align="center">O(n)</td>
   </tr>
 </table>
