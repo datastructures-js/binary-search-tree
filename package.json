@@ -1,6 +1,6 @@
 {
   "name": "@datastructures-js/binary-search-tree",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "binary search tree & avl tree (self balancing tree) implementation in javascript",
   "main": "index.js",
   "scripts": {
