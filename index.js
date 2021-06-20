@@ -1,11 +1,11 @@
-const { BinarySearchTreeNode } = require('./src/binarySearchTreeNode');
-const { AvlTreeNode } = require('./src/avlTreeNode');
 const { BinarySearchTree } = require('./src/binarySearchTree');
+const { BinarySearchTreeNode } = require('./src/binarySearchTreeNode');
 const { AvlTree } = require('./src/avlTree');
+const { AvlTreeNode } = require('./src/avlTreeNode');
 
 module.exports = {
-  BinarySearchTreeNode,
   BinarySearchTree,
-  AvlTreeNode,
-  AvlTree
+  BinarySearchTreeNode,
+  AvlTree,
+  AvlTreeNode
 };
