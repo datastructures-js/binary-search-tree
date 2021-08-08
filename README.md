@@ -34,8 +34,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [.find(key)](#findkey)
   * [.min()](#min)
   * [.max()](#max)
-  * [.lowerBound(k)](#lowerboundk)
-  * [.upperBound(k)](#upperboundk)
+  * [.lowerBound(k[, includeEqual]) (floor)](#lowerboundk-includeEqual-floor)
+  * [.upperBound(k[, includeEqual]) (ceil)](#upperboundk-includeEqual-ceil)
   * [.root()](#root)
   * [.count()](#count)
   * [.traverseInOrder(cb)](#traverseinordercb)
@@ -219,8 +219,8 @@ console.log(max.getKey()); // 90
 console.log(max.getValue()); // v4
 ```
 
-### .lowerBound(k)
-finds the node with the biggest key less or equal a given value k.
+### .lowerBound(k[, includeEqual]) (.floor)
+finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false. `.floor` is a delegate to the same function.
 
 <table>
   <tr>
@@ -229,19 +229,24 @@ finds the node with the biggest key less or equal a given value k.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td>k: T (number | string)</td>
+    <td>
+      k: T (number | string)
+      <br />
+      includeEqual: boolean
+    </td>
     <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
 </table>
 
 ```js
-console.log(bst.lowerBound(60).getKey()); // 50
+console.log(bst.lowerBound(60).getKey()); // 60
+console.log(bst.lowerBound(60, false).getKey()); // 50
 console.log(bst.lowerBound(10)); // null
 ```
 
-### .upperBound(k)
-finds the node with the smallest key bigger than a given value k.
+### .upperBound(k[, includeEqual]) (.ceil)
+finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false. `.ceil` is a delegate to the same function.
 
 <table>
   <tr>
@@ -250,7 +255,11 @@ finds the node with the smallest key bigger than a given value k.
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td>k: T (number | string)</td>
+    <td>
+      k: T (number | string)
+      <br />
+      includeEqual: boolean
+    </td>
     <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
@@ -258,6 +267,8 @@ finds the node with the smallest key bigger than a given value k.
 
 ```js
 console.log(bst.upperBound(75).getKey()); // 80
+console.log(bst.upperBound(80).getKey()); // 80
+console.log(bst.upperBound(80, false).getKey()); // 90
 console.log(bst.upperBound(110)); // null
 ```
 
