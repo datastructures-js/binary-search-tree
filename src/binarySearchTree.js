@@ -172,6 +172,17 @@ class BinarySearchTree {
   }
 
   /**
+   * delegate to lowerBound
+   * @public
+   * @param {number|string} k
+   * @param {boolean} includeEqual
+   * @return {BinarySearchTreeNode|null}
+   */
+  floor(k, includeEqual = true) {
+    return this.lowerBound(k, includeEqual);
+  }
+
+  /**
    * Returns the node with the smallest key bigger or equal k
    * @public
    * @param {number|string} k
@@ -198,6 +209,17 @@ class BinarySearchTree {
     };
 
     return upperBoundRecursive(this._root);
+  }
+
+  /**
+   * delegate to upperBound
+   * @public
+   * @param {number|string} k
+   * @param {boolean} includeEqual
+   * @return {BinarySearchTreeNode|null}
+   */
+  ceil(k, includeEqual = true) {
+    return this.upperBound(k, includeEqual);
   }
 
   /**

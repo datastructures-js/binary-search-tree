@@ -7,7 +7,9 @@ export class BinarySearchTree<T extends number|string, U = undefined> {
   max(node?: BinarySearchTreeNode<T, U>): BinarySearchTreeNode<T, U>;
   min(node?: BinarySearchTreeNode<T, U>): BinarySearchTreeNode<T, U>;
   lowerBound(k: T, includeEqual?: boolean): BinarySearchTreeNode<T, U>;
+  floor(k: T, includeEqual?: boolean): BinarySearchTreeNode<T, U>;
   upperBound(k: T, includeEqual?: boolean): BinarySearchTreeNode<T, U>;
+  ceil(k: T, includeEqual?: boolean): BinarySearchTreeNode<T, U>;
   root(): BinarySearchTreeNode<T, U>;
   count(): number;
   remove(k: T): boolean;

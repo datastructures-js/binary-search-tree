@@ -96,7 +96,7 @@ describe('BinarySearchTree tests', () => {
       lowerBst.insert(7);
       lowerBst.insert(15);
       lowerBst.insert(9);
-      expect(lowerBst.lowerBound(10).getKey()).to.equal(9);
+      expect(lowerBst.floor(10).getKey()).to.equal(9);
     });
   });
 
@@ -118,7 +118,7 @@ describe('BinarySearchTree tests', () => {
       upperBst.insert(115062875);
       upperBst.insert(-38206732);
       upperBst.insert(49311742);
-      expect(upperBst.upperBound(49303013).getKey()).to.equal(49311742);
+      expect(upperBst.ceil(49303013).getKey()).to.equal(49311742);
     });
   });
 

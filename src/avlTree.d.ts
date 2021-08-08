@@ -7,7 +7,9 @@ export class AvlTree<T extends number|string, U = undefined> extends BinarySearc
   max(node?: AvlTreeNode<T, U>): AvlTreeNode<T, U>;
   min(node?: AvlTreeNode<T, U>): AvlTreeNode<T, U>;
   lowerBound(k: T, includeEqual?: boolean): AvlTreeNode<T, U>;
+  floor(k: T, includeEqual?: boolean): AvlTreeNode<T, U>;
   upperBound(k: T, includeEqual?: boolean): AvlTreeNode<T, U>;
+  ceil(k: T, includeEqual?: boolean): AvlTreeNode<T, U>;
   root(): AvlTreeNode<T, U>;
   traverseInOrder(cb: (node: AvlTreeNode<T, U>) => void): void;
   traversePreOrder(cb: (node: AvlTreeNode<T, U>) => void): void;
