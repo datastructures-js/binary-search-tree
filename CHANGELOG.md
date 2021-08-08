@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - `.lowerBound` & `upperBound` now finds the precise bound when multiple ones exist.
-- make param type (value) optional on `.insert`.
+- make param (value) optional on `.insert`.
 
 ## [4.2.2] - 2021-06-20
 
