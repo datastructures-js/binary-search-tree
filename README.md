@@ -34,8 +34,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [.find(key)](#findkey)
   * [.min()](#min)
   * [.max()](#max)
-  * [.lowerBound(k)](#lowerboundk)
-  * [.upperBound(k)](#upperboundk)
+  * [.lowerBound(k[, includeEqual])](#lowerboundk-includeEqual)
+  * [.upperBound(k[, includeEqual])](#upperboundk-includeEqual)
   * [.root()](#root)
   * [.count()](#count)
   * [.traverseInOrder(cb)](#traverseinordercb)
@@ -219,8 +219,8 @@ console.log(max.getKey()); // 90
 console.log(max.getValue()); // v4
 ```
 
-### .lowerBound(k)
-finds the node with the biggest key less or equal a given value k.
+### .lowerBound(k[, includeEqual])
+finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false.
 
 <table>
   <tr>
@@ -236,12 +236,13 @@ finds the node with the biggest key less or equal a given value k.
 </table>
 
 ```js
-console.log(bst.lowerBound(60).getKey()); // 50
+console.log(bst.lowerBound(60).getKey()); // 60
+console.log(bst.lowerBound(60, false).getKey()); // 50
 console.log(bst.lowerBound(10)); // null
 ```
 
-### .upperBound(k)
-finds the node with the smallest key bigger than a given value k.
+### .upperBound(k[, includeEqual])
+finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false.
 
 <table>
   <tr>
@@ -258,6 +259,8 @@ finds the node with the smallest key bigger than a given value k.
 
 ```js
 console.log(bst.upperBound(75).getKey()); // 80
+console.log(bst.upperBound(80).getKey()); // 80
+console.log(bst.upperBound(80, false).getKey()); // 90
 console.log(bst.upperBound(110)); // null
 ```
 

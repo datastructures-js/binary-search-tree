@@ -146,48 +146,58 @@ class BinarySearchTree {
    * Returns the node with the biggest key less or equal to k
    * @public
    * @param {number|string} k
+   * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  lowerBound(k, current = this._root) {
-    if (current === null) {
-      return null;
-    }
+  lowerBound(k, includeEqual = true) {
+    let lowerBound = null;
 
-    if (current.getKey() === k) {
-      return current;
-    }
+    const lowerBoundRecursive = (current) => {
+      if (current === null) {
+        return lowerBound;
+      }
 
-    if (current.getKey() > k) {
-      return this.lowerBound(k, current.getLeft());
-    }
+      const currentKey = current.getKey();
+      if (currentKey < k || (includeEqual && currentKey === k)) {
+        if (lowerBound === null || lowerBound.getKey() <= currentKey) {
+          lowerBound = current;
+        }
+        return lowerBoundRecursive(current.getRight());
+      }
 
-    if (current.hasRight() && current.getRight().getKey() <= k) {
-      return this.lowerBound(k, current.getRight());
-    }
+      return lowerBoundRecursive(current.getLeft());
+    };
 
-    return current;
+    return lowerBoundRecursive(this._root);
   }
 
   /**
-   * Returns the node with the smallest key bigger than k
+   * Returns the node with the smallest key bigger or equal k
    * @public
    * @param {number|string} k
+   * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  upperBound(k, current = this._root) {
-    if (current === null) {
-      return null;
-    }
+  upperBound(k, includeEqual = true) {
+    let upperBound = null;
 
-    if (current.getKey() <= k) {
-      return this.upperBound(k, current.getRight());
-    }
+    const upperBoundRecursive = (current) => {
+      if (current === null) {
+        return upperBound;
+      }
 
-    if (current.hasLeft() && current.getLeft().getKey() > k) {
-      return this.upperBound(k, current.getLeft());
-    }
+      const currentKey = current.getKey();
+      if (currentKey > k || (includeEqual && currentKey === k)) {
+        if (upperBound === null || upperBound.getKey() >= currentKey) {
+          upperBound = current;
+        }
+        return upperBoundRecursive(current.getLeft());
+      }
 
-    return current;
+      return upperBoundRecursive(current.getRight());
+    };
+
+    return upperBoundRecursive(this._root);
   }
 
   /**
