@@ -220,7 +220,7 @@ console.log(max.getValue()); // v4
 ```
 
 ### .lowerBound(k[, includeEqual]) (.floor)
-finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false.
+finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false. `.floor` is a delegate to the same function.
 
 <table>
   <tr>
@@ -242,7 +242,7 @@ console.log(bst.lowerBound(10)); // null
 ```
 
 ### .upperBound(k[, includeEqual]) (.ceil)
-finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false.
+finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false. `.ceil` is a delegate to the same function.
 
 <table>
   <tr>
