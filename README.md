@@ -34,8 +34,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [.find(key)](#findkey)
   * [.min()](#min)
   * [.max()](#max)
-  * [.lowerBound(k[, includeEqual])](#lowerboundk-includeEqual)
-  * [.upperBound(k[, includeEqual])](#upperboundk-includeEqual)
+  * [.lowerBound(k[, includeEqual]) (floor)](#lowerboundk-includeEqual-floor-k-includeEqual)
+  * [.upperBound(k[, includeEqual]) (ceil)](#upperboundk-includeEqual-ceil-k-includeEqual)
   * [.root()](#root)
   * [.count()](#count)
   * [.traverseInOrder(cb)](#traverseinordercb)
@@ -219,7 +219,7 @@ console.log(max.getKey()); // 90
 console.log(max.getValue()); // v4
 ```
 
-### .lowerBound(k[, includeEqual])
+### .lowerBound(k[, includeEqual]) (.floor(k[, includeEqual]))
 finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false.
 
 <table>
@@ -241,7 +241,7 @@ console.log(bst.lowerBound(60, false).getKey()); // 50
 console.log(bst.lowerBound(10)); // null
 ```
 
-### .upperBound(k[, includeEqual])
+### .upperBound(k[, includeEqual]) (.ceil(k[, includeEqual]))
 finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false.
 
 <table>
