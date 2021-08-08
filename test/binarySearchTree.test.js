@@ -82,21 +82,43 @@ describe('BinarySearchTree tests', () => {
 
   describe('.lowerBound(k)', () => {
     it('gets the node with biggest key less or equal k', () => {
-      expect(bst.lowerBound(60).getKey()).to.equal(50);
+      expect(bst.lowerBound(60).getKey()).to.equal(60);
+      expect(bst.lowerBound(60, false).getKey()).to.equal(50);
     });
 
     it('returns null when k is less than all tree keys', () => {
       expect(bst.lowerBound(10)).to.equal(null);
+    });
+
+    it('returns the biggest lower bound of multiple lower bounds', () => {
+      const lowerBst = new BinarySearchTree();
+      lowerBst.insert(20);
+      lowerBst.insert(7);
+      lowerBst.insert(15);
+      lowerBst.insert(9);
+      expect(lowerBst.floor(10).getKey()).to.equal(9);
     });
   });
 
   describe('.upperBound(k)', () => {
     it('gets the node with smallest key bigger than k', () => {
       expect(bst.upperBound(75).getKey()).to.equal(80);
+      expect(bst.upperBound(80).getKey()).to.equal(80);
+      expect(bst.upperBound(80, false).getKey()).to.equal(90);
     });
 
     it('returns null when k is bigger than all tree keys', () => {
       expect(bst.upperBound(110)).to.equal(null);
+    });
+
+    it('returns the smallest upper bound of multiple upper bounds', () => {
+      const upperBst = new BinarySearchTree();
+      upperBst.insert(-133195046);
+      upperBst.insert(-49109668);
+      upperBst.insert(115062875);
+      upperBst.insert(-38206732);
+      upperBst.insert(49311742);
+      expect(upperBst.ceil(49303013).getKey()).to.equal(49311742);
     });
   });
 
