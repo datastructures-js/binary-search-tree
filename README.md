@@ -229,7 +229,11 @@ finds the node with the biggest key less or equal a given value k. You can elimi
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td>k: T (number | string)</td>
+    <td>
+      k: T (number | string)
+      <br />
+      includeEqual: boolean
+    </td>
     <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
@@ -251,7 +255,11 @@ finds the node with the smallest key bigger or equal a given value k. You can el
     <th align="center">runtime</th>
   </tr>
   <tr>
-    <td>k: T (number | string)</td>
+    <td>
+      k: T (number | string)
+      <br />
+      includeEqual: boolean
+    </td>
     <td align="center"><a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> | <a href="#avltreenodet-u">AvlTreeNode&lt;T, U&gt;</a></td>
     <td align="center">O(log(n))</td>
   </tr>
