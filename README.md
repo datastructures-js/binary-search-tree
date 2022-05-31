@@ -8,21 +8,6 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
 
 <img src="https://user-images.githubusercontent.com/6517308/121813242-859a9700-cc6b-11eb-99c0-49e5bb63005b.jpg">
 
-<table>
-  <tr>
-    <td width="200"><b>Binary Search Tree</b></td>
-    <td align="center">
-      <img width="413" alt="Binary Search Tree" src="https://user-images.githubusercontent.com/6517308/35762621-74a72626-085f-11e8-8934-ef6facdd6e10.png">
-    </td>
-  </tr>
-  <tr>
-    <td width="200"><b>AVL Tree <br>(Self Balancing Tree)</b></td>
-    <td>
-      <img width="1387" alt="AVL Tree" src="https://user-images.githubusercontent.com/6517308/37691467-e9c7db8a-2c77-11e8-844a-c6b6c0ff93dd.png">
-    </td>
-  </tr>
-</table>
-
 # Contents
 * [Install](#install)
 * [require](#require)
@@ -34,8 +19,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [find](#find)
   * [min](#min)
   * [max](#max)
-  * [lowerBound (floor)](#lowerboundk-floor)
-  * [upperBound (ceil)](#upperboundk-ceil)
+  * [lowerBound (floor)](#lowerbound-floor)
+  * [upperBound (ceil)](#upperbound-ceil)
   * [root](#root)
   * [count](#count)
   * [traverseInOrder](#traverseinorder)
