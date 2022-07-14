@@ -147,7 +147,7 @@ console.log(max.getValue()); // v4
 ### lowerBound (floor)
 O(log(n))
 
-finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false. `.floor` is a delegate to the same function.
+finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false. `.floor` is an alias to the same function.
 
 ```js
 console.log(bst.lowerBound(60).getKey()); // 60
@@ -158,7 +158,7 @@ console.log(bst.lowerBound(10)); // null
 ### upperBound (ceil)
 O(log(n))
 
-finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false. `.ceil` is a delegate to the same function.
+finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false. `.ceil` is an alias to the same function.
 
 ```js
 console.log(bst.upperBound(75).getKey()); // 80
