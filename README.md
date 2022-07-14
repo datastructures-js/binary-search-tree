@@ -85,7 +85,7 @@ const bst = new AvlTree<number, { id: string, count: number }>();
 ```
 
 ### insert
-runtime complexity: O(log(n)).
+O(log(n))
 
 inserts a node with key/value into the tree and returns the inserted node. Inserting an node with existing key, will update the existing node's value with the new one.
 
@@ -100,7 +100,7 @@ bst.insert(20, 'v7');
 ```
 
 ### has
-runtime complexity: O(log(n)).
+O(log(n))
 
 checks if a node exists by its key.
 
@@ -110,7 +110,7 @@ bst.has(100); // false
 ```
 
 ### find
-runtime complexity: O(log(n)).
+O(log(n))
 
 finds a node in the tree by its key.
 
@@ -123,6 +123,8 @@ console.log(bst.find(100)); // null
 ```
 
 ### min
+O(log(n))
+
 finds the node with min key in the tree.
 
 ```js
@@ -132,6 +134,8 @@ console.log(min.getValue()); // v7
 ```
 
 ### max
+O(log(n))
+
 finds the node with max key in the tree.
 
 ```js
@@ -141,6 +145,8 @@ console.log(max.getValue()); // v4
 ```
 
 ### lowerBound (floor)
+O(log(n))
+
 finds the node with the biggest key less or equal a given value k. You can eliminate equal keys by passing second param as false. `.floor` is a delegate to the same function.
 
 ```js
@@ -150,6 +156,8 @@ console.log(bst.lowerBound(10)); // null
 ```
 
 ### upperBound (ceil)
+O(log(n))
+
 finds the node with the smallest key bigger or equal a given value k. You can eliminate equal keys by passing second param as false. `.ceil` is a delegate to the same function.
 
 ```js
@@ -160,6 +168,8 @@ console.log(bst.upperBound(110)); // null
 ```
 
 ### root
+O(1)
+
 returns the root node of the tree.
 
 ```js
@@ -169,6 +179,8 @@ console.log(root.getValue()); // v1
 ```
 
 ### count
+O(1)
+
 returns the count of nodes in the tree.
 
 ```js
@@ -176,6 +188,8 @@ console.log(bst.count()); // 7
 ```
 
 ### traverseInOrder
+O(n)
+
 traverses the tree in order (left-node-right).
 
 ```js
@@ -193,6 +207,8 @@ bst.traverseInOrder((node) => console.log(node.getKey()));
 ```
 
 ### traversePreOrder
+O(n)
+
 traverses the tree pre order (node-left-right).
 
 ```js
@@ -210,6 +226,8 @@ bst.traversePreOrder((node) => console.log(node.getKey()));
 ```
 
 ### traversePostOrder
+O(n)
+
 traverses the tree post order (left-right-node).
 
 ```js
@@ -227,6 +245,8 @@ bst.traversePostOrder((node) => console.log(node.getKey()));
 ```
 
 ### remove
+O(log(n))
+
 removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
 
 ```js
@@ -236,6 +256,8 @@ console.log(bst.count()); // 6
 ```
 
 ### clear
+O(1)
+
 clears the tree.
 
 ```js
