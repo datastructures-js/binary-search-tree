@@ -85,6 +85,7 @@ const bst = new AvlTree<number, { id: string, count: number }>();
 ```
 
 ### insert
+runtime complexity: O(log(n)).
 
 inserts a node with key/value into the tree and returns the inserted node. Inserting an node with existing key, will update the existing node's value with the new one.
 
@@ -99,6 +100,8 @@ bst.insert(20, 'v7');
 ```
 
 ### has
+runtime complexity: O(log(n)).
+
 checks if a node exists by its key.
 
 ```js
@@ -107,6 +110,8 @@ bst.has(100); // false
 ```
 
 ### find
+runtime complexity: O(log(n)).
+
 finds a node in the tree by its key.
 
 ```js
