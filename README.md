@@ -241,33 +241,50 @@ console.log(bst.root()); // null
 
 ### BinarySearchTreeNode&lt;T, U&gt;
 
+#### setKey
+sets the node's key.
+
 #### getKey
+gets the node's key.
 
 #### setValue
+sets the node's value.
 
 #### getValue
+gets the node's value.
 
 #### setLeft
+sets the node's left child.
 
 #### getLeft
+gets the node's left child.
 
 #### hasLeft
+checks if node has a left child.
 
 #### setRight
+sets the node's right child.
 
 #### getRight
+gets the node's right child.
 
 #### hasRight
+checks if node has a right child.
 
 #### setParent
+sets the node's parent node.
 
 #### getParent
+gets the node's parent node.
 
 #### hasParent
+checks if node has a parent node.
 
 #### isLeaf
+checks if node is a leaf in the tree.
 
 #### isRoot
+check if node is the root node.
 
 ### AvlTreeNode&lt;T, U&gt;
 extends <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> and adds the following methods:
