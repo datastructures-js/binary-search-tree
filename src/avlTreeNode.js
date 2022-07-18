@@ -4,17 +4,142 @@
  * @license MIT
  */
 
-const { BinarySearchTreeNode } = require('./binarySearchTreeNode');
-
 /**
+ * AvlTree node class type
  * @class AvlTreeNode
- * @extends BinarySearchTreeNode
  */
-class AvlTreeNode extends BinarySearchTreeNode {
+class AvlTreeNode {
   constructor(value, compare) {
-    super(value);
+    this._value = value;
     this._compare = compare;
+    this._left = null;
+    this._right = null;
+    this._parent = null;
     this._height = 1;
+  }
+
+  /**
+   * @public
+   * @param {number|string|object} value
+   * @returns {AvlTreeNode}
+   */
+  setValue(value) {
+    this._value = value;
+    return this;
+  }
+
+  /**
+   * @public
+   * @return {number|string|object}
+   */
+  getValue() {
+    return this._value;
+  }
+
+  /**
+   * @public
+   * @param {AvlTreeNode} left
+   * @returns {AvlTreeNode}
+   */
+  setLeft(left) {
+    if (left && !(left instanceof AvlTreeNode)) {
+      throw new Error('setLeft expects an AvlTreeNode');
+    }
+
+    this._left = left || null;
+    return this;
+  }
+
+  /**
+   * @public
+   * @return {AvlTreeNode}
+   */
+  getLeft() {
+    return this._left;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  hasLeft() {
+    return this._left instanceof AvlTreeNode;
+  }
+
+  /**
+   * @public
+   * @param {AvlTreeNode} right
+   * @returns {AvlTreeNode}
+   */
+  setRight(right) {
+    if (right && !(right instanceof AvlTreeNode)) {
+      throw new Error('setRight expects a AvlTreeNode or null');
+    }
+
+    this._right = right || null;
+    return this;
+  }
+
+  /**
+   * @public
+   * @return {AvlTreeNode}
+   */
+  getRight() {
+    return this._right;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  hasRight() {
+    return this._right instanceof AvlTreeNode;
+  }
+
+  /**
+   * @public
+   * @param {AvlTreeNode} parent
+   * @returns {AvlTreeNode}
+   */
+  setParent(parent) {
+    if (parent && !(parent instanceof AvlTreeNode)) {
+      throw new Error('setParent expects an AvlTreeNode');
+    }
+
+    this._parent = parent || null;
+    return this;
+  }
+
+  /**
+   * @public
+   * @return {AvlTreeNode}
+   */
+  getParent() {
+    return this._parent;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  hasParent() {
+    return this._parent instanceof AvlTreeNode;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  isRoot() {
+    return this._parent === null;
+  }
+
+  /**
+   * @public
+   * @return {boolean}
+   */
+  isLeaf() {
+    return !this.hasLeft() && !this.hasRight();
   }
 
   /**
