@@ -6,11 +6,21 @@
 
 const { BinarySearchTreeNode } = require('./binarySearchTreeNode');
 
+const defaultCompare = (a, b) => {
+  if (a === b) return 0;
+  return a > b ? 1 : -1;
+};
+
 /**
  * @class BinarySearchTree
  */
 class BinarySearchTree {
-  constructor() {
+  constructor(compare) {
+    if (compare && typeof compare !== 'function') {
+      throw new Error('BinarySearchTree constructor expects a compare function');
+    }
+
+    this._compare = compare || defaultCompare;
     this._root = null;
     this._count = 0;
   }
@@ -18,21 +28,21 @@ class BinarySearchTree {
   /**
    * Inserts a node with a key/value into the tree
    * @public
-   * @param {number|string} key
-   * @param {any} value
+   * @param {number|string|object} value
    * @return {BinarySearchTree}
    */
-  insert(key, value) {
-    const newNode = new BinarySearchTreeNode(key, value);
+  insert(value) {
+    const newNode = new BinarySearchTreeNode(value);
     const insertRecursive = (current) => {
-      if (key < current.getKey()) {
+      const compare = this._compare(newNode.getValue(), current.getValue());
+      if (compare < 0) {
         if (current.hasLeft()) {
           insertRecursive(current.getLeft());
         } else {
           current.setLeft(newNode.setParent(current));
           this._count += 1;
         }
-      } else if (key > current.getKey()) {
+      } else if (compare > 0) {
         if (current.hasRight()) {
           insertRecursive(current.getRight());
         } else {
@@ -60,20 +70,13 @@ class BinarySearchTree {
    * @param {number|string} key
    * @return {boolean}
    */
-  has(key) {
+  has(value) {
     const hasRecursive = (current) => {
-      if (current === null) {
-        return false;
-      }
+      if (current === null) return false;
 
-      if (key === current.getKey()) {
-        return true;
-      }
-
-      if (key < current.getKey()) {
-        return hasRecursive(current.getLeft());
-      }
-
+      const compare = this._compare(value, current.getValue());
+      if (compare === 0) return true;
+      if (compare < 0) return hasRecursive(current.getLeft());
       return hasRecursive(current.getRight());
     };
 
@@ -86,20 +89,13 @@ class BinarySearchTree {
    * @param {number|string} key
    * @return {BinarySearchTreeNode}
    */
-  find(key) {
+  find(value) {
     const findRecursive = (current) => {
-      if (current === null) {
-        return null;
-      }
+      if (current === null) return null;
 
-      if (key === current.getKey()) {
-        return current;
-      }
-
-      if (key < current.getKey()) {
-        return findRecursive(current.getLeft());
-      }
-
+      const compare = this._compare(value, current.getValue());
+      if (compare === 0) return current;
+      if (compare < 0) return findRecursive(current.getLeft());
       return findRecursive(current.getRight());
     };
 
@@ -113,14 +109,8 @@ class BinarySearchTree {
    * @return {BinarySearchTreeNode}
    */
   max(current = this._root) {
-    if (current === null) {
-      return null;
-    }
-
-    if (current.hasRight()) {
-      return this.max(current.getRight());
-    }
-
+    if (current === null) return null;
+    if (current.hasRight()) return this.max(current.getRight());
     return current;
   }
 
@@ -131,35 +121,27 @@ class BinarySearchTree {
    * @return {BinarySearchTreeNode}
    */
   min(current = this._root) {
-    if (current === null) {
-      return null;
-    }
-
-    if (current.hasLeft()) {
-      return this.min(current.getLeft());
-    }
-
+    if (current === null) return null;
+    if (current.hasLeft()) return this.min(current.getLeft());
     return current;
   }
 
   /**
    * Returns the node with the biggest key less or equal to k
    * @public
-   * @param {number|string} k
+   * @param {number|string|object} value
    * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  lowerBound(k, includeEqual = true) {
+  lowerBound(value, includeEqual = true) {
     let lowerBound = null;
 
     const lowerBoundRecursive = (current) => {
-      if (current === null) {
-        return lowerBound;
-      }
+      if (current === null) return lowerBound;
 
-      const currentKey = current.getKey();
-      if (currentKey < k || (includeEqual && currentKey === k)) {
-        if (lowerBound === null || lowerBound.getKey() <= currentKey) {
+      const compare = this._compare(value, current.getValue());
+      if (compare > 0 || (includeEqual && compare === 0)) {
+        if (lowerBound === null || this._compare(lowerBound.getValue(), current.getValue()) <= 0) {
           lowerBound = current;
         }
         return lowerBoundRecursive(current.getRight());
@@ -185,21 +167,19 @@ class BinarySearchTree {
   /**
    * Returns the node with the smallest key bigger or equal k
    * @public
-   * @param {number|string} k
+   * @param {number|string|object} value
    * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  upperBound(k, includeEqual = true) {
+  upperBound(value, includeEqual = true) {
     let upperBound = null;
 
     const upperBoundRecursive = (current) => {
-      if (current === null) {
-        return upperBound;
-      }
+      if (current === null) return upperBound;
 
-      const currentKey = current.getKey();
-      if (currentKey > k || (includeEqual && currentKey === k)) {
-        if (upperBound === null || upperBound.getKey() >= currentKey) {
+      const compare = this._compare(value, current.getValue());
+      if (compare < 0 || (includeEqual && compare === 0)) {
+        if (upperBound === null || this._compare(upperBound.getValue(), current.getValue()) >= 0) {
           upperBound = current;
         }
         return upperBoundRecursive(current.getLeft());
@@ -243,30 +223,23 @@ class BinarySearchTree {
   /**
    * Removes a node by its key
    * @public
-   * @param {number|string} key
+   * @param {number|string|object} value
    * @return {boolean}
    */
-  remove(key) {
-    const removeRecursively = (k, current) => {
-      if (current === null) {
-        return false;
-      }
+  remove(value) {
+    const removeRecursively = (val, current) => {
+      if (current === null) return false;
 
-      if (k < current.getKey()) {
-        return removeRecursively(k, current.getLeft());
-      }
-
-      if (k > current.getKey()) {
-        return removeRecursively(k, current.getRight());
-      }
+      const compare = this._compare(val, current.getValue());
+      if (compare < 0) return removeRecursively(val, current.getLeft());
+      if (compare > 0) return removeRecursively(val, current.getRight());
 
       // current node is the node to remove
-
       // case 1: node has no children
       if (current.isLeaf()) {
         if (current.isRoot()) {
           this._root = null;
-        } else if (k < current.getParent().getKey()) {
+        } else if (this._compare(val, current.getParent().getValue()) < 0) {
           current.getParent().setLeft(null);
         } else {
           current.getParent().setRight(null);
@@ -279,7 +252,7 @@ class BinarySearchTree {
       if (!current.hasRight()) {
         if (current.isRoot()) {
           this._root = current.getLeft();
-        } else if (k < current.getParent().getKey()) {
+        } else if (this._compare(val, current.getParent().getValue()) < 0) {
           current.getParent().setLeft(current.getLeft());
         } else {
           current.getParent().setRight(current.getLeft());
@@ -293,7 +266,7 @@ class BinarySearchTree {
       if (!current.hasLeft()) {
         if (current.isRoot()) {
           this._root = current.getRight();
-        } else if (k < current.getParent().getKey()) {
+        } else if (this._compare(val, current.getParent().getValue()) < 0) {
           current.getParent().setLeft(current.getRight());
         } else {
           current.getParent().setRight(current.getRight());
@@ -305,11 +278,11 @@ class BinarySearchTree {
 
       // case 4: node has left and right children
       const minRight = this.min(current.getRight());
-      current.setKey(minRight.getKey()).setValue(minRight.getValue());
-      return removeRecursively(minRight.getKey(), minRight);
+      current.setValue(minRight.getValue());
+      return removeRecursively(minRight.getValue(), minRight);
     };
 
-    return removeRecursively(key, this._root);
+    return removeRecursively(value, this._root);
   }
 
   /**

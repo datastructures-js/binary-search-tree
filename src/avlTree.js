@@ -44,18 +44,18 @@ class AvlTree extends BinarySearchTree {
   }
 
   /**
-   * Inserts a node with a key/value into tree
-   * and maintains the tree balanced by applying the necessary rotations
+   * Inserts a value into the tree and maintains
+   * the tree balanced by making the necessary rotations
    *
    * @public
-   * @param {number|string} key
-   * @param {any} value
+   * @param {number|string|object} value
    * @return {AvlTree}
    */
-  insert(key, value) {
-    const newNode = new AvlTreeNode(key, value);
+  insert(value) {
+    const newNode = new AvlTreeNode(value, this._compare);
     const insertRecursive = (current) => {
-      if (key < current.getKey()) {
+      const compare = this._compare(value, current.getValue());
+      if (compare < 0) {
         if (current.hasLeft()) {
           insertRecursive(current.getLeft());
           this._balanceNode(current); // backward-tracking
@@ -64,7 +64,7 @@ class AvlTree extends BinarySearchTree {
           current.setLeft(newNode).updateHeight();
           this._count += 1;
         }
-      } else if (key > current.getKey()) {
+      } else if (compare > 0) {
         if (current.hasRight()) {
           insertRecursive(current.getRight());
           this._balanceNode(current); // backward-tracking
@@ -89,27 +89,28 @@ class AvlTree extends BinarySearchTree {
   }
 
   /**
-   * Removes a node by its key
-   * and maintains the tree balanced by applying the necessary rotations
+   * Removes a node from the tree and maintains
+   * the tree balanced by making the necessary rotations
    *
    * @public
-   * @param {number|string} key
+   * @param {number|string|object} value
    * @return {boolean}
    */
-  remove(key) {
-    const removeRecursively = (k, current) => {
+  remove(value) {
+    const removeRecursively = (val, current) => {
       if (current === null) {
         return false;
       }
 
-      if (k < current.getKey()) {
-        const removed = removeRecursively(k, current.getLeft());
+      const compare = this._compare(val, current.getValue());
+      if (compare < 0) {
+        const removed = removeRecursively(val, current.getLeft());
         this._balanceNode(current);
         return removed;
       }
 
-      if (k > current.getKey()) {
-        const removed = removeRecursively(k, current.getRight());
+      if (compare > 0) {
+        const removed = removeRecursively(val, current.getRight());
         this._balanceNode(current);
         return removed;
       }
@@ -120,7 +121,7 @@ class AvlTree extends BinarySearchTree {
       if (current.isLeaf()) {
         if (current.isRoot()) {
           this._root = null;
-        } else if (k < current.getParent().getKey()) {
+        } else if (this._compare(val, current.getParent().getValue()) < 0) {
           current.getParent().setLeft(null).updateHeight();
         } else {
           current.getParent().setRight(null).updateHeight();
@@ -133,7 +134,7 @@ class AvlTree extends BinarySearchTree {
       if (!current.hasRight()) {
         if (current.isRoot()) {
           this._root = current.getLeft();
-        } else if (k < current.getParent().getKey()) {
+        } else if (this._compare(val, current.getParent().getValue() < 0)) {
           current.getParent().setLeft(current.getLeft()).updateHeight();
         } else {
           current.getParent().setRight(current.getLeft()).updateHeight();
@@ -147,7 +148,7 @@ class AvlTree extends BinarySearchTree {
       if (!current.hasLeft()) {
         if (current.isRoot()) {
           this._root = current.getRight();
-        } else if (k < current.getParent().getKey()) {
+        } else if (this._compare(val, current.getParent().getValue() < 0)) {
           current.getParent().setLeft(current.getRight()).updateHeight();
         } else {
           current.getParent().setRight(current.getRight()).updateHeight();
@@ -159,11 +160,11 @@ class AvlTree extends BinarySearchTree {
 
       // case 4: node has left and right children
       const minRight = this.min(current.getRight());
-      current.setKey(minRight.getKey()).setValue(minRight.getValue());
-      return removeRecursively(minRight.getKey(), minRight);
+      current.setValue(minRight.getValue()).setValue(minRight.getValue());
+      return removeRecursively(minRight.getValue(), minRight);
     };
 
-    return removeRecursively(key, this._root);
+    return removeRecursively(value, this._root);
   }
 }
 

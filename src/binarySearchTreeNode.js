@@ -8,30 +8,11 @@
  * @class BinarySearchTreeNode
  */
 class BinarySearchTreeNode {
-  constructor(key, value) {
-    this._key = key;
+  constructor(value) {
     this._value = value;
     this._left = null;
     this._right = null;
     this._parent = null;
-  }
-
-  /**
-   * @public
-   * @param {number|string}
-   * @returns {BinarySearchTreeNode}
-   */
-  setKey(key) {
-    this._key = key;
-    return this;
-  }
-
-  /**
-   * @public
-   * @return {number|string}
-   */
-  getKey() {
-    return this._key;
   }
 
   /**

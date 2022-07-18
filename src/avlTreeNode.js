@@ -11,8 +11,9 @@ const { BinarySearchTreeNode } = require('./binarySearchTreeNode');
  * @extends BinarySearchTreeNode
  */
 class AvlTreeNode extends BinarySearchTreeNode {
-  constructor(key, value) {
-    super(key, value);
+  constructor(value, compare) {
+    super(value);
+    this._compare = compare;
     this._height = 1;
   }
 
@@ -39,7 +40,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
 
     // rebase parent's child to node's right child
     if (this.hasParent() && right !== null) {
-      if (this._parent.getKey() < right.getKey()) {
+      if (this._compare(this._parent.getValue(), right.getValue()) < 0) {
         this._parent.setRight(right);
       } else {
         this._parent.setLeft(right);
@@ -80,7 +81,7 @@ class AvlTreeNode extends BinarySearchTreeNode {
 
     // rebase parent's child to node's left child
     if (this.hasParent() && left !== null) {
-      if (this._parent.getKey() > left.getKey()) {
+      if (this._compare(this._parent.getValue(), left.getValue()) > 0) {
         this._parent.setLeft(left);
       } else {
         this._parent.setRight(left);
