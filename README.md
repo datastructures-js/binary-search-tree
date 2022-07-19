@@ -63,9 +63,10 @@ import {
 ### constructor
 constructor accepts a custom compare function to insert new values into the tree based on the returned number:
 
-* less than 0: place value in the left.
-* greater than 0: place value in the right.
-* 0: tree will update value if exists with the new one.
+the compare function must return a number for the 3 cases:
+* less than 0 to place a value in the left.
+* greater than 0 to place a value in the right.
+* 0 for equal values.
 
 There is already a default compare function for primitive values (number, string).
 
