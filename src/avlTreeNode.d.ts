@@ -1,11 +1,23 @@
-import { BinarySearchTreeNode } from './binarySearchTreeNode';
-
-export class AvlTreeNode<T extends number|string, U = undefined> extends BinarySearchTreeNode<T, U> {
-  rotateLeft(): AvlTreeNode<T, U>;
-  rotateRight(): AvlTreeNode<T, U>;
-  rotateLeftRight(): AvlTreeNode<T, U>;
-  rotateRightLeft(): AvlTreeNode<T, U>;
-  updateHeight(): AvlTreeNode<T, U>;
+export class AvlTreeNode<T> {
+  constructor(value: T, compare: (a: T, b: T) => number);
+  setValue(value?: T): AvlTreeNode<T>;
+  getValue(): T;
+  setLeft(left?: AvlTreeNode<T>): AvlTreeNode<T>;
+  getLeft(): AvlTreeNode<T> | null;
+  hasLeft(): boolean;
+  setRight(right?: AvlTreeNode<T>): AvlTreeNode<T>;
+  getRight(): AvlTreeNode<T> | null;
+  hasRight(): boolean;
+  setParent(parent?: AvlTreeNode<T>): AvlTreeNode<T>;
+  getParent(): AvlTreeNode<T> | null;
+  hasParent(): boolean;
+  isRoot(): boolean;
+  isLeaf(): boolean;
+  rotateLeft(): AvlTreeNode<T>;
+  rotateRight(): AvlTreeNode<T>;
+  rotateLeftRight(): AvlTreeNode<T>;
+  rotateRightLeft(): AvlTreeNode<T>;
+  updateHeight(): AvlTreeNode<T>;
   getHeight(): number;
   getLeftHeight(): number;
   getRightHeight(): number;

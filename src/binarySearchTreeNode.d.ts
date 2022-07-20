@@ -1,17 +1,15 @@
-export class BinarySearchTreeNode<T extends number|string, U = undefined> {
-  constructor(key: T, value?: U);
-  setKey(key: T): BinarySearchTreeNode<T, U>;
-  getKey(): T;
-  setValue(value?: U): BinarySearchTreeNode<T, U>;
-  getValue(): U;
-  setLeft(left?: BinarySearchTreeNode<T, U>): BinarySearchTreeNode<T, U>;
-  getLeft(): BinarySearchTreeNode<T, U> | null;
+export class BinarySearchTreeNode<T> {
+  constructor(value: T);
+  setValue(value?: T): BinarySearchTreeNode<T>;
+  getValue(): T;
+  setLeft(left?: BinarySearchTreeNode<T>): BinarySearchTreeNode<T>;
+  getLeft(): BinarySearchTreeNode<T> | null;
   hasLeft(): boolean;
-  setRight(right?: BinarySearchTreeNode<T, U>): BinarySearchTreeNode<T, U>;
-  getRight(): BinarySearchTreeNode<T, U> | null;
+  setRight(right?: BinarySearchTreeNode<T>): BinarySearchTreeNode<T>;
+  getRight(): BinarySearchTreeNode<T> | null;
   hasRight(): boolean;
-  setParent(parent?: BinarySearchTreeNode<T, U>): BinarySearchTreeNode<T, U>;
-  getParent(): BinarySearchTreeNode<T, U> | null;
+  setParent(parent?: BinarySearchTreeNode<T>): BinarySearchTreeNode<T>;
+  getParent(): BinarySearchTreeNode<T> | null;
   hasParent(): boolean;
   isRoot(): boolean;
   isLeaf(): boolean;
