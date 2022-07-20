@@ -27,8 +27,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [traversePostOrder](#traversepostorder)
   * [remove](#remove)
   * [clear](#clear)
-  * [BinarySearchTreeNode](#binarysearchtreenodet-u)
-  * [AvlTreeNode](#avltreenodet-u)
+  * [BinarySearchTreeNode](#binarysearchtreenodet-t)
+  * [AvlTreeNode](#avltreenodet-t)
  * [Build](#build)
  * [License](#license)
 
@@ -61,7 +61,7 @@ import {
 ## API
 
 ### constructor
-constructor accepts a custom compare function to insert new values into the tree based on the returned number:
+constructor accepts a custom compare function to insert new values into the tree based on the returned number.
 
 the compare function must return a number for the 3 cases:
 * less than 0 to place a value on the left.
