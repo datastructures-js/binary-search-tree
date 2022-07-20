@@ -1,5 +1,5 @@
 export class AvlTreeNode<T> {
-  constructor(value: T, compare: (a: T, b: T) => number);
+  constructor(value: T, compare?: (a: T, b: T) => number);
   setValue(value?: T): AvlTreeNode<T>;
   getValue(): T;
   setLeft(left?: AvlTreeNode<T>): AvlTreeNode<T>;

@@ -4,14 +4,23 @@
  * @license MIT
  */
 
+const defaultCompare = (a, b) => {
+  if (a === b) return 0;
+  return a > b ? 1 : -1;
+};
+
 /**
  * AvlTree node class type
  * @class AvlTreeNode
  */
 class AvlTreeNode {
   constructor(value, compare) {
+    if (compare && typeof compare !== 'function') {
+      throw new Error('AvlTreeNode constructor expects a compare function');
+    }
+
     this._value = value;
-    this._compare = compare;
+    this._compare = compare || defaultCompare;
     this._left = null;
     this._right = null;
     this._parent = null;
