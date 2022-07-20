@@ -1,6 +1,5 @@
 # @datastructures-js/binary-search-tree
 
-[![build:?](https://travis-ci.org/datastructures-js/binary-search-tree.svg?branch=master)](https://travis-ci.org/datastructures-js/binary-search-tree) 
 [![npm](https://img.shields.io/npm/v/@datastructures-js/binary-search-tree.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree)
 [![npm](https://img.shields.io/npm/dm/@datastructures-js/binary-search-tree.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree) [![npm](https://img.shields.io/badge/node-%3E=%206.0-blue.svg)](https://www.npmjs.com/package/@datastructures-js/binary-search-tree)
 
@@ -62,109 +61,150 @@ import {
 ## API
 
 ### constructor
+constructor accepts a custom compare function to insert new values into the tree based on the returned number:
+
+the compare function must return a number for the 3 cases:
+* less than 0 to place a value on the left.
+* greater than 0 to place a value on the right.
+* 0 for equal values.
+
+There is already a default compare function for primitive values (number, string).
 
 ##### JS
+###### BinarySearchTree
 ```js
-const bst = new BinarySearchTree();
+const nums = new BinarySearchTree();
+const employees = new BinarySearchTree((a, b) => a.id - b.id);
 ```
 
+###### AvlTree
 ```js
-// self balancing tree
-const bst = new AvlTree();
+const nums = new AvlTree();
+const employees = new AvlTree((a, b) => a.id - b.id);
 ```
 
 ##### TS
 ```js
-// BinarySearchTree<T extends number|string, U = undefined>
-const bst = new BinarySearchTree<number, string>();
+interface IEmployee {
+  id: number;
+}
 ```
 
+###### BinarySearchTree
 ```js
-// AvlTree<T extends number|string, U = undefined>
-const bst = new AvlTree<number, { id: string, count: number }>();
+const nums = new BinarySearchTree<number>();
+const employees = new BinarySearchTree<IEmployee>((a, b) => a.id - b.id);
+```
+
+###### AvlTree
+```js
+const nums = new AvlTree<number>();
+const employees = new AvlTree<IEmployee>((a, b) => a.id - b.id);
 ```
 
 ### insert
 O(log(n))
 
-inserts a node with key/value into the tree and returns the inserted node. Inserting an node with existing key, will update the existing node's value with the new one.
+inserts a value into the tree and returns the inserted node. Inserting an node with existing value, will update the existing node's value with the new one.
 
 ```js
-bst.insert(50, 'v1');
-bst.insert(80, 'v2');
-bst.insert(30, 'v3');
-bst.insert(90, 'v4');
-bst.insert(60, 'v5');
-bst.insert(40, 'v6');
-bst.insert(20, 'v7');
+nums
+  .insert(50)
+  .insert(80)
+  .insert(30)
+  .insert(90)
+  .insert(60)
+  .insert(40)
+  .insert(20);
+
+employees
+  .insert({ id: 50 })
+  .insert({ id: 80 })
+  .insert({ id: 30 })
+  .insert({ id: 90 })
+  .insert({ id: 60 })
+  .insert({ id: 40 })
+  .insert({ id: 20 });
 ```
 
 ### has
 O(log(n))
 
-checks if a node exists by its key.
+checks if a value exists.
 
 ```js
-bst.has(50); // true
-bst.has(100); // false
+nums.has(50); // true
+nums.has(100); // false
+
+employees.has({ id: 50 }); // true
+employees.has({ id: 100 }); // false
 ```
 
 ### find
 O(log(n))
 
-finds a node in the tree by its key.
+finds a value and returns its node.
 
 ```js
-const n60 = bst.find(60);
-console.log(n60.getKey()); // 60
-console.log(n60.getValue()); // v5
+nums.find(60).getValue(); // 60
+nums.find(100); // null
 
-console.log(bst.find(100)); // null
+employees.find({ id: 60 }).getValue(); // { id: 60 }
+employees.find({ id: 100 }); // null
 ```
 
 ### min
 O(log(n))
 
-finds the node with min key in the tree.
+finds the node with min value in the tree.
 
 ```js
-const min = bst.min();
-console.log(min.getKey()); // 20
-console.log(min.getValue()); // v7
+nums.min().getValue(); // 20
+
+employees.min().getValue(); // { id: 20 }
 ```
 
 ### max
 O(log(n))
 
-finds the node with max key in the tree.
+finds the node with max value in the tree.
 
 ```js
-const max = bst.max();
-console.log(max.getKey()); // 90
-console.log(max.getValue()); // v4
+nums.max().getValue(); // 90
+
+employees.max().getValue(); // { id: 90 }
 ```
 
 ### lowerBound (floor)
 O(log(n))
 
-finds the node with the biggest key less or equal a given key k. You can eliminate equal keys by passing second param as false. `.floor` is an alias to the same function.
+finds the node with the biggest value less or equal a given value. You can eliminate equal values by passing second param as false. `.floor` is an alias to the same function.
 
 ```js
-console.log(bst.lowerBound(60).getKey()); // 60
-console.log(bst.lowerBound(60, false).getKey()); // 50
-console.log(bst.lowerBound(10)); // null
+nums.lowerBound(60).getValue(); // 60
+nums.lowerBound(60, false).getValue(); // 50
+nums.lowerBound(10); // null
+
+employees.floor({ id: 60 }).getValue(); // { id: 60 }
+employees.floor({ id: 60 }, false).getValue(); // { id: 50 }
+employees.floor({ id: 10 }); // null
 ```
 
 ### upperBound (ceil)
 O(log(n))
 
-finds the node with the smallest key bigger or equal a given key k. You can eliminate equal keys by passing second param as false. `.ceil` is an alias to the same function.
+finds the node with the smallest value bigger or equal a given value. You can eliminate equal values by passing second param as false. `.ceil` is an alias to the same function.
 
 ```js
-console.log(bst.upperBound(75).getKey()); // 80
-console.log(bst.upperBound(80).getKey()); // 80
-console.log(bst.upperBound(80, false).getKey()); // 90
-console.log(bst.upperBound(110)); // null
+nums.upperBound(75).getValue(); // 80
+nums.upperBound(80).getValue(); // 80
+nums.upperBound(80, false).getValue(); // 90
+nums.upperBound(110); // null
+
+employees.ceil({ id: 75 }).getValue(); // { id: 80 }
+employees.ceil({ id: 80 }).getValue(); // { id: 80 }
+employees.ceil({ id: 80 }, false).getValue(); // { id: 90 }
+employees.ceil({ id: 110 }); // null
 ```
 
 ### root
@@ -173,9 +213,9 @@ O(1)
 returns the root node of the tree.
 
 ```js
-const root = bst.root();
-console.log(root.getKey()); // 50
-console.log(root.getValue()); // v1
+nums.root().getValue(); // 50
+
+employees.root().getValue(); // { id: 50 }
 ```
 
 ### count
@@ -184,7 +224,9 @@ O(1)
 returns the count of nodes in the tree.
 
 ```js
-console.log(bst.count()); // 7
+nums.count(); // 7
+
+employees.count(); // 7
 ```
 
 ### traverseInOrder
@@ -193,8 +235,7 @@ O(n)
 traverses the tree in order (left-node-right).
 
 ```js
-bst.traverseInOrder((node) => console.log(node.getKey()));
-
+nums.traverseInOrder((node) => console.log(node.getValue()));
 /*
   20
   30
@@ -203,6 +244,17 @@ bst.traverseInOrder((node) => console.log(node.getKey()));
   60
   80
   90
+*/
+
+employees.traverseInOrder((node) => console.log(node.getValue()));
+/*
+  { id: 20 }
+  { id: 30 }
+  { id: 40 }
+  { id: 50 }
+  { id: 60 }
+  { id: 80 }
+  { id: 90 }
 */
 ```
 
@@ -212,8 +264,7 @@ O(n)
 traverses the tree pre order (node-left-right).
 
 ```js
-bst.traversePreOrder((node) => console.log(node.getKey()));
-
+nums.traversePreOrder((node) => console.log(node.getValue()));
 /*
   50
   30
@@ -222,6 +273,17 @@ bst.traversePreOrder((node) => console.log(node.getKey()));
   80
   60
   90
+*/
+
+employees.traversePreOrder((node) => console.log(node.getValue()));
+/*
+  { id: 50 }
+  { id: 30 }
+  { id: 20 }
+  { id: 40 }
+  { id: 80 }
+  { id: 60 }
+  { id: 90 }
 */
 ```
 
@@ -231,8 +293,7 @@ O(n)
 traverses the tree post order (left-right-node).
 
 ```js
-bst.traversePostOrder((node) => console.log(node.getKey()));
-
+nums.traversePostOrder((node) => console.log(node.getValue()));
 /*
   20
   40
@@ -242,17 +303,32 @@ bst.traversePostOrder((node) => console.log(node.getKey()));
   80
   50
 */
+
+employees.traversePostOrder((node) => console.log(node.getValue()));
+/*
+  { id: 20 }
+  { id: 40 }
+  { id: 30 }
+  { id: 60 }
+  { id: 90 }
+  { id: 80 }
+  { id: 50 }
+*/
 ```
 
 ### remove
 O(log(n))
 
-removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
+removes a node from the tree by its value. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
 
 ```js
-bst.remove(20); // true
-bst.remove(100); // false
-console.log(bst.count()); // 6
+nums.remove(20); // true
+nums.remove(100); // false
+nums.count(); // 6
+
+employees.remove({ id: 20 }); // true
+employees.remove({ id: 100 }); // false
+employees.count(); // 6
 ```
 
 ### clear
@@ -261,18 +337,16 @@ O(1)
 clears the tree.
 
 ```js
-bst.clear();
-console.log(bst.count()); // 0
-console.log(bst.root()); // null
+nums.clear();
+nums.count(); // 0
+nums.root(); // null
+
+employees.clear();
+employees.count(); // 0
+employees.root(); // null
 ```
 
-### BinarySearchTreeNode&lt;T, U&gt;
-
-#### setKey
-sets the node's key.
-
-#### getKey
-gets the node's key.
+### BinarySearchTreeNode&lt;T&gt;
 
 #### setValue
 sets the node's value.
@@ -313,8 +387,45 @@ checks if node is a leaf in the tree.
 #### isRoot
 check if node is the root node.
 
-### AvlTreeNode&lt;T, U&gt;
-extends <a href="#binarysearchtreenodet-u">BinarySearchTreeNode&lt;T, U&gt;</a> and adds the following methods:
+### AvlTreeNode&lt;T&gt;
+#### setValue
+sets the node's value.
+
+#### getValue
+gets the node's value.
+
+#### setLeft
+sets the node's left child.
+
+#### getLeft
+gets the node's left child.
+
+#### hasLeft
+checks if node has a left child.
+
+#### setRight
+sets the node's right child.
+
+#### getRight
+gets the node's right child.
+
+#### hasRight
+checks if node has a right child.
+
+#### setParent
+sets the node's parent node.
+
+#### getParent
+gets the node's parent node.
+
+#### hasParent
+checks if node has a parent node.
+
+#### isLeaf
+checks if node is a leaf in the tree.
+
+#### isRoot
+check if node is the root node.
 
 #### rotateLeft
 Rotates self left (counter-clockwise).

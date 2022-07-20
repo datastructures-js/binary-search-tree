@@ -8,8 +8,7 @@
  * @class BinarySearchTreeNode
  */
 class BinarySearchTreeNode {
-  constructor(key, value) {
-    this._key = key;
+  constructor(value) {
     this._value = value;
     this._left = null;
     this._right = null;
@@ -18,25 +17,7 @@ class BinarySearchTreeNode {
 
   /**
    * @public
-   * @param {number|string}
-   * @returns {BinarySearchTreeNode}
-   */
-  setKey(key) {
-    this._key = key;
-    return this;
-  }
-
-  /**
-   * @public
-   * @return {number|string}
-   */
-  getKey() {
-    return this._key;
-  }
-
-  /**
-   * @public
-   * @param {any} value
+   * @param {number|string|object} value
    * @returns {BinarySearchTreeNode}
    */
   setValue(value) {
@@ -46,7 +27,7 @@ class BinarySearchTreeNode {
 
   /**
    * @public
-   * @return {any}
+   * @return {number|string|object}
    */
   getValue() {
     return this._value;
@@ -54,12 +35,12 @@ class BinarySearchTreeNode {
 
   /**
    * @public
-   * @param {BinarySearchTreeNode|null} left
+   * @param {BinarySearchTreeNode} left
    * @returns {BinarySearchTreeNode}
    */
   setLeft(left) {
     if (left && !(left instanceof BinarySearchTreeNode)) {
-      throw new Error('setLeft expects a BinarySearchTreeNode or null');
+      throw new Error('setLeft expects a BinarySearchTreeNode');
     }
 
     this._left = left || null;
