@@ -93,7 +93,7 @@ class AvlTree extends BinarySearchTree {
       insertRecursive(this._root);
     }
 
-    return newNode;
+    return this;
   }
 
   /**

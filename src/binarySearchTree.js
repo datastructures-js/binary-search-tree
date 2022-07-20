@@ -61,7 +61,7 @@ class BinarySearchTree {
       insertRecursive(this._root);
     }
 
-    return newNode;
+    return this;
   }
 
   /**

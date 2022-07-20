@@ -7,16 +7,16 @@ describe('BinarySearchTree tests', () => {
 
   describe('.insert(value)', () => {
     it('should insert nodes to the tree', () => {
-      expect(bst.insert(50)).to.be.instanceof(BinarySearchTreeNode);
-      expect(bst.insert(80)).to.be.instanceof(BinarySearchTreeNode);
-      expect(bst.insert(30)).to.be.instanceof(BinarySearchTreeNode);
-      expect(bst.insert(90)).to.be.instanceof(BinarySearchTreeNode);
-      expect(bst.insert(60)).to.be.instanceof(BinarySearchTreeNode);
-      expect(bst.insert(40)).to.be.instanceof(BinarySearchTreeNode);
-      expect(bst.insert(20)).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(50)).to.be.instanceof(BinarySearchTree);
+      expect(bst.insert(80)).to.be.instanceof(BinarySearchTree);
+      expect(bst.insert(30)).to.be.instanceof(BinarySearchTree);
+      expect(bst.insert(90)).to.be.instanceof(BinarySearchTree);
+      expect(bst.insert(60)).to.be.instanceof(BinarySearchTree);
+      expect(bst.insert(40)).to.be.instanceof(BinarySearchTree);
+      expect(bst.insert(20)).to.be.instanceof(BinarySearchTree);
 
       // updates value of existing node
-      expect(bst.insert(20)).to.be.instanceof(BinarySearchTreeNode);
+      expect(bst.insert(20)).to.be.instanceof(BinarySearchTree);
       expect(bst.find(20).getValue()).to.equal(20);
     });
   });
