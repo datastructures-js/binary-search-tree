@@ -2,7 +2,8 @@ import { BinarySearchTree } from './binarySearchTree';
 import { AvlTreeNode } from './avlTreeNode';
 
 export class AvlTree<T> extends BinarySearchTree<T> {
-  insert(value: U): AvlTree<T>;
+  constructor(compare?: (a: T, b: T) => number);
+  insert(value: T): AvlTree<T>;
   find(value: T): AvlTreeNode<T> | null;
   max(node?: AvlTreeNode<T>): AvlTreeNode<T> | null;
   min(node?: AvlTreeNode<T>): AvlTreeNode<T> | null;

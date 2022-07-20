@@ -1,6 +1,7 @@
 import { BinarySearchTreeNode } from './binarySearchTreeNode';
 
 export class BinarySearchTree<T> {
+  constructor(compare?: (a: T, b: T) => number);
   insert(value: T): BinarySearchTree<T>;
   has(value: T): boolean;
   find(value: T): BinarySearchTreeNode<T> | null;
