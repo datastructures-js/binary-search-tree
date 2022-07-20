@@ -64,8 +64,8 @@ import {
 constructor accepts a custom compare function to insert new values into the tree based on the returned number:
 
 the compare function must return a number for the 3 cases:
-* less than 0 to place a value in the left.
-* greater than 0 to place a value in the right.
+* less than 0 to place a value on the left.
+* greater than 0 to place a value on the right.
 * 0 for equal values.
 
 There is already a default compare function for primitive values (number, string).
@@ -133,8 +133,11 @@ O(log(n))
 checks if a value exists.
 
 ```js
-nums1.has(50); // true
+nums.has(50); // true
 nums.has(100); // false
+
+employees.has({ id: 50 }); // true
+employees.has({ id: 100 }); // false
 ```
 
 ### find
@@ -143,9 +146,11 @@ O(log(n))
 finds a value and returns its node.
 
 ```js
-const n60 = nums.find(60);
-console.log(n60.getValue()); // 60
-console.log(nums.find(100)); // null
+nums.find(60).getValue(); // 60
+nums.find(100); // null
+
+employees.find({ id: 60 }).getValue(); // { id: 60 }
+employees.find({ id: 100 }); // null
 ```
 
 ### min
@@ -154,8 +159,9 @@ O(log(n))
 finds the node with min value in the tree.
 
 ```js
-const min = nums.min();
-console.log(min.getValue()); // 20
+nums.min().getValue(); // 20
+
+employees.min().getValue(); // { id: 20 }
 ```
 
 ### max
@@ -164,31 +170,41 @@ O(log(n))
 finds the node with max value in the tree.
 
 ```js
-const max = nums.max();
-console.log(max.getValue()); // 90
+nums.max().getValue(); // 90
+
+employees.max().getValue(); // { id: 90 }
 ```
 
 ### lowerBound (floor)
 O(log(n))
 
-finds the node with the biggest value less or equal a given value v. You can eliminate equal keys by passing second param as false. `.floor` is an alias to the same function.
+finds the node with the biggest value less or equal a given value. You can eliminate equal values by passing second param as false. `.floor` is an alias to the same function.
 
 ```js
-console.log(nums.lowerBound(60).getValue()); // 60
-console.log(nums.lowerBound(60, false).getValue()); // 50
-console.log(nums.lowerBound(10)); // null
+nums.lowerBound(60).getValue(); // 60
+nums.lowerBound(60, false).getValue(); // 50
+nums.lowerBound(10); // null
+
+employees.floor({ id: 60 }).getValue(); // { id: 60 }
+employees.floor({ id: 60 }, false).getValue(); // { id: 50 }
+employees.floor({ id: 10 }); // null
 ```
 
 ### upperBound (ceil)
 O(log(n))
 
-finds the node with the smallest key bigger or equal a given key k. You can eliminate equal keys by passing second param as false. `.ceil` is an alias to the same function.
+finds the node with the smallest value bigger or equal a given value. You can eliminate equal values by passing second param as false. `.ceil` is an alias to the same function.
 
 ```js
-console.log(nums.upperBound(75).getValue()); // 80
-console.log(nums.upperBound(80).getValue()); // 80
-console.log(nums.upperBound(80, false).getValue()); // 90
-console.log(nums.upperBound(110)); // null
+nums.upperBound(75).getValue(); // 80
+nums.upperBound(80).getValue(); // 80
+nums.upperBound(80, false).getValue(); // 90
+nums.upperBound(110); // null
+
+employees.ceil({ id: 75 }).getValue(); // { id: 80 }
+employees.ceil({ id: 80 }).getValue(); // { id: 80 }
+employees.ceil({ id: 80 }, false).getValue(); // { id: 90 }
+employees.ceil({ id: 110 }); // null
 ```
 
 ### root
@@ -197,8 +213,9 @@ O(1)
 returns the root node of the tree.
 
 ```js
-const root = nums.root();
-console.log(root.getValue()); // 50
+nums.root().getValue(); // 50
+
+employees.root().getValue(); // { id: 50 }
 ```
 
 ### count
@@ -207,7 +224,9 @@ O(1)
 returns the count of nodes in the tree.
 
 ```js
-console.log(nums.count()); // 7
+nums.count(); // 7
+
+employees.count(); // 7
 ```
 
 ### traverseInOrder
@@ -217,7 +236,6 @@ traverses the tree in order (left-node-right).
 
 ```js
 nums.traverseInOrder((node) => console.log(node.getValue()));
-
 /*
   20
   30
@@ -226,6 +244,17 @@ nums.traverseInOrder((node) => console.log(node.getValue()));
   60
   80
   90
+*/
+
+employees.traverseInOrder((node) => console.log(node.getValue()));
+/*
+  { id: 20 }
+  { id: 30 }
+  { id: 40 }
+  { id: 50 }
+  { id: 60 }
+  { id: 80 }
+  { id: 90 }
 */
 ```
 
@@ -236,7 +265,6 @@ traverses the tree pre order (node-left-right).
 
 ```js
 nums.traversePreOrder((node) => console.log(node.getValue()));
-
 /*
   50
   30
@@ -245,6 +273,17 @@ nums.traversePreOrder((node) => console.log(node.getValue()));
   80
   60
   90
+*/
+
+employees.traversePreOrder((node) => console.log(node.getValue()));
+/*
+  { id: 50 }
+  { id: 30 }
+  { id: 20 }
+  { id: 40 }
+  { id: 80 }
+  { id: 60 }
+  { id: 90 }
 */
 ```
 
@@ -255,7 +294,6 @@ traverses the tree post order (left-right-node).
 
 ```js
 nums.traversePostOrder((node) => console.log(node.getValue()));
-
 /*
   20
   40
@@ -265,17 +303,32 @@ nums.traversePostOrder((node) => console.log(node.getValue()));
   80
   50
 */
+
+employees.traversePostOrder((node) => console.log(node.getValue()));
+/*
+  { id: 20 }
+  { id: 40 }
+  { id: 30 }
+  { id: 60 }
+  { id: 90 }
+  { id: 80 }
+  { id: 50 }
+*/
 ```
 
 ### remove
 O(log(n))
 
-removes a node from the tree by its key. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
+removes a node from the tree by its value. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
 
 ```js
 nums.remove(20); // true
 nums.remove(100); // false
-console.log(nums.count()); // 6
+nums.count(); // 6
+
+employees.remove({ id: 20 }); // true
+employees.remove({ id: 100 }); // false
+employees.count(); // 6
 ```
 
 ### clear
@@ -285,8 +338,12 @@ clears the tree.
 
 ```js
 nums.clear();
-console.log(nums.count()); // 0
-console.log(nums.root()); // null
+nums.count(); // 0
+nums.root(); // null
+
+employees.clear();
+employees.count(); // 0
+employees.root(); // null
 ```
 
 ### BinarySearchTreeNode&lt;T&gt;
