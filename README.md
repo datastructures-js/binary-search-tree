@@ -27,8 +27,8 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [traversePostOrder](#traversepostorder)
   * [remove](#remove)
   * [clear](#clear)
-  * [BinarySearchTreeNode](#binarysearchtreenode-t)
-  * [AvlTreeNode](#avltreenode-t)
+  * [BinarySearchTreeNode](#binarysearchtreenodet)
+  * [AvlTreeNode](#avltreenodet)
  * [Build](#build)
  * [License](#license)
 
