@@ -3,6 +3,7 @@
   "version": "5.0.0",
   "description": "binary search tree & avl tree (self balancing tree) implementation in javascript",
   "main": "index.js",
+  "types":"index.d.ts",
   "scripts": {
     "test": "grunt test"
   },
