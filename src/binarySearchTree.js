@@ -127,7 +127,7 @@ class BinarySearchTree {
   }
 
   /**
-   * Returns the node with the biggest key less or equal to k
+   * Returns the node with the biggest value less or equal a given value
    * @public
    * @param {number|string|object} value
    * @param {boolean} includeEqual
@@ -154,18 +154,18 @@ class BinarySearchTree {
   }
 
   /**
-   * delegate to lowerBound
+   * Returns the node with the biggest value less or equal a given value
    * @public
-   * @param {number|string} k
+   * @param {number|string|object} value
    * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  floor(k, includeEqual = true) {
-    return this.lowerBound(k, includeEqual);
+  floor(value, includeEqual = true) {
+    return this.lowerBound(value, includeEqual);
   }
 
   /**
-   * Returns the node with the smallest key bigger or equal k
+   * Returns the node with the smallest value greater or equal a given value
    * @public
    * @param {number|string|object} value
    * @param {boolean} includeEqual
@@ -192,14 +192,14 @@ class BinarySearchTree {
   }
 
   /**
-   * delegate to upperBound
+   * Returns the node with the smallest value greater or equal a given value
    * @public
-   * @param {number|string} k
+   * @param {number|string|object} value
    * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  ceil(k, includeEqual = true) {
-    return this.upperBound(k, includeEqual);
+  ceil(value, includeEqual = true) {
+    return this.upperBound(value, includeEqual);
   }
 
   /**
