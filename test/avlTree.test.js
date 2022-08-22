@@ -451,7 +451,7 @@ describe('AvlTree tests', () => {
 
     it('correctly removes a node with one child', () => {
       function getAll(tree) {
-        const arr = []
+        const arr = [];
         tree.traverseInOrder((n) => arr.push(n.getValue()));
         return arr;
       }
@@ -464,25 +464,19 @@ describe('AvlTree tests', () => {
 
       tree.remove(5);
 
-      expect(getAll(tree)).to.deep.equal([1,3,6]);
-    })
+      expect(getAll(tree)).to.deep.equal([1, 3, 6]);
+    });
 
     it('keeps the tree balanced when removing only nodes with two children', () => {
       const insertOrder = [7, 3, 11, 1, 5, 9, 13, 0, 2, 4, 6, 8, 10, 12, 14];
       const deleteOrder = [1, 5, 3, 4, 9, 13, 11, 12, 7, 8, 10];
 
       const tree = new AvlTree();
-      for (const i of insertOrder) {
-        tree.insert(i);
-      }
-
-      for (const i of deleteOrder) {
-        tree.remove(i);
-      }
-
-      expect(tree.root().getBalance()).to.be.oneOf([-1,0,1]);
-      const elements = []
-      tree.traverseInOrder(n => elements.push(n.getValue()))
+      insertOrder.forEach((n) => tree.insert(n));
+      deleteOrder.forEach((n) => tree.remove(n));
+      expect(tree.root().getBalance()).to.be.oneOf([-1, 0, 1]);
+      const elements = [];
+      tree.traverseInOrder((n) => elements.push(n.getValue()));
       expect(elements).to.deep.equal([0, 2, 6, 14]);
     });
 
@@ -549,17 +543,12 @@ describe('AvlTree tests', () => {
         603, 303, 678, 828, 239, 789, 46, 425, 414, 474, 246, 514, 815, 662,
         546, 582, 610, 140, 151, 473, 168, 65, 75, 475, 211, 224, 529, 368, 36,
         280, 215, 262, 334, 511, 296, 8, 53, 15, 693, 295, 68, 428, 784, 398,
-        106, 291, 764, 305, 422, 416, 611, 314, 642, 265,
+        106, 291, 764, 305, 422, 416, 611, 314, 642, 265
       ];
 
       const tree = new AvlTree();
-      for (const i of elements) {
-        tree.insert(i);
-      }
-
-      for (const i of elements) {
-        tree.remove(i);
-      }
+      elements.forEach((n) => tree.insert(n));
+      elements.forEach((n) => tree.remove(n));
     });
   });
 });
