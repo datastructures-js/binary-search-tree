@@ -142,7 +142,7 @@ class AvlTree extends BinarySearchTree {
       if (!current.hasRight()) {
         if (current.isRoot()) {
           this._root = current.getLeft();
-        } else if (this._compare(val, current.getParent().getValue() < 0)) {
+        } else if (this._compare(val, current.getParent().getValue()) < 0) {
           current.getParent().setLeft(current.getLeft()).updateHeight();
         } else {
           current.getParent().setRight(current.getLeft()).updateHeight();
@@ -156,7 +156,7 @@ class AvlTree extends BinarySearchTree {
       if (!current.hasLeft()) {
         if (current.isRoot()) {
           this._root = current.getRight();
-        } else if (this._compare(val, current.getParent().getValue() < 0)) {
+        } else if (this._compare(val, current.getParent().getValue()) < 0) {
           current.getParent().setLeft(current.getRight()).updateHeight();
         } else {
           current.getParent().setRight(current.getRight()).updateHeight();
@@ -168,8 +168,10 @@ class AvlTree extends BinarySearchTree {
 
       // case 4: node has left and right children
       const minRight = this.min(current.getRight());
+      const removed = removeRecursively(minRight.getValue(), minRight);
       current.setValue(minRight.getValue()).setValue(minRight.getValue());
-      return removeRecursively(minRight.getValue(), minRight);
+      this._balanceNode(current);
+      return removed;
     };
 
     return removeRecursively(value, this._root);
