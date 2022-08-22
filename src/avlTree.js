@@ -169,7 +169,7 @@ class AvlTree extends BinarySearchTree {
       // case 4: node has left and right children
       const minRight = this.min(current.getRight());
       const removed = removeRecursively(minRight.getValue(), minRight);
-      current.setValue(minRight.getValue()).setValue(minRight.getValue());
+      current.setValue(minRight.getValue());
       this._balanceNode(current);
       return removed;
     };
