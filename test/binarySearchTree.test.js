@@ -123,6 +123,16 @@ describe('BinarySearchTree tests', () => {
       bst.traverseInOrder((node) => keys.push(node.getValue()));
       expect(keys).to.deep.equal([20, 30, 40, 50, 60, 80, 90]);
     });
+
+    it('traverse in order and allow aborting traversal', () => {
+      const keys = [];
+      let counter = 0;
+      bst.traverseInOrder((node) => {
+        keys.push(node.getValue());
+        counter += 1;
+      }, () => counter > 2);
+      expect(keys).to.deep.equal([20, 30, 40]);
+    });
   });
 
   describe('.traversePreOrder(cb)', () => {
@@ -131,6 +141,16 @@ describe('BinarySearchTree tests', () => {
       bst.traversePreOrder((node) => keys.push(node.getValue()));
       expect(keys).to.deep.equal([50, 30, 20, 40, 80, 60, 90]);
     });
+
+    it('traverse pre order and allow aborting traversal', () => {
+      const keys = [];
+      let counter = 0;
+      bst.traversePreOrder((node) => {
+        keys.push(node.getValue());
+        counter += 1;
+      }, () => counter > 2);
+      expect(keys).to.deep.equal([50, 30, 20]);
+    });
   });
 
   describe('.traversePostOrder(cb)', () => {
@@ -138,6 +158,16 @@ describe('BinarySearchTree tests', () => {
       const keys = [];
       bst.traversePostOrder((node) => keys.push(node.getValue()));
       expect(keys).to.deep.equal([20, 40, 30, 60, 90, 80, 50]);
+    });
+
+    it('traverse post order and allow aborting traversal', () => {
+      const keys = [];
+      let counter = 0;
+      bst.traversePostOrder((node) => {
+        keys.push(node.getValue());
+        counter += 1;
+      }, () => counter > 2);
+      expect(keys).to.deep.equal([20, 40, 30]);
     });
   });
 

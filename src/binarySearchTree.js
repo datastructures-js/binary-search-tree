@@ -289,8 +289,9 @@ class BinarySearchTree {
    * Traverses the tree in-order (left-node-right)
    * @public
    * @param {function} cb
+   * @param {function} abortCb
    */
-  traverseInOrder(cb) {
+  traverseInOrder(cb, abortCb) {
     if (typeof cb !== 'function') {
       throw new Error('.traverseInOrder expects a callback function');
     }
@@ -298,6 +299,7 @@ class BinarySearchTree {
     const traverseRecursive = (current) => {
       if (current === null) return;
       traverseRecursive(current.getLeft());
+      if (abortCb && abortCb()) return;
       cb(current);
       traverseRecursive(current.getRight());
     };
@@ -309,14 +311,15 @@ class BinarySearchTree {
    * Traverses the tree pre-order (node-left-right)
    * @public
    * @param {function} cb
+   * @param {function} abortCb
    */
-  traversePreOrder(cb) {
+  traversePreOrder(cb, abortCb) {
     if (typeof cb !== 'function') {
       throw new Error('.traversePreOrder expects a callback function');
     }
 
     const traverseRecursive = (current) => {
-      if (current === null) return;
+      if (current === null || (abortCb && abortCb())) return;
       cb(current);
       traverseRecursive(current.getLeft());
       traverseRecursive(current.getRight());
@@ -329,8 +332,9 @@ class BinarySearchTree {
    * Traverses the tree post-order (left-right-node)
    * @public
    * @param {function} cb
+   * @param {function} abortCb
    */
-  traversePostOrder(cb) {
+  traversePostOrder(cb, abortCb) {
     if (typeof cb !== 'function') {
       throw new Error('.traversePostOrder expects a callback function');
     }
@@ -339,6 +343,7 @@ class BinarySearchTree {
       if (current === null) return;
       traverseRecursive(current.getLeft());
       traverseRecursive(current.getRight());
+      if (abortCb && abortCb()) return;
       cb(current);
     };
 
