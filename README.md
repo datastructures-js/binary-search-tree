@@ -232,7 +232,7 @@ employees.count(); // 7
 ### traverseInOrder
 O(n)
 
-traverses the tree in order (left-node-right). it also accepts an optional third param as a callback to abort traversal when it returns true.
+traverses the tree in order (left-node-right). it also accepts an optional second param as a callback to abort traversal when it returns true.
 
 ```js
 nums.traverseInOrder((node) => console.log(node.getValue()));
@@ -272,7 +272,7 @@ employees.traverseInOrder((node) => {
 ### traversePreOrder
 O(n)
 
-traverses the tree pre order (node-left-right). it also accepts an optional third param as a callback to abort traversal when it returns true.
+traverses the tree pre order (node-left-right). it also accepts an optional second param as a callback to abort traversal when it returns true.
 
 ```js
 nums.traversePreOrder((node) => console.log(node.getValue()));
@@ -312,7 +312,7 @@ employees.traversePreOrder((node) => {
 ### traversePostOrder
 O(n)
 
-traverses the tree post order (left-right-node). it also accepts an optional third param as a callback to abort traversal when it returns true.
+traverses the tree post order (left-right-node). it also accepts an optional second param as a callback to abort traversal when it returns true.
 
 ```js
 nums.traversePostOrder((node) => console.log(node.getValue()));
