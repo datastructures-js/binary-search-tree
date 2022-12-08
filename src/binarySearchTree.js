@@ -289,7 +289,7 @@ class BinarySearchTree {
    * Traverses the tree in-order (left-node-right)
    * @public
    * @param {function} cb
-   * @param {function} abortCb
+   * @param {function} [abortCb]
    */
   traverseInOrder(cb, abortCb) {
     if (typeof cb !== 'function') {
@@ -311,7 +311,7 @@ class BinarySearchTree {
    * Traverses the tree pre-order (node-left-right)
    * @public
    * @param {function} cb
-   * @param {function} abortCb
+   * @param {function} [abortCb]
    */
   traversePreOrder(cb, abortCb) {
     if (typeof cb !== 'function') {
@@ -332,7 +332,7 @@ class BinarySearchTree {
    * Traverses the tree post-order (left-right-node)
    * @public
    * @param {function} cb
-   * @param {function} abortCb
+   * @param {function} [abortCb]
    */
   traversePostOrder(cb, abortCb) {
     if (typeof cb !== 'function') {
