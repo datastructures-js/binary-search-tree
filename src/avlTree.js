@@ -12,12 +12,12 @@ const { AvlTreeNode } = require('./avlTreeNode');
  * @extends BinarySearchTree
  */
 class AvlTree extends BinarySearchTree {
-  constructor(compare) {
+  constructor(compare, options) {
     if (compare && typeof compare !== 'function') {
       throw new Error('AvlTree constructor expects a compare function');
     }
 
-    super(compare);
+    super(compare, options);
   }
 
   /**

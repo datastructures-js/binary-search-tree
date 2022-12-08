@@ -15,12 +15,13 @@ const defaultCompare = (a, b) => {
  * @class BinarySearchTree
  */
 class BinarySearchTree {
-  constructor(compare) {
+  constructor(compare, options) {
     if (compare && typeof compare !== 'function') {
       throw new Error('BinarySearchTree constructor expects a compare function');
     }
 
     this._compare = compare || defaultCompare;
+    this._options = options || {};
     this._root = null;
     this._count = 0;
   }
@@ -65,9 +66,9 @@ class BinarySearchTree {
   }
 
   /**
-   * Checks if a value exists in the tree by its key
+   * Checks if a value exists in the tree by its value
    * @public
-   * @param {number|string} key
+   * @param {number|string|object} value
    * @return {boolean}
    */
   has(value) {
@@ -84,9 +85,22 @@ class BinarySearchTree {
   }
 
   /**
-   * Finds a node by its key
+   * Checks if a value exists in the tree by its key
    * @public
    * @param {number|string} key
+   * @return {boolean}
+   */
+  hasKey(key) {
+    if (this._options.key === undefined || this._options.key === null) {
+      throw new Error('Missing key prop name in constructor options');
+    }
+    return this.has({ [this._options.key]: key });
+  }
+
+  /**
+   * Finds a node by its value
+   * @public
+   * @param {number|string|object} value
    * @return {BinarySearchTreeNode}
    */
   find(value) {
@@ -100,6 +114,19 @@ class BinarySearchTree {
     };
 
     return findRecursive(this._root);
+  }
+
+  /**
+   * Finds a node by its key
+   * @public
+   * @param {number|string} key
+   * @return {BinarySearchTreeNode}
+   */
+  findKey(key) {
+    if (this._options.key === undefined || this._options.key === null) {
+      throw new Error('Missing key prop name in constructor options');
+    }
+    return this.find({ [this._options.key]: key });
   }
 
   /**
