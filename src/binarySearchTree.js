@@ -297,7 +297,7 @@ class BinarySearchTree {
     }
 
     const traverseRecursive = (current) => {
-      if (current === null) return;
+      if (current === null || (abortCb && abortCb())) return;
       traverseRecursive(current.getLeft());
       if (abortCb && abortCb()) return;
       cb(current);
@@ -340,7 +340,7 @@ class BinarySearchTree {
     }
 
     const traverseRecursive = (current) => {
-      if (current === null) return;
+      if (current === null || (abortCb && abortCb())) return;
       traverseRecursive(current.getLeft());
       traverseRecursive(current.getRight());
       if (abortCb && abortCb()) return;
