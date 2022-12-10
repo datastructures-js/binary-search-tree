@@ -2,9 +2,10 @@ import { BinarySearchTree } from './binarySearchTree';
 import { AvlTreeNode } from './avlTreeNode';
 
 export class AvlTree<T> extends BinarySearchTree<T> {
-  constructor(compare?: (a: T, b: T) => number);
+  constructor(compare?: (a: T, b: T) => number, options?: { key: string });
   insert(value: T): AvlTree<T>;
   find(value: T): AvlTreeNode<T> | null;
+  findKey(key: number|string): AvlTreeNode<T> | null;
   max(node?: AvlTreeNode<T>): AvlTreeNode<T> | null;
   min(node?: AvlTreeNode<T>): AvlTreeNode<T> | null;
   lowerBound(value: T, includeEqual?: boolean): AvlTreeNode<T> | null;
