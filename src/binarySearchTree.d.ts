@@ -4,7 +4,7 @@ export class BinarySearchTree<T> {
   constructor(compare?: (a: T, b: T) => number, options?: { key: string });
   insert(value: T): BinarySearchTree<T>;
   has(value: T): boolean;
-  has(key: number|string): boolean;
+  hasKey(key: number|string): boolean;
   find(value: T): BinarySearchTreeNode<T> | null;
   findKey(key: number|string): BinarySearchTreeNode<T> | null;
   max(node?: BinarySearchTreeNode<T>): BinarySearchTreeNode<T> | null;
