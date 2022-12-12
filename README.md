@@ -147,7 +147,7 @@ employees.has({ id: 100 }); // false
 ### hasKey
 O(log(n))
 
-checks if a value exists by its key.
+checks if a value exists by its key if the node's key prob is provided in the constructor.
 
 ```js
 employees.has(50); // true
