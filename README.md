@@ -150,8 +150,8 @@ O(log(n))
 checks if a value exists by its key if the node's key prob is provided in the constructor.
 
 ```js
-employees.has(50); // true
-employees.has(100); // false
+employees.hasKey(50); // true
+employees.hasKey(100); // false
 ```
 
 ### find
@@ -174,7 +174,7 @@ finds a node by its key if the node's key prob is provided in the constructor.
 
 ```js
 employees.findKey(60).getValue(); // { id: 60 }
-employees.find(100); // null
+employees.findKey(100); // null
 ```
 
 ### min
