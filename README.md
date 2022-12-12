@@ -15,7 +15,9 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [constructor](#constructor)
   * [insert](#insert)
   * [has](#has)
+  * [hasKey](#haskey)
   * [find](#find)
+  * [findKey](#findkey)
   * [min](#min)
   * [max](#max)
   * [lowerBound (floor)](#lowerbound-floor)
@@ -70,6 +72,8 @@ the compare function must return a number for the 3 cases:
 
 There is already a default compare function for primitive values (number, string).
 
+constructor also accepts an options param, where the comparison key prob name can be passed for object types in order to search by that key directly using findKey and hasKey.
+
 ##### JS
 ###### BinarySearchTree
 ```js
@@ -80,7 +84,7 @@ const employees = new BinarySearchTree((a, b) => a.id - b.id);
 ###### AvlTree
 ```js
 const nums = new AvlTree();
-const employees = new AvlTree((a, b) => a.id - b.id);
+const employees = new AvlTree((a, b) => a.id - b.id, { key: 'id' });
 ```
 
 ##### TS
@@ -93,13 +97,13 @@ interface IEmployee {
 ###### BinarySearchTree
 ```js
 const nums = new BinarySearchTree<number>();
-const employees = new BinarySearchTree<IEmployee>((a, b) => a.id - b.id);
+const employees = new BinarySearchTree<IEmployee>((a, b) => a.id - b.id, { key: 'id' });
 ```
 
 ###### AvlTree
 ```js
 const nums = new AvlTree<number>();
-const employees = new AvlTree<IEmployee>((a, b) => a.id - b.id);
+const employees = new AvlTree<IEmployee>((a, b) => a.id - b.id, { key: 'id' });
 ```
 
 ### insert
@@ -140,6 +144,16 @@ employees.has({ id: 50 }); // true
 employees.has({ id: 100 }); // false
 ```
 
+### hasKey
+O(log(n))
+
+checks if a value exists by its key.
+
+```js
+employees.has(50); // true
+employees.has(100); // false
+```
+
 ### find
 O(log(n))
 
@@ -151,6 +165,16 @@ nums.find(100); // null
 
 employees.find({ id: 60 }).getValue(); // { id: 60 }
 employees.find({ id: 100 }); // null
+```
+
+### findKey
+O(log(n))
+
+finds a node by its key if the node's key prob is provided in the constructor.
+
+```js
+employees.findKey(60).getValue(); // { id: 60 }
+employees.find(100); // null
 ```
 
 ### min
