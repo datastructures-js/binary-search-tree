@@ -36,7 +36,7 @@ describe('BinarySearchTree tests', () => {
   });
 
   describe('.has(value)', () => {
-    it('checks if a node exists by key', () => {
+    it('checks if a node exists by value', () => {
       expect(bst.has(50)).to.equal(true);
       expect(bst.has(80)).to.equal(true);
       expect(bst.has(30)).to.equal(true);
@@ -48,8 +48,23 @@ describe('BinarySearchTree tests', () => {
     });
   });
 
+  describe('.has(key)', () => {
+    it('checks if a node exists by key', () => {
+      const testTree = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      testTree.insert({ id: 1, name: 'a' });
+      testTree.insert({ id: 2, name: 'b' });
+      testTree.insert({ id: 3, name: 'c' });
+      expect(testTree.has({ id: 1 })).to.equal(true);
+      expect(testTree.has({ id: 2 })).to.equal(true);
+      expect(testTree.has({ id: 3 })).to.equal(true);
+      expect(testTree.hasKey(1)).to.equal(true);
+      expect(testTree.hasKey(2)).to.equal(true);
+      expect(testTree.hasKey(3)).to.equal(true);
+    });
+  });
+
   describe('.find(value)', () => {
-    it('should search a node by its key in the tree', () => {
+    it('should search a node by its value in the tree', () => {
       expect(bst.find(50)).to.be.instanceof(BinarySearchTreeNode);
       expect(bst.find(80)).to.be.instanceof(BinarySearchTreeNode);
       expect(bst.find(30)).to.be.instanceof(BinarySearchTreeNode);
@@ -58,6 +73,21 @@ describe('BinarySearchTree tests', () => {
       expect(bst.find(40)).to.be.instanceof(BinarySearchTreeNode);
       expect(bst.find(20)).to.be.instanceof(BinarySearchTreeNode);
       expect(bst.find(100)).to.equal(null);
+    });
+  });
+
+  describe('.findKey(key)', () => {
+    it('should search a node by its key in the tree', () => {
+      const testTree = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      testTree.insert({ id: 1, name: 'a' });
+      testTree.insert({ id: 2, name: 'b' });
+      testTree.insert({ id: 3, name: 'c' });
+      expect(testTree.find({ id: 1 }).getValue()).to.eql({ id: 1, name: 'a' });
+      expect(testTree.find({ id: 2 }).getValue()).to.eql({ id: 2, name: 'b' });
+      expect(testTree.find({ id: 3 }).getValue()).to.eql({ id: 3, name: 'c' });
+      expect(testTree.findKey(1).getValue()).to.eql({ id: 1, name: 'a' });
+      expect(testTree.findKey(2).getValue()).to.eql({ id: 2, name: 'b' });
+      expect(testTree.findKey(3).getValue()).to.eql({ id: 3, name: 'c' });
     });
   });
 
