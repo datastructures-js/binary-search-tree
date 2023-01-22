@@ -248,7 +248,7 @@ class BinarySearchTree {
   }
 
   /**
-   * Removes a node by its key
+   * Removes a node by its value
    * @public
    * @param {number|string|object} value
    * @return {boolean}
@@ -261,55 +261,68 @@ class BinarySearchTree {
       if (compare < 0) return removeRecursively(val, current.getLeft());
       if (compare > 0) return removeRecursively(val, current.getRight());
 
-      // current node is the node to remove
-      // case 1: node has no children
-      if (current.isLeaf()) {
-        if (current.isRoot()) {
-          this._root = null;
-        } else if (this._compare(val, current.getParent().getValue()) < 0) {
-          current.getParent().setLeft(null);
-        } else {
-          current.getParent().setRight(null);
-        }
-        this._count -= 1;
-        return true;
-      }
-
-      // case 2: node has a left child and no right child
-      if (!current.hasRight()) {
-        if (current.isRoot()) {
-          this._root = current.getLeft();
-        } else if (this._compare(val, current.getParent().getValue()) < 0) {
-          current.getParent().setLeft(current.getLeft());
-        } else {
-          current.getParent().setRight(current.getLeft());
-        }
-        current.getLeft().setParent(current.getParent());
-        this._count -= 1;
-        return true;
-      }
-
-      // case 3: node has a right child and no left child
-      if (!current.hasLeft()) {
-        if (current.isRoot()) {
-          this._root = current.getRight();
-        } else if (this._compare(val, current.getParent().getValue()) < 0) {
-          current.getParent().setLeft(current.getRight());
-        } else {
-          current.getParent().setRight(current.getRight());
-        }
-        current.getRight().setParent(current.getParent());
-        this._count -= 1;
-        return true;
-      }
-
-      // case 4: node has left and right children
-      const minRight = this.min(current.getRight());
-      current.setValue(minRight.getValue());
-      return removeRecursively(minRight.getValue(), minRight);
+      return this.removeNode(current);
     };
 
     return removeRecursively(value, this._root);
+  }
+
+  /**
+   * Removes a node from the tree
+   * @public
+   * @param {BinarySearchTreeNode} node
+   * @return {boolean}
+   */
+  removeNode(node) {
+    if (node === null || !(node instanceof BinarySearchTreeNode)) {
+      return false;
+    }
+
+    // case 1: node has no children
+    if (node.isLeaf()) {
+      if (node.isRoot()) {
+        this._root = null;
+      } else if (this._compare(node.getValue(), node.getParent().getValue()) < 0) {
+        node.getParent().setLeft(null);
+      } else {
+        node.getParent().setRight(null);
+      }
+      this._count -= 1;
+      return true;
+    }
+
+    // case 2: node has a left child and no right child
+    if (!node.hasRight()) {
+      if (node.isRoot()) {
+        this._root = node.getLeft();
+      } else if (this._compare(node.getValue(), node.getParent().getValue()) < 0) {
+        node.getParent().setLeft(node.getLeft());
+      } else {
+        node.getParent().setRight(node.getLeft());
+      }
+      node.getLeft().setParent(node.getParent());
+      this._count -= 1;
+      return true;
+    }
+
+    // case 3: node has a right child and no left child
+    if (!node.hasLeft()) {
+      if (node.isRoot()) {
+        this._root = node.getRight();
+      } else if (this._compare(node.getValue(), node.getParent().getValue()) < 0) {
+        node.getParent().setLeft(node.getRight());
+      } else {
+        node.getParent().setRight(node.getRight());
+      }
+      node.getRight().setParent(node.getParent());
+      this._count -= 1;
+      return true;
+    }
+
+    // case 4: node has left and right children
+    const minRight = this.min(node.getRight());
+    node.setValue(minRight.getValue());
+    return this.removeNode(minRight);
   }
 
   /**
