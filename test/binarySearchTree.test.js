@@ -125,8 +125,20 @@ describe('BinarySearchTree tests', () => {
     });
   });
 
+  describe('.lowerBoundKey(key) / floorKey', () => {
+    it('gets the node with biggest key less or equal k', () => {
+      const lowerBst = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      lowerBst.insert({ id: 20 });
+      lowerBst.insert({ id: 7 });
+      lowerBst.insert({ id: 15 });
+      lowerBst.insert({ id: 9 });
+      expect(lowerBst.lowerBoundKey(60).getValue()).to.eql({ id: 20 });
+      expect(lowerBst.floorKey(20, false).getValue()).to.eql({ id: 15 });
+    });
+  });
+
   describe('.upperBound(k)', () => {
-    it('gets the node with smallest key bigger than k', () => {
+    it('gets the node with smallest key bigger than a key', () => {
       expect(bst.upperBound(75).getValue()).to.equal(80);
       expect(bst.upperBound(80).getValue()).to.equal(80);
       expect(bst.upperBound(80, false).getValue()).to.equal(90);
@@ -144,6 +156,18 @@ describe('BinarySearchTree tests', () => {
       upperBst.insert(-38206732);
       upperBst.insert(49311742);
       expect(upperBst.ceil(49303013).getValue()).to.equal(49311742);
+    });
+  });
+
+  describe('.upperBoundKey(key) / ceilKey', () => {
+    it('gets the node with smallest key bigger than a key', () => {
+      const upperBst = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      upperBst.insert({ id: 20 });
+      upperBst.insert({ id: 7 });
+      upperBst.insert({ id: 15 });
+      upperBst.insert({ id: 9 });
+      expect(upperBst.upperBoundKey(15).getValue()).to.eql({ id: 15 });
+      expect(upperBst.ceilKey(15, false).getValue()).to.eql({ id: 20 });
     });
   });
 

@@ -21,7 +21,9 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [min](#min)
   * [max](#max)
   * [lowerBound (floor)](#lowerbound-floor)
+  * [lowerBoundKey (floorKey)](#lowerbound-floorkey)
   * [upperBound (ceil)](#upperbound-ceil)
+  * [upperBoundKey (ceilKey)](#upperbound-ceilkey)
   * [root](#root)
   * [count](#count)
   * [traverseInOrder](#traverseinorder)
@@ -221,6 +223,17 @@ employees.floor({ id: 60 }, false).getValue(); // { id: 50 }
 employees.floor({ id: 10 }); // null
 ```
 
+### lowerBoundKey (floorKey)
+O(log(n))
+
+finds the node with the biggest value less or equal a given key if the node's key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.floorKey` is an alias to the same function.
+
+```js
+employees.floorKey(60).getValue(); // { id: 60 }
+employees.floorKey(60, false).getValue(); // { id: 50 }
+employees.floorKey(10); // null
+```
+
 ### upperBound (ceil)
 O(log(n))
 
@@ -236,6 +249,19 @@ employees.ceil({ id: 75 }).getValue(); // { id: 80 }
 employees.ceil({ id: 80 }).getValue(); // { id: 80 }
 employees.ceil({ id: 80 }, false).getValue(); // { id: 90 }
 employees.ceil({ id: 110 }); // null
+```
+
+
+### upperBoundKey (ceilKey)
+O(log(n))
+
+finds the node with the smallest value bigger or equal a given key if the node's key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.ceilKey` is an alias to the same function.
+
+```js
+employees.ceilKey(75).getValue(); // { id: 80 }
+employees.ceilKey(80).getValue(); // { id: 80 }
+employees.ceilKey(80, false).getValue(); // { id: 90 }
+employees.ceilKey(110); // null
 ```
 
 ### root
