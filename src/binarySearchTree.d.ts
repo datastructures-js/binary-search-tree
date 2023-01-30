@@ -16,6 +16,7 @@ export class BinarySearchTree<T> {
   root(): BinarySearchTreeNode<T> | null;
   count(): number;
   remove(value: T): boolean;
+  removeNode(node: BinarySearchTreeNode): boolean;
   traverseInOrder(cb: (node: BinarySearchTreeNode<T>) => void, abortCb?: () => boolean): void;
   traversePreOrder(cb: (node: BinarySearchTreeNode<T>) => void, abortCb?: () => boolean): void;
   traversePostOrder(cb: (node: BinarySearchTreeNode<T>) => void, abortCb?: () => boolean): void;
