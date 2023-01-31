@@ -551,4 +551,21 @@ describe('AvlTree tests', () => {
       elements.forEach((n) => tree.remove(n));
     });
   });
+
+  describe('.removeNode(node)', () => {
+    const testRemoveTree = new AvlTree();
+    testRemoveTree
+      .insert(50)
+      .insert(80)
+      .insert(30)
+      .insert(90)
+      .insert(60)
+      .insert(40)
+      .insert(20);
+    const n80 = testRemoveTree.find(80);
+    testRemoveTree.removeNode(n80);
+    expect(testRemoveTree.root().getRight().getValue()).to.equal(90);
+    expect(testRemoveTree.root().getRight().getLeft().getValue()).to.equal(60);
+    expect(testRemoveTree.root().getRight().getRight()).to.equal(null);
+  });
 });

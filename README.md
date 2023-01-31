@@ -21,13 +21,16 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [min](#min)
   * [max](#max)
   * [lowerBound (floor)](#lowerbound-floor)
+  * [lowerBoundKey (floorKey)](#lowerboundkey-floorkey)
   * [upperBound (ceil)](#upperbound-ceil)
+  * [upperBoundKey (ceilKey)](#upperboundkey-ceilkey)
   * [root](#root)
   * [count](#count)
   * [traverseInOrder](#traverseinorder)
   * [traversePreOrder](#traversepreorder)
   * [traversePostOrder](#traversepostorder)
   * [remove](#remove)
+  * [removeNode](#removeNode)
   * [clear](#clear)
   * [BinarySearchTreeNode](#binarysearchtreenodet)
   * [AvlTreeNode](#avltreenodet)
@@ -78,13 +81,19 @@ constructor also accepts an options param, where the comparison key prob name ca
 ###### BinarySearchTree
 ```js
 const nums = new BinarySearchTree();
-const employees = new BinarySearchTree((a, b) => a.id - b.id);
+const employees = new BinarySearchTree(
+  (a, b) => a.id - b.id,
+  { key: 'id }
+);
 ```
 
 ###### AvlTree
 ```js
 const nums = new AvlTree();
-const employees = new AvlTree((a, b) => a.id - b.id, { key: 'id' });
+const employees = new AvlTree(
+  (a, b) => a.id - b.id,
+  { key: 'id' }
+);
 ```
 
 ##### TS
@@ -147,7 +156,7 @@ employees.has({ id: 100 }); // false
 ### hasKey
 O(log(n))
 
-checks if a value exists by its key if the node's key prob is provided in the constructor.
+checks if an object exists by its key if the comparison key prob is provided in the constructor.
 
 ```js
 employees.hasKey(50); // true
@@ -170,7 +179,7 @@ employees.find({ id: 100 }); // null
 ### findKey
 O(log(n))
 
-finds a node by its key if the node's key prob is provided in the constructor.
+finds a node by its object key if the comparison key prob is provided in the constructor.
 
 ```js
 employees.findKey(60).getValue(); // { id: 60 }
@@ -214,6 +223,17 @@ employees.floor({ id: 60 }, false).getValue(); // { id: 50 }
 employees.floor({ id: 10 }); // null
 ```
 
+### lowerBoundKey (floorKey)
+O(log(n))
+
+finds the node with the biggest key less or equal a given key if the comparison key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.floorKey` is an alias to the same function.
+
+```js
+employees.floorKey(60).getValue(); // { id: 60 }
+employees.floorKey(60, false).getValue(); // { id: 50 }
+employees.floorKey(10); // null
+```
+
 ### upperBound (ceil)
 O(log(n))
 
@@ -229,6 +249,19 @@ employees.ceil({ id: 75 }).getValue(); // { id: 80 }
 employees.ceil({ id: 80 }).getValue(); // { id: 80 }
 employees.ceil({ id: 80 }, false).getValue(); // { id: 90 }
 employees.ceil({ id: 110 }); // null
+```
+
+
+### upperBoundKey (ceilKey)
+O(log(n))
+
+finds the node with the smallest key bigger or equal a given key if the comparison key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.ceilKey` is an alias to the same function.
+
+```js
+employees.ceilKey(75).getValue(); // { id: 80 }
+employees.ceilKey(80).getValue(); // { id: 80 }
+employees.ceilKey(80, false).getValue(); // { id: 90 }
+employees.ceilKey(110); // null
 ```
 
 ### root
@@ -376,7 +409,7 @@ employees.traversePostOrder((node) => {
 ### remove
 O(log(n))
 
-removes a node from the tree by its value. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
+removes a node from the tree by its value. The function will first find the node that corresponds to the value and then remove it. AVL tree will rotate nodes properly if the tree becomes unbalanced.
 
 ```js
 nums.remove(20); // true
@@ -386,6 +419,19 @@ nums.count(); // 6
 employees.remove({ id: 20 }); // true
 employees.remove({ id: 100 }); // false
 employees.count(); // 6
+```
+
+### removeNode
+O(log(n))
+
+removes a node from the tree by its reference.
+
+```js
+const node1 = nums.find(50);
+nums.removeNode(node1); // true
+
+const node2 = employees.findKey(50);
+employees.removeNode(node2); // true
 ```
 
 ### clear

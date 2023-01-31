@@ -16,4 +16,5 @@ export class AvlTree<T> extends BinarySearchTree<T> {
   traverseInOrder(cb: (node: AvlTreeNode<T>) => void): void;
   traversePreOrder(cb: (node: AvlTreeNode<T>) => void): void;
   traversePostOrder(cb: (node: AvlTreeNode<T>) => void): void;
+  removeNode(node: AvlTreeNode): boolean;
 }

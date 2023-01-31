@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [5.3.0] - 2023-01-30
+### Added
+- `removeNode` to remove a node by its reference.
+- `upperBoundKey`, `floorKey`, `lowerBoundKey`, `ceilKey` to support finding nodes by the object comparison key.
+
 ## [5.2.0] - 2022-12-12
 
 ### Added

@@ -124,57 +124,70 @@ class AvlTree extends BinarySearchTree {
       }
 
       // current node is the node to remove
-
-      // case 1: node has no children
-      if (current.isLeaf()) {
-        if (current.isRoot()) {
-          this._root = null;
-        } else if (this._compare(val, current.getParent().getValue()) < 0) {
-          current.getParent().setLeft(null).updateHeight();
-        } else {
-          current.getParent().setRight(null).updateHeight();
-        }
-        this._count -= 1;
-        return true;
-      }
-
-      // case 2: node has a left child and no right child
-      if (!current.hasRight()) {
-        if (current.isRoot()) {
-          this._root = current.getLeft();
-        } else if (this._compare(val, current.getParent().getValue()) < 0) {
-          current.getParent().setLeft(current.getLeft()).updateHeight();
-        } else {
-          current.getParent().setRight(current.getLeft()).updateHeight();
-        }
-        current.getLeft().setParent(current.getParent());
-        this._count -= 1;
-        return true;
-      }
-
-      // case 3: node has a right child and no left child
-      if (!current.hasLeft()) {
-        if (current.isRoot()) {
-          this._root = current.getRight();
-        } else if (this._compare(val, current.getParent().getValue()) < 0) {
-          current.getParent().setLeft(current.getRight()).updateHeight();
-        } else {
-          current.getParent().setRight(current.getRight()).updateHeight();
-        }
-        current.getRight().setParent(current.getParent());
-        this._count -= 1;
-        return true;
-      }
-
-      // case 4: node has left and right children
-      const minRight = this.min(current.getRight());
-      const removed = removeRecursively(minRight.getValue(), minRight);
-      current.setValue(minRight.getValue());
-      this._balanceNode(current);
-      return removed;
+      return this.removeNode(current);
     };
 
     return removeRecursively(value, this._root);
+  }
+
+  /**
+   * Removes a node from the tree
+   * @public
+   * @param {AvlTreeNode} node
+   * @return {boolean}
+   */
+  removeNode(node) {
+    if (node === null || !(node instanceof AvlTreeNode)) {
+      return false;
+    }
+
+    // case 1: node has no children
+    if (node.isLeaf()) {
+      if (node.isRoot()) {
+        this._root = null;
+      } else if (this._compare(node.getValue(), node.getParent().getValue()) < 0) {
+        node.getParent().setLeft(null).updateHeight();
+      } else {
+        node.getParent().setRight(null).updateHeight();
+      }
+      this._count -= 1;
+      return true;
+    }
+
+    // case 2: node has a left child and no right child
+    if (!node.hasRight()) {
+      if (node.isRoot()) {
+        this._root = node.getLeft();
+      } else if (this._compare(node.getValue(), node.getParent().getValue()) < 0) {
+        node.getParent().setLeft(node.getLeft()).updateHeight();
+      } else {
+        node.getParent().setRight(node.getLeft()).updateHeight();
+      }
+      node.getLeft().setParent(node.getParent());
+      this._count -= 1;
+      return true;
+    }
+
+    // case 3: node has a right child and no left child
+    if (!node.hasLeft()) {
+      if (node.isRoot()) {
+        this._root = node.getRight();
+      } else if (this._compare(node.getValue(), node.getParent().getValue()) < 0) {
+        node.getParent().setLeft(node.getRight()).updateHeight();
+      } else {
+        node.getParent().setRight(node.getRight()).updateHeight();
+      }
+      node.getRight().setParent(node.getParent());
+      this._count -= 1;
+      return true;
+    }
+
+    // case 4: node has left and right children
+    const minRight = this.min(node.getRight());
+    const removed = this.removeNode(minRight);
+    node.setValue(minRight.getValue());
+    this._balanceNode(node);
+    return removed;
   }
 }
 
