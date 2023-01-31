@@ -428,7 +428,7 @@ removes a node from the tree by its reference.
 
 ```js
 const n20 = employees.findKey(20);
-employees.removeNode(e20); // true
+employees.removeNode(n20); // true
 
 const n50 = employees.findKey(50);
 employees.removeNode(n50); // true
