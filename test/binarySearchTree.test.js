@@ -282,7 +282,7 @@ describe('BinarySearchTree tests', () => {
     });
   });
 
-  describe('.remove(node)', () => {
+  describe('.removeNode(node)', () => {
     const testRemoveTree = new BinarySearchTree();
     testRemoveTree
       .insert(50)
