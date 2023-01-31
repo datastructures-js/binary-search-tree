@@ -427,11 +427,11 @@ O(log(n))
 removes a node from the tree by its reference.
 
 ```js
-const node1 = nums.find(50);
-nums.removeNode(node1); // true
+const n20 = employees.findKey(20);
+employees.removeNode(e20); // true
 
-const node2 = employees.findKey(50);
-employees.removeNode(node2); // true
+const n50 = employees.findKey(50);
+employees.removeNode(n50); // true
 ```
 
 ### clear
