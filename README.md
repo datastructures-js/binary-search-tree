@@ -156,7 +156,7 @@ employees.has({ id: 100 }); // false
 ### hasKey
 O(log(n))
 
-checks if a value exists by its key if the node's key prob is provided in the constructor.
+checks if an object value exists by its key if the key prob is provided in the constructor.
 
 ```js
 employees.hasKey(50); // true
@@ -179,7 +179,7 @@ employees.find({ id: 100 }); // null
 ### findKey
 O(log(n))
 
-finds a node by its key if the node's key prob is provided in the constructor.
+finds a node by its object key if the key prob is provided in the constructor.
 
 ```js
 employees.findKey(60).getValue(); // { id: 60 }
@@ -226,7 +226,7 @@ employees.floor({ id: 10 }); // null
 ### lowerBoundKey (floorKey)
 O(log(n))
 
-finds the node with the biggest value less or equal a given key if the node's key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.floorKey` is an alias to the same function.
+finds the node with the biggest key less or equal a given key if the key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.floorKey` is an alias to the same function.
 
 ```js
 employees.floorKey(60).getValue(); // { id: 60 }
@@ -255,7 +255,7 @@ employees.ceil({ id: 110 }); // null
 ### upperBoundKey (ceilKey)
 O(log(n))
 
-finds the node with the smallest value bigger or equal a given key if the node's key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.ceilKey` is an alias to the same function.
+finds the node with the smallest key bigger or equal a given key if the key prob is provided in the constructor. You can eliminate equal values by passing second param as false. `.ceilKey` is an alias to the same function.
 
 ```js
 employees.ceilKey(75).getValue(); // { id: 80 }
