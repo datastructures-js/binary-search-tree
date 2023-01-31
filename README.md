@@ -21,9 +21,9 @@ Binary Search Tree & AVL Tree (Self Balancing Tree) implementation in javascript
   * [min](#min)
   * [max](#max)
   * [lowerBound (floor)](#lowerbound-floor)
-  * [lowerBoundKey (floorKey)](#lowerbound-floorkey)
+  * [lowerBoundKey (floorKey)](#lowerboundkey-floorkey)
   * [upperBound (ceil)](#upperbound-ceil)
-  * [upperBoundKey (ceilKey)](#upperbound-ceilkey)
+  * [upperBoundKey (ceilKey)](#upperboundkey-ceilkey)
   * [root](#root)
   * [count](#count)
   * [traverseInOrder](#traverseinorder)
@@ -409,7 +409,7 @@ employees.traversePostOrder((node) => {
 ### remove
 O(log(n))
 
-removes a node from the tree by its value. The function will first find the node that corresponds to the value and then remove it. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
+removes a node from the tree by its value. The function will first find the node that corresponds to the value and then remove it. AVL tree will rotate nodes properly if the tree becomes unbalanced.
 
 ```js
 nums.remove(20); // true
@@ -424,7 +424,7 @@ employees.count(); // 6
 ### removeNode
 O(log(n))
 
-removes a node from the tree by its reference. AVL tree will rotate nodes properly if the tree becomes unbalanced during deletion.
+removes a node from the tree by its reference.
 
 ```js
 const node1 = nums.find(50);
