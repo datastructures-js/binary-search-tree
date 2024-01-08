@@ -8,6 +8,17 @@ const { BinarySearchTree } = require('./binarySearchTree');
 const { AvlTreeNode } = require('./avlTreeNode');
 
 /**
+   * Get the node's height
+   * @private
+   * @param {AvlTreeNode} node
+   * @return {number}
+   */
+function getNodeHeight(node) {
+  if (!(node instanceof AvlTreeNode)) return 0;
+  return node.getHeight();
+}
+
+/**
  * @class AvlTree
  * @extends BinarySearchTree
  */
@@ -31,13 +42,17 @@ class AvlTree extends BinarySearchTree {
     node.updateHeight();
     const balance = node.getBalance();
     if (balance > 1) {
-      if (node.getLeft().hasLeft()) {
+      const LL = node.getLeft().getLeft();
+      const LR = node.getLeft().getRight();
+      if (getNodeHeight(LL) >= getNodeHeight(LR)) {
         node.rotateRight();
       } else if (node.getLeft().hasRight()) {
         node.rotateLeftRight();
       }
     } else if (balance < -1) {
-      if (node.getRight().hasRight()) {
+      const RR = node.getRight().getRight();
+      const RL = node.getRight().getLeft();
+      if (getNodeHeight(RR) >= getNodeHeight(RL)) {
         node.rotateLeft();
       } else if (node.getRight().hasLeft()) {
         node.rotateRightLeft();
