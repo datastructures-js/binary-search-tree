@@ -447,15 +447,24 @@ class BinarySearchTree {
     if (typeof cb !== 'function') {
       throw new Error('.traversePreOrder expects a callback function');
     }
-
-    const traverseRecursive = (current) => {
-      if (current === null || (abortCb && abortCb())) return;
+  
+    // Initialize stack with the root node
+    const stack = [this._root];
+  
+    while (stack.length) {
+      const current = stack.pop();
+      
+      // Check for abort condition
+      if (abortCb && abortCb()) break;
+      if (!current) continue;
+      
+      // Process the current node
       cb(current);
-      traverseRecursive(current.getLeft());
-      traverseRecursive(current.getRight());
-    };
-
-    traverseRecursive(this._root);
+      
+      // Push right and then left child to stack
+      stack.push(current.getRight());
+      stack.push(current.getLeft());
+    }
   }
 
   /**
@@ -468,16 +477,34 @@ class BinarySearchTree {
     if (typeof cb !== 'function') {
       throw new Error('.traversePostOrder expects a callback function');
     }
-
-    const traverseRecursive = (current) => {
-      if (current === null || (abortCb && abortCb())) return;
-      traverseRecursive(current.getLeft());
-      traverseRecursive(current.getRight());
-      if (abortCb && abortCb()) return;
-      cb(current);
-    };
-
-    traverseRecursive(this._root);
+  
+    const s1 = [];
+    const s2 = [];
+    s1.push(this._root);
+  
+    while (s1.length) {
+      const current = s1.pop();
+      
+      // Push to the second stack
+      s2.push(current);
+  
+      // Check for abort condition
+      if (abortCb && abortCb()) break;
+      if (!current) continue;
+      
+      // Push left and then right child to first stack
+      s1.push(current.getLeft());
+      s1.push(current.getRight());
+    }
+  
+    // Process all nodes from second stack
+    while (s2.length) {
+      const current = s2.pop();
+      if (abortCb && abortCb()) break;
+      if (current) {
+        cb(current);
+      }
+    }
   }
 
   /**
