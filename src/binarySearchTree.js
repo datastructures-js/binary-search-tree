@@ -109,16 +109,25 @@ class BinarySearchTree {
    * @return {BinarySearchTreeNode}
    */
   find(value) {
-    const findRecursive = (current) => {
-      if (current === null) return null;
+    let current = this._root;
 
+    while (current !== null) {
       const compare = this._compare(value, current.getValue());
-      if (compare === 0) return current;
-      if (compare < 0) return findRecursive(current.getLeft());
-      return findRecursive(current.getRight());
-    };
 
-    return findRecursive(this._root);
+      if (compare === 0) {
+        // Found the value
+        return current;
+      } else if (compare < 0) {
+        // Traverse the left subtree
+        current = current.getLeft();
+      } else {
+        // Traverse the right subtree
+        current = current.getRight();
+      }
+    }
+
+    // The value was not found
+    return null;
   }
 
   /**
@@ -167,22 +176,25 @@ class BinarySearchTree {
    */
   lowerBound(value, includeEqual = true) {
     let lowerBound = null;
+    let current = this._root;
 
-    const lowerBoundRecursive = (current) => {
-      if (current === null) return lowerBound;
-
+    while (current !== null) {
       const compare = this._compare(value, current.getValue());
+
       if (compare > 0 || (includeEqual && compare === 0)) {
-        if (lowerBound === null || this._compare(lowerBound.getValue(), current.getValue()) <= 0) {
+        // Update the lower bound if necessary
+        if (lowerBound === null || this._compare(lowerBound.getValue(), current.getValue()) < 0) {
           lowerBound = current;
         }
-        return lowerBoundRecursive(current.getRight());
+        // Move to the right subtree
+        current = current.getRight();
+      } else {
+        // Move to the left subtree
+        current = current.getLeft();
       }
+    }
 
-      return lowerBoundRecursive(current.getLeft());
-    };
-
-    return lowerBoundRecursive(this._root);
+    return lowerBound;
   }
 
   /**
@@ -231,22 +243,25 @@ class BinarySearchTree {
    */
   upperBound(value, includeEqual = true) {
     let upperBound = null;
+    let current = this._root;
 
-    const upperBoundRecursive = (current) => {
-      if (current === null) return upperBound;
-
+    while (current !== null) {
       const compare = this._compare(value, current.getValue());
+
       if (compare < 0 || (includeEqual && compare === 0)) {
-        if (upperBound === null || this._compare(upperBound.getValue(), current.getValue()) >= 0) {
+        // Update the upper bound if current is a closer match
+        if (upperBound === null || this._compare(upperBound.getValue(), current.getValue()) > 0) {
           upperBound = current;
         }
-        return upperBoundRecursive(current.getLeft());
+        // Move to the left to find a smaller value that's still greater than 'value'
+        current = current.getLeft();
+      } else {
+        // Move to the right as all values on the left side are smaller
+        current = current.getRight();
       }
+    }
 
-      return upperBoundRecursive(current.getRight());
-    };
-
-    return upperBoundRecursive(this._root);
+    return upperBound;
   }
 
   /**
@@ -311,17 +326,24 @@ class BinarySearchTree {
    * @return {boolean}
    */
   remove(value) {
-    const removeRecursively = (val, current) => {
-      if (current === null) return false;
-
-      const compare = this._compare(val, current.getValue());
-      if (compare < 0) return removeRecursively(val, current.getLeft());
-      if (compare > 0) return removeRecursively(val, current.getRight());
-
-      return this.removeNode(current);
-    };
-
-    return removeRecursively(value, this._root);
+    let current = this._root;
+  
+    while (current !== null) {
+      const compare = this._compare(value, current.getValue());
+  
+      if (compare === 0) {
+        this.removeNode(current);
+        return true;
+      } else {
+        if (compare < 0) {
+          current = current.getLeft();
+        } else {
+          current = current.getRight();
+        }
+      }
+    }
+  
+    return false;
   }
 
   /**
