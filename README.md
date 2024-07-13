@@ -83,7 +83,7 @@ constructor also accepts an options param, where the comparison key prob name ca
 const nums = new BinarySearchTree();
 const employees = new BinarySearchTree(
   (a, b) => a.id - b.id,
-  { key: 'id }
+  { key: 'id' }
 );
 ```
 
