@@ -1,14 +1,14 @@
 const { expect } = require('chai');
 const { AvlTree } = require('../src/avlTree');
 
-describe('AvlTree tests', () => {
+describe('AvlTree tests (iterative implementation)', () => {
   const avlTree = new AvlTree();
 
-  describe('.insert(value)', () => {
+  describe('.insertIterative(value)', () => {
     it('left rotation balancing', () => {
-      avlTree.insert(50);
-      avlTree.insert(80);
-      avlTree.insert(90);
+      avlTree.insertIterative(50);
+      avlTree.insertIterative(80);
+      avlTree.insertIterative(90);
       /*
         50  (balance = -2)
          \
@@ -33,8 +33,8 @@ describe('AvlTree tests', () => {
     });
 
     it('right rotation balancing', () => {
-      avlTree.insert(40);
-      avlTree.insert(30);
+      avlTree.insertIterative(40);
+      avlTree.insertIterative(30);
 
       /*
                       80
@@ -68,7 +68,7 @@ describe('AvlTree tests', () => {
       expect(root.getLeft().getLeft().getValue()).to.equal(30);
       expect(root.getLeft().getLeft().getParent().getValue()).to.equal(40);
 
-      avlTree.insert(20);
+      avlTree.insertIterative(20);
       /*
              80 (balance = 2)
             /  \
@@ -97,9 +97,9 @@ describe('AvlTree tests', () => {
     });
 
     it('left-right rotation balancing', () => {
-      avlTree.insert(35);
-      avlTree.insert(10);
-      avlTree.insert(15);
+      avlTree.insertIterative(35);
+      avlTree.insertIterative(10);
+      avlTree.insertIterative(15);
       /*
         verify left-right rotation
                  40
@@ -136,8 +136,8 @@ describe('AvlTree tests', () => {
     });
 
     it('right-left rotation balancing', () => {
-      avlTree.insert(100);
-      avlTree.insert(95);
+      avlTree.insertIterative(100);
+      avlTree.insertIterative(95);
       /*
         verify right-left rotation
                  40
@@ -243,7 +243,7 @@ describe('AvlTree tests', () => {
       ];
 
       const tree = new AvlTree();
-      elements.forEach((n) => tree.insert(n));
+      elements.forEach((n) => tree.insertIterative(n));
       tree.traversePreOrder((node) => {
         const balance = node.getBalance();
         if (balance > 1 || balance < -1) {
@@ -320,7 +320,7 @@ describe('AvlTree tests', () => {
        10  20      90  100
       */
 
-      avlTree.remove(35);
+      avlTree.removeIterative(35);
 
       /*
                            40
@@ -365,7 +365,7 @@ describe('AvlTree tests', () => {
                         20      90  100
       */
 
-      avlTree.remove(10);
+      avlTree.removeIterative(10);
 
       /*
                             40
@@ -410,8 +410,8 @@ describe('AvlTree tests', () => {
                    90  100
       */
 
-      avlTree.remove(90);
-      avlTree.remove(50);
+      avlTree.removeIterative(90);
+      avlTree.removeIterative(50);
 
       /*
                  40
@@ -440,7 +440,7 @@ describe('AvlTree tests', () => {
     });
 
     it('left-right rotation balancing', () => {
-      avlTree.insert(85);
+      avlTree.insertIterative(85);
       /*
                   40
                /      \
@@ -451,7 +451,7 @@ describe('AvlTree tests', () => {
                      85
       */
 
-      avlTree.remove(100);
+      avlTree.removeIterative(100);
       /*
                   40
                /      \
@@ -487,10 +487,10 @@ describe('AvlTree tests', () => {
              /  \    /  \
             15  30  80  95
       */
-      avlTree.remove(30);
-      avlTree.remove(80);
-      avlTree.remove(95);
-      avlTree.remove(85);
+      avlTree.removeIterative(30);
+      avlTree.removeIterative(80);
+      avlTree.removeIterative(95);
+      avlTree.removeIterative(85);
       /*
                   40 (balance = 2)
                  /
@@ -508,19 +508,19 @@ describe('AvlTree tests', () => {
       expect(avlTree.root().getLeft().getValue()).to.equal(15);
       expect(avlTree.root().getRight().getValue()).to.equal(40);
 
-      avlTree.remove(20);
+      avlTree.removeIterative(20);
       expect(avlTree.root().getValue()).to.equal(40);
       expect(avlTree.root().getLeft().getValue()).to.equal(15);
 
-      avlTree.remove(40);
+      avlTree.removeIterative(40);
       expect(avlTree.root().getValue()).to.equal(15);
       expect(avlTree.count()).to.equal(1);
 
-      avlTree.insert(20);
-      avlTree.remove(15);
+      avlTree.insertIterative(20);
+      avlTree.removeIterative(15);
       expect(avlTree.root().getValue()).to.equal(20);
       expect(avlTree.count()).to.equal(1);
-      avlTree.remove(20);
+      avlTree.removeIterative(20);
       expect(avlTree.root()).to.equal(null);
       expect(avlTree.count()).to.equal(0);
     });
@@ -533,12 +533,12 @@ describe('AvlTree tests', () => {
       }
 
       const tree = new AvlTree();
-      tree.insert(3);
-      tree.insert(1);
-      tree.insert(5);
-      tree.insert(6);
+      tree.insertIterative(3);
+      tree.insertIterative(1);
+      tree.insertIterative(5);
+      tree.insertIterative(6);
 
-      tree.remove(5);
+      tree.removeIterative(5);
 
       expect(getAll(tree)).to.deep.equal([1, 3, 6]);
     });
@@ -548,8 +548,8 @@ describe('AvlTree tests', () => {
       const deleteOrder = [1, 5, 3, 4, 9, 13, 11, 12, 7, 8, 10];
 
       const tree = new AvlTree();
-      insertOrder.forEach((n) => tree.insert(n));
-      deleteOrder.forEach((n) => tree.remove(n));
+      insertOrder.forEach((n) => tree.insertIterative(n));
+      deleteOrder.forEach((n) => tree.removeIterative(n));
       expect(tree.root().getBalance()).to.be.oneOf([-1, 0, 1]);
       const elements = [];
       tree.traverseInOrder((n) => elements.push(n.getValue()));
@@ -623,22 +623,22 @@ describe('AvlTree tests', () => {
       ];
 
       const tree = new AvlTree();
-      elements.forEach((n) => tree.insert(n));
-      elements.forEach((n) => tree.remove(n));
+      elements.forEach((n) => tree.insertIterative(n));
+      elements.forEach((n) => tree.removeIterative(n));
     });
   });
 
   describe('.removeNode(node)', () => {
     const testRemoveTree = new AvlTree();
     testRemoveTree
-      .insert(50)
-      .insert(80)
-      .insert(30)
-      .insert(90)
-      .insert(60)
-      .insert(40)
-      .insert(20);
-    const n80 = testRemoveTree.find(80);
+      .insertIterative(50)
+      .insertIterative(80)
+      .insertIterative(30)
+      .insertIterative(90)
+      .insertIterative(60)
+      .insertIterative(40)
+      .insertIterative(20);
+    const n80 = testRemoveTree.findIterative(80);
     testRemoveTree.removeNode(n80);
     expect(testRemoveTree.root().getRight().getValue()).to.equal(90);
     expect(testRemoveTree.root().getRight().getLeft().getValue()).to.equal(60);

@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const { BinarySearchTreeNode } = require('../src/binarySearchTreeNode');
 const { BinarySearchTree } = require('../src/binarySearchTree');
 
-describe('BinarySearchTree tests', () => {
+describe('BinarySearchTree tests (recursive implementation)', () => {
   const bst = new BinarySearchTree();
 
   describe('.insert(value)', () => {
