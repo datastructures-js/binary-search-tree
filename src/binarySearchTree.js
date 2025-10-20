@@ -22,17 +22,18 @@ class BinarySearchTree {
 
     this._compare = compare || defaultCompare;
     this._options = options || {};
+    this._iterative = this._options.iterative || false;
     this._root = null;
     this._count = 0;
   }
 
   /**
-   * Inserts a node with a key/value into the tree
-   * @public
+   * Inserts a node with a key/value into the tree (recursive implementation)
+   * @private
    * @param {number|string|object} value
    * @return {BinarySearchTree}
    */
-  insert(value) {
+  _insertRecursive(value) {
     const newNode = new BinarySearchTreeNode(value);
     const insertRecursive = (current) => {
       const compare = this._compare(newNode.getValue(), current.getValue());
@@ -66,12 +67,66 @@ class BinarySearchTree {
   }
 
   /**
-   * Checks if a value exists in the tree by its value
+   * Inserts a node with a key/value into the tree (iterative implementation)
+   * @private
+   * @param {number|string|object} value
+   * @return {BinarySearchTree}
+   */
+  _insertIterative(value) {
+    const newNode = new BinarySearchTreeNode(value);
+    let node = this._root;
+    if (!node) {
+      this._root = newNode;
+      this._count += 1;
+    } else {
+      let inserted = false;
+      while (!inserted) {
+        const compare = this._compare(newNode.getValue(), node.getValue());
+
+        if (compare < 0) {
+          if (node.hasLeft()) {
+            node = node.getLeft();
+          } else {
+            node.setLeft(newNode.setParent(node));
+            this._count += 1;
+            inserted = true;
+          }
+        } else if (compare > 0) {
+          if (node.hasRight()) {
+            node = node.getRight();
+          } else {
+            node.setRight(newNode.setParent(node));
+            this._count += 1;
+            inserted = true;
+          }
+        } else {
+          node.setValue(value);
+          inserted = true;
+        }
+      }
+    }
+    return this;
+  }
+
+  /**
+   * Inserts a node with a key/value into the tree
    * @public
+   * @param {number|string|object} value
+   * @return {BinarySearchTree}
+   */
+  insert(value) {
+    return this._iterative
+      ? this._insertIterative(value)
+      : this._insertRecursive(value);
+  }
+
+  /**
+   * Checks if a value exists in the tree by its value (recursive implementation)
+   * @private
    * @param {number|string|object} value
    * @return {boolean}
    */
-  has(value) {
+  _hasRecursive(value) {
     const hasRecursive = (current) => {
       if (current === null) return false;
 
@@ -82,6 +137,41 @@ class BinarySearchTree {
     };
 
     return hasRecursive(this._root);
+  }
+
+  /**
+   * Checks if a value exists in the tree by its value (iterative implementation)
+   * @private
+   * @param {number|string|object} value
+   * @return {boolean}
+   */
+  _hasIterative(value) {
+    let current = this._root;
+    while (current !== null) {
+      const compare = this._compare(value, current.getValue());
+
+      if (compare === 0) {
+        return true;
+      }
+      if (compare < 0) {
+        current = current.getLeft();
+      } else {
+        current = current.getRight();
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Checks if a value exists in the tree by its value
+   * @public
+   * @param {number|string|object} value
+   * @return {boolean}
+   */
+  has(value) {
+    return this._iterative
+      ? this._hasIterative(value)
+      : this._hasRecursive(value);
   }
 
   /**
@@ -98,12 +188,12 @@ class BinarySearchTree {
   }
 
   /**
-   * Finds a node by its value
-   * @public
+   * Finds a node by its value (recursive implementation)
+   * @private
    * @param {number|string|object} value
    * @return {BinarySearchTreeNode}
    */
-  find(value) {
+  _findRecursive(value) {
     const findRecursive = (current) => {
       if (current === null) return null;
 
@@ -114,6 +204,43 @@ class BinarySearchTree {
     };
 
     return findRecursive(this._root);
+  }
+
+  /**
+   * Finds a node by its value (iterative implementation)
+   * @private
+   * @param {number|string|object} value
+   * @return {BinarySearchTreeNode}
+   */
+  _findIterative(value) {
+    let current = this._root;
+
+    while (current !== null) {
+      const compare = this._compare(value, current.getValue());
+
+      if (compare === 0) {
+        return current;
+      }
+      if (compare < 0) {
+        current = current.getLeft();
+      } else {
+        current = current.getRight();
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Finds a node by its value
+   * @public
+   * @param {number|string|object} value
+   * @return {BinarySearchTreeNode}
+   */
+  find(value) {
+    return this._iterative
+      ? this._findIterative(value)
+      : this._findRecursive(value);
   }
 
   /**
@@ -130,15 +257,69 @@ class BinarySearchTree {
   }
 
   /**
+   * Finds the node with max key (most right) in the tree (recursive implementation)
+   * @private
+   * @param {BinarySearchTreeNode} [current]
+   * @return {BinarySearchTreeNode}
+   */
+  _maxRecursive(current = this._root) {
+    if (current === null) return null;
+    if (current.hasRight()) return this._maxRecursive(current.getRight());
+    return current;
+  }
+
+  /**
+   * Finds the node with max key (most right) in the tree (iterative implementation)
+   * @private
+   * @param {BinarySearchTreeNode} [current]
+   * @return {BinarySearchTreeNode}
+   */
+  _maxIterative(current = this._root) {
+    if (current === null) return null;
+    let node = current;
+    while (node.hasRight()) {
+      node = node.getRight();
+    }
+    return node;
+  }
+
+  /**
    * Finds the node with max key (most right) in the tree
    * @public
    * @param {BinarySearchTreeNode} [current]
    * @return {BinarySearchTreeNode}
    */
   max(current = this._root) {
+    return this._iterative
+      ? this._maxIterative(current)
+      : this._maxRecursive(current);
+  }
+
+  /**
+   * Finds the node with min key (most left) in the tree (recursive implementation)
+   * @private
+   * @param {BinarySearchTreeNode} [current]
+   * @return {BinarySearchTreeNode}
+   */
+  _minRecursive(current = this._root) {
     if (current === null) return null;
-    if (current.hasRight()) return this.max(current.getRight());
+    if (current.hasLeft()) return this._minRecursive(current.getLeft());
     return current;
+  }
+
+  /**
+   * Finds the node with min key (most left) in the tree (iterative implementation)
+   * @private
+   * @param {BinarySearchTreeNode} [current]
+   * @return {BinarySearchTreeNode}
+   */
+  _minIterative(current = this._root) {
+    if (current === null) return null;
+    let node = current;
+    while (node.hasLeft()) {
+      node = node.getLeft();
+    }
+    return node;
   }
 
   /**
@@ -148,19 +329,19 @@ class BinarySearchTree {
    * @return {BinarySearchTreeNode}
    */
   min(current = this._root) {
-    if (current === null) return null;
-    if (current.hasLeft()) return this.min(current.getLeft());
-    return current;
+    return this._iterative
+      ? this._minIterative(current)
+      : this._minRecursive(current);
   }
 
   /**
-   * Returns the node with the biggest value less or equal a given value
-   * @public
+   * Returns the node with the biggest value less or equal a given value (recursive implementation)
+   * @private
    * @param {number|string|object} value
    * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  lowerBound(value, includeEqual = true) {
+  _lowerBoundRecursive(value, includeEqual = true) {
     let lowerBound = null;
 
     const lowerBoundRecursive = (current) => {
@@ -178,6 +359,46 @@ class BinarySearchTree {
     };
 
     return lowerBoundRecursive(this._root);
+  }
+
+  /**
+   * Returns the node with the biggest value less or equal a given value (iterative implementation)
+   * @private
+   * @param {number|string|object} value
+   * @param {boolean} includeEqual
+   * @return {BinarySearchTreeNode|null}
+   */
+  _lowerBoundIterative(value, includeEqual = true) {
+    let lowerBound = null;
+    let current = this._root;
+
+    while (current !== null) {
+      const compare = this._compare(value, current.getValue());
+
+      if (compare > 0 || (includeEqual && compare === 0)) {
+        if (lowerBound === null || this._compare(lowerBound.getValue(), current.getValue()) < 0) {
+          lowerBound = current;
+        }
+        current = current.getRight();
+      } else {
+        current = current.getLeft();
+      }
+    }
+
+    return lowerBound;
+  }
+
+  /**
+   * Returns the node with the biggest value less or equal a given value
+   * @public
+   * @param {number|string|object} value
+   * @param {boolean} includeEqual
+   * @return {BinarySearchTreeNode|null}
+   */
+  lowerBound(value, includeEqual = true) {
+    return this._iterative
+      ? this._lowerBoundIterative(value, includeEqual)
+      : this._lowerBoundRecursive(value, includeEqual);
   }
 
   /**
@@ -218,13 +439,13 @@ class BinarySearchTree {
   }
 
   /**
-   * Returns the node with the smallest value greater or equal a given value
-   * @public
+   * Returns the node with the smallest value greater or equal a given value (recursive implementation)
+   * @private
    * @param {number|string|object} value
    * @param {boolean} includeEqual
    * @return {BinarySearchTreeNode|null}
    */
-  upperBound(value, includeEqual = true) {
+  _upperBoundRecursive(value, includeEqual = true) {
     let upperBound = null;
 
     const upperBoundRecursive = (current) => {
@@ -242,6 +463,46 @@ class BinarySearchTree {
     };
 
     return upperBoundRecursive(this._root);
+  }
+
+  /**
+   * Returns the node with the smallest value greater or equal a given value (iterative implementation)
+   * @private
+   * @param {number|string|object} value
+   * @param {boolean} includeEqual
+   * @return {BinarySearchTreeNode|null}
+   */
+  _upperBoundIterative(value, includeEqual = true) {
+    let upperBound = null;
+    let current = this._root;
+
+    while (current !== null) {
+      const compare = this._compare(value, current.getValue());
+
+      if (compare < 0 || (includeEqual && compare === 0)) {
+        if (upperBound === null || this._compare(upperBound.getValue(), current.getValue()) > 0) {
+          upperBound = current;
+        }
+        current = current.getLeft();
+      } else {
+        current = current.getRight();
+      }
+    }
+
+    return upperBound;
+  }
+
+  /**
+   * Returns the node with the smallest value greater or equal a given value
+   * @public
+   * @param {number|string|object} value
+   * @param {boolean} includeEqual
+   * @return {BinarySearchTreeNode|null}
+   */
+  upperBound(value, includeEqual = true) {
+    return this._iterative
+      ? this._upperBoundIterative(value, includeEqual)
+      : this._upperBoundRecursive(value, includeEqual);
   }
 
   /**
@@ -300,12 +561,12 @@ class BinarySearchTree {
   }
 
   /**
-   * Removes a node by its value
-   * @public
+   * Removes a node by its value (recursive implementation)
+   * @private
    * @param {number|string|object} value
    * @return {boolean}
    */
-  remove(value) {
+  _removeRecursive(value) {
     const removeRecursively = (val, current) => {
       if (current === null) return false;
 
@@ -317,6 +578,44 @@ class BinarySearchTree {
     };
 
     return removeRecursively(value, this._root);
+  }
+
+  /**
+   * Removes a node by its value (iterative implementation)
+   * @private
+   * @param {number|string|object} value
+   * @return {boolean}
+   */
+  _removeIterative(value) {
+    let current = this._root;
+
+    while (current !== null) {
+      const compare = this._compare(value, current.getValue());
+
+      if (compare === 0) {
+        this.removeNode(current);
+        return true;
+      }
+      if (compare < 0) {
+        current = current.getLeft();
+      } else {
+        current = current.getRight();
+      }
+    }
+
+    return false;
+  }
+
+  /**
+   * Removes a node by its value
+   * @public
+   * @param {number|string|object} value
+   * @return {boolean}
+   */
+  remove(value) {
+    return this._iterative
+      ? this._removeIterative(value)
+      : this._removeRecursive(value);
   }
 
   /**
@@ -378,6 +677,51 @@ class BinarySearchTree {
   }
 
   /**
+   * Traverses the tree in-order (left-node-right) (recursive implementation)
+   * @private
+   * @param {function} cb
+   * @param {function} [abortCb]
+   */
+  _traverseInOrderRecursive(cb, abortCb) {
+    const traverseRecursive = (current) => {
+      if (current === null || (abortCb && abortCb())) return;
+      traverseRecursive(current.getLeft());
+      if (abortCb && abortCb()) return;
+      cb(current);
+      traverseRecursive(current.getRight());
+    };
+
+    traverseRecursive(this._root);
+  }
+
+  /**
+   * Traverses the tree in-order (left-node-right) (iterative implementation)
+   * @private
+   * @param {function} cb
+   * @param {function} [abortCb]
+   */
+  _traverseInOrderIterative(cb, abortCb) {
+    let current = this._root;
+    const stack = [];
+
+    while (current !== null || stack.length > 0) {
+      while (current !== null) {
+        stack.push(current);
+        current = current.getLeft();
+      }
+      current = stack.pop();
+
+      if (abortCb && abortCb()) {
+        return;
+      }
+
+      cb(current);
+
+      current = current.getRight();
+    }
+  }
+
+  /**
    * Traverses the tree in-order (left-node-right)
    * @public
    * @param {function} cb
@@ -388,15 +732,47 @@ class BinarySearchTree {
       throw new Error('.traverseInOrder expects a callback function');
     }
 
+    return this._iterative
+      ? this._traverseInOrderIterative(cb, abortCb)
+      : this._traverseInOrderRecursive(cb, abortCb);
+  }
+
+  /**
+   * Traverses the tree pre-order (node-left-right) (recursive implementation)
+   * @private
+   * @param {function} cb
+   * @param {function} [abortCb]
+   */
+  _traversePreOrderRecursive(cb, abortCb) {
     const traverseRecursive = (current) => {
       if (current === null || (abortCb && abortCb())) return;
-      traverseRecursive(current.getLeft());
-      if (abortCb && abortCb()) return;
       cb(current);
+      traverseRecursive(current.getLeft());
       traverseRecursive(current.getRight());
     };
 
     traverseRecursive(this._root);
+  }
+
+  /**
+   * Traverses the tree pre-order (node-left-right) (iterative implementation)
+   * @private
+   * @param {function} cb
+   * @param {function} [abortCb]
+   */
+  _traversePreOrderIterative(cb, abortCb) {
+    const stack = [this._root];
+
+    while (stack.length) {
+      const current = stack.pop();
+
+      if (abortCb && abortCb()) break;
+      if (current) {
+        cb(current);
+        stack.push(current.getRight());
+        stack.push(current.getLeft());
+      }
+    }
   }
 
   /**
@@ -410,14 +786,59 @@ class BinarySearchTree {
       throw new Error('.traversePreOrder expects a callback function');
     }
 
+    return this._iterative
+      ? this._traversePreOrderIterative(cb, abortCb)
+      : this._traversePreOrderRecursive(cb, abortCb);
+  }
+
+  /**
+   * Traverses the tree post-order (left-right-node) (recursive implementation)
+   * @private
+   * @param {function} cb
+   * @param {function} [abortCb]
+   */
+  _traversePostOrderRecursive(cb, abortCb) {
     const traverseRecursive = (current) => {
       if (current === null || (abortCb && abortCb())) return;
-      cb(current);
       traverseRecursive(current.getLeft());
       traverseRecursive(current.getRight());
+      if (abortCb && abortCb()) return;
+      cb(current);
     };
 
     traverseRecursive(this._root);
+  }
+
+  /**
+   * Traverses the tree post-order (left-right-node) (iterative implementation)
+   * @private
+   * @param {function} cb
+   * @param {function} [abortCb]
+   */
+  _traversePostOrderIterative(cb, abortCb) {
+    const s1 = [];
+    const s2 = [];
+    s1.push(this._root);
+
+    while (s1.length) {
+      const current = s1.pop();
+
+      s2.push(current);
+
+      if (abortCb && abortCb()) break;
+      if (current) {
+        s1.push(current.getLeft());
+        s1.push(current.getRight());
+      }
+    }
+
+    while (s2.length) {
+      const current = s2.pop();
+      if (abortCb && abortCb()) break;
+      if (current) {
+        cb(current);
+      }
+    }
   }
 
   /**
@@ -431,15 +852,9 @@ class BinarySearchTree {
       throw new Error('.traversePostOrder expects a callback function');
     }
 
-    const traverseRecursive = (current) => {
-      if (current === null || (abortCb && abortCb())) return;
-      traverseRecursive(current.getLeft());
-      traverseRecursive(current.getRight());
-      if (abortCb && abortCb()) return;
-      cb(current);
-    };
-
-    traverseRecursive(this._root);
+    return this._iterative
+      ? this._traversePostOrderIterative(cb, abortCb)
+      : this._traversePostOrderRecursive(cb, abortCb);
   }
 
   /**

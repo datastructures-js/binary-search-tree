@@ -2,8 +2,8 @@ const { expect } = require('chai');
 const { BinarySearchTreeNode } = require('../src/binarySearchTreeNode');
 const { BinarySearchTree } = require('../src/binarySearchTree');
 
-describe('BinarySearchTree tests', () => {
-  const bst = new BinarySearchTree();
+describe('BinarySearchTree tests (iterative implementation)', () => {
+  const bst = new BinarySearchTree(null, { iterative: true });
 
   describe('.insert(value)', () => {
     it('should insert nodes to the tree', () => {
@@ -50,7 +50,7 @@ describe('BinarySearchTree tests', () => {
 
   describe('.has(key)', () => {
     it('checks if a node exists by key', () => {
-      const testTree = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      const testTree = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id', iterative: true });
       testTree.insert({ id: 1, name: 'a' });
       testTree.insert({ id: 2, name: 'b' });
       testTree.insert({ id: 3, name: 'c' });
@@ -78,7 +78,7 @@ describe('BinarySearchTree tests', () => {
 
   describe('.findKey(key)', () => {
     it('should search a node by its key in the tree', () => {
-      const testTree = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      const testTree = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id', iterative: true });
       testTree.insert({ id: 1, name: 'a' });
       testTree.insert({ id: 2, name: 'b' });
       testTree.insert({ id: 3, name: 'c' });
@@ -116,7 +116,7 @@ describe('BinarySearchTree tests', () => {
     });
 
     it('returns the biggest lower bound of multiple lower bounds', () => {
-      const lowerBst = new BinarySearchTree();
+      const lowerBst = new BinarySearchTree(null, { iterative: true });
       lowerBst.insert(20);
       lowerBst.insert(7);
       lowerBst.insert(15);
@@ -127,7 +127,7 @@ describe('BinarySearchTree tests', () => {
 
   describe('.lowerBoundKey(key) / floorKey', () => {
     it('gets the node with biggest key less or equal k', () => {
-      const lowerBst = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      const lowerBst = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id', iterative: true });
       lowerBst.insert({ id: 20 });
       lowerBst.insert({ id: 7 });
       lowerBst.insert({ id: 15 });
@@ -149,7 +149,7 @@ describe('BinarySearchTree tests', () => {
     });
 
     it('returns the smallest upper bound of multiple upper bounds', () => {
-      const upperBst = new BinarySearchTree();
+      const upperBst = new BinarySearchTree(null, { iterative: true });
       upperBst.insert(-133195046);
       upperBst.insert(-49109668);
       upperBst.insert(115062875);
@@ -161,7 +161,7 @@ describe('BinarySearchTree tests', () => {
 
   describe('.upperBoundKey(key) / ceilKey', () => {
     it('gets the node with smallest key bigger than a key', () => {
-      const upperBst = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id' });
+      const upperBst = new BinarySearchTree((a, b) => a.id - b.id, { key: 'id', iterative: true });
       upperBst.insert({ id: 20 });
       upperBst.insert({ id: 7 });
       upperBst.insert({ id: 15 });
@@ -283,7 +283,7 @@ describe('BinarySearchTree tests', () => {
   });
 
   describe('.removeNode(node)', () => {
-    const testRemoveTree = new BinarySearchTree();
+    const testRemoveTree = new BinarySearchTree(null, { iterative: true });
     testRemoveTree
       .insert(50)
       .insert(80)

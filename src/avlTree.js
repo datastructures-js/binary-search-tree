@@ -68,13 +68,13 @@ class AvlTree extends BinarySearchTree {
 
   /**
    * Inserts a value into the tree and maintains
-   * the tree balanced by making the necessary rotations
+   * the tree balanced by making the necessary rotations (recursive implementation)
    *
-   * @public
+   * @private
    * @param {number|string|object} value
    * @return {AvlTree}
    */
-  insert(value) {
+  _insertRecursive(value) {
     const newNode = new AvlTreeNode(value, this._compare);
     const insertRecursive = (current) => {
       const compare = this._compare(value, current.getValue());
@@ -112,14 +112,86 @@ class AvlTree extends BinarySearchTree {
   }
 
   /**
-   * Removes a node from the tree and maintains
+   * Inserts a value into the tree and maintains
+   * the tree balanced by making the necessary rotations (iterative implementation)
+   *
+   * @private
+   * @param {number|string|object} value
+   * @return {AvlTree}
+   */
+  _insertIterative(value) {
+    const newNode = new AvlTreeNode(value, this._compare);
+
+    if (this._root === null) {
+      this._root = newNode;
+      this._count += 1;
+      return this;
+    }
+
+    // Find insertion point and track path
+    const path = [];
+    let node = this._root;
+    let inserted = false;
+
+    while (!inserted) {
+      path.push(node);
+      const compare = this._compare(value, node.getValue());
+
+      if (compare < 0) {
+        if (node.hasLeft()) {
+          node = node.getLeft();
+        } else {
+          newNode.setParent(node);
+          node.setLeft(newNode).updateHeight();
+          this._count += 1;
+          inserted = true;
+        }
+      } else if (compare > 0) {
+        if (node.hasRight()) {
+          node = node.getRight();
+        } else {
+          newNode.setParent(node);
+          node.setRight(newNode).updateHeight();
+          this._count += 1;
+          inserted = true;
+        }
+      } else {
+        node.setValue(value);
+        return this;
+      }
+    }
+
+    // Balance all ancestors in reverse order (backward-tracking)
+    for (let i = path.length - 1; i >= 0; i -= 1) {
+      this._balanceNode(path[i]);
+    }
+
+    return this;
+  }
+
+  /**
+   * Inserts a value into the tree and maintains
    * the tree balanced by making the necessary rotations
    *
    * @public
    * @param {number|string|object} value
+   * @return {AvlTree}
+   */
+  insert(value) {
+    return this._iterative
+      ? this._insertIterative(value)
+      : this._insertRecursive(value);
+  }
+
+  /**
+   * Removes a node from the tree and maintains
+   * the tree balanced by making the necessary rotations (recursive implementation)
+   *
+   * @private
+   * @param {number|string|object} value
    * @return {boolean}
    */
-  remove(value) {
+  _removeRecursive(value) {
     const removeRecursively = (val, current) => {
       if (current === null) {
         return false;
@@ -143,6 +215,64 @@ class AvlTree extends BinarySearchTree {
     };
 
     return removeRecursively(value, this._root);
+  }
+
+  /**
+   * Removes a node from the tree and maintains
+   * the tree balanced by making the necessary rotations (iterative implementation)
+   *
+   * @private
+   * @param {number|string|object} value
+   * @return {boolean}
+   */
+  _removeIterative(value) {
+    if (this._root === null) {
+      return false;
+    }
+
+    const path = [];
+    let node = this._root;
+    let found = false;
+    while (node !== null && !found) {
+      const compare = this._compare(value, node.getValue());
+
+      if (compare === 0) {
+        found = true;
+      } else {
+        path.push(node);
+        if (compare < 0) {
+          node = node.getLeft();
+        } else {
+          node = node.getRight();
+        }
+      }
+    }
+
+    if (!found) {
+      return false;
+    }
+
+    const removed = this.removeNode(node);
+    for (let i = path.length - 1; i >= 0; i -= 1) {
+      // Balance all ancestors in reverse order (backward-tracking)
+      this._balanceNode(path[i]);
+    }
+
+    return removed;
+  }
+
+  /**
+   * Removes a node from the tree and maintains
+   * the tree balanced by making the necessary rotations
+   *
+   * @public
+   * @param {number|string|object} value
+   * @return {boolean}
+   */
+  remove(value) {
+    return this._iterative
+      ? this._removeIterative(value)
+      : this._removeRecursive(value);
   }
 
   /**

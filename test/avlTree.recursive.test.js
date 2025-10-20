@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const { AvlTree } = require('../src/avlTree');
 
-describe('AvlTree tests', () => {
+describe('AvlTree tests (recursive implementation)', () => {
   const avlTree = new AvlTree();
 
   describe('.insert(value)', () => {
