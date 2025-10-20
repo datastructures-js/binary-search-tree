@@ -70,11 +70,11 @@ class AvlTree extends BinarySearchTree {
    * Inserts a value into the tree and maintains
    * the tree balanced by making the necessary rotations (recursive implementation)
    *
-   * @private
+   * @public
    * @param {number|string|object} value
    * @return {AvlTree}
    */
-  _insertRecursive(value) {
+  insert(value) {
     const newNode = new AvlTreeNode(value, this._compare);
     const insertRecursive = (current) => {
       const compare = this._compare(value, current.getValue());
@@ -115,11 +115,11 @@ class AvlTree extends BinarySearchTree {
    * Inserts a value into the tree and maintains
    * the tree balanced by making the necessary rotations (iterative implementation)
    *
-   * @private
+   * @public
    * @param {number|string|object} value
    * @return {AvlTree}
    */
-  _insertIterative(value) {
+  insertIterative(value) {
     const newNode = new AvlTreeNode(value, this._compare);
 
     if (this._root === null) {
@@ -170,28 +170,14 @@ class AvlTree extends BinarySearchTree {
   }
 
   /**
-   * Inserts a value into the tree and maintains
-   * the tree balanced by making the necessary rotations
-   *
-   * @public
-   * @param {number|string|object} value
-   * @return {AvlTree}
-   */
-  insert(value) {
-    return this._iterative
-      ? this._insertIterative(value)
-      : this._insertRecursive(value);
-  }
-
-  /**
    * Removes a node from the tree and maintains
    * the tree balanced by making the necessary rotations (recursive implementation)
    *
-   * @private
+   * @public
    * @param {number|string|object} value
    * @return {boolean}
    */
-  _removeRecursive(value) {
+  remove(value) {
     const removeRecursively = (val, current) => {
       if (current === null) {
         return false;
@@ -221,11 +207,11 @@ class AvlTree extends BinarySearchTree {
    * Removes a node from the tree and maintains
    * the tree balanced by making the necessary rotations (iterative implementation)
    *
-   * @private
+   * @public
    * @param {number|string|object} value
    * @return {boolean}
    */
-  _removeIterative(value) {
+  removeIterative(value) {
     if (this._root === null) {
       return false;
     }
@@ -259,20 +245,6 @@ class AvlTree extends BinarySearchTree {
     }
 
     return removed;
-  }
-
-  /**
-   * Removes a node from the tree and maintains
-   * the tree balanced by making the necessary rotations
-   *
-   * @public
-   * @param {number|string|object} value
-   * @return {boolean}
-   */
-  remove(value) {
-    return this._iterative
-      ? this._removeIterative(value)
-      : this._removeRecursive(value);
   }
 
   /**
