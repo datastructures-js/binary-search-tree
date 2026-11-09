@@ -67,6 +67,21 @@ class AvlTree extends BinarySearchTree {
   }
 
   /**
+   * Balances a node and its ancestors after a child is detached
+   * @private
+   * @param {AvlTreeNode} node
+   */
+  _balanceAncestors(node) {
+    let current = node;
+    while (current !== null) {
+      // Save the next ancestor before rotation changes current's parent.
+      const parent = current.getParent();
+      this._balanceNode(current);
+      current = parent;
+    }
+  }
+
+  /**
    * Inserts a value into the tree and maintains
    * the tree balanced by making the necessary rotations (recursive implementation)
    *
@@ -268,6 +283,7 @@ class AvlTree extends BinarySearchTree {
         node.getParent().setRight(null).updateHeight();
       }
       this._count -= 1;
+      this._balanceAncestors(node.getParent());
       return true;
     }
 
@@ -282,6 +298,7 @@ class AvlTree extends BinarySearchTree {
       }
       node.getLeft().setParent(node.getParent());
       this._count -= 1;
+      this._balanceAncestors(node.getParent());
       return true;
     }
 
@@ -296,6 +313,7 @@ class AvlTree extends BinarySearchTree {
       }
       node.getRight().setParent(node.getParent());
       this._count -= 1;
+      this._balanceAncestors(node.getParent());
       return true;
     }
 
